@@ -45,7 +45,7 @@ export const Footer: React.FC<FooterProps> = ({
               <h3 className="text-2xl font-bold mb-2">
                 Stay Updated with Farm Fresh Deals
               </h3>
-              <p className="text-emerald-100">
+              <p className="text-emerald-100 text-[14px]">
                 Get the latest offers and agricultural insights delivered to
                 your inbox
               </p>

@@ -54,13 +54,13 @@ export const BecomeSeller = () => {
 
             {/* Main Heading */}
             <div className="space-y-4">
-              <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
+              <h2 className="text-3xl sm:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
                 Become a{" "}
                 <span className="bg-gradient-to-r from-orange-600 to-amber-600 bg-clip-text text-transparent">
                   Farmer Seller
                 </span>
               </h2>
-              <p className="text-lg sm:text-xl text-gray-600 leading-relaxed">
+              <p className="text-[14px] sm:text-xl text-gray-600 leading-relaxed">
                 Set up your farm store in minutes, reach buyers directly, and
                 grow your agricultural business with our powerful seller tools
                 and inspection services.

@@ -55,10 +55,10 @@ const FeaturedProducts = ({
             <Star className="h-4 w-4 fill-current" />
             Fresh From Farms
           </div>
-          <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-4">
+          <h2 className="text-3xl sm:text-5xl font-bold text-gray-900 mb-4">
             Fresh Agricultural Products
           </h2>
-          <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
+          <p className="sm:text-lg text-[14px] text-gray-600 max-w-3xl mx-auto leading-relaxed">
             Discover fresh, quality agricultural products directly from verified
             farmers with inspection options. Every product comes with quality
             assurance from our trusted farm partners.

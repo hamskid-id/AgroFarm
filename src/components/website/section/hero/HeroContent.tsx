@@ -88,7 +88,7 @@ const HeroContent = ({
           </span>
         </h1>
 
-        <p className="text-lg sm:text-xl text-gray-600 leading-relaxed max-w-2xl">
+        <p className="text-[14px] sm:text-xl text-gray-600 leading-relaxed max-w-2xl">
           Join thousands of farmers and buyers in the most trusted agricultural
           marketplace. Sell fresh produce directly or discover quality
           agricultural products with inspection guarantees.
@@ -103,7 +103,7 @@ const HeroContent = ({
         <Button
           size="lg"
           onClick={onStartSelling}
-          className="h-[45px] bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white px-8 py-4 text-lg rounded-xl hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+          className="text-sm h-[45px] bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white px-8 py-4 rounded-xl hover:shadow-xl transition-all duration-300 transform hover:scale-105"
         >
           Start Selling Today
         </Button>
@@ -112,7 +112,7 @@ const HeroContent = ({
           variant="outline"
           size="lg"
           onClick={onBrowseProducts}
-          className="h-[45px] border-2 border-emerald-600 text-emerald-600 hover:bg-emerald-50 px-8 py-4 text-lg rounded-xl transition-all duration-300 hover:scale-105"
+          className="text-sm h-[45px] border-2 border-emerald-600 text-emerald-600 hover:bg-emerald-50 px-8 py-4 rounded-xl transition-all duration-300 hover:scale-105"
         >
           Browse Products
         </Button>
