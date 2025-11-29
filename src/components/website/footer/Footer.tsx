@@ -65,7 +65,6 @@ export const Footer: React.FC<FooterProps> = ({
               />
               <Button className="bg-[#D89C06] h-full text-white hover:bg-gray-100 px-6 py-3 rounded-lg font-semibold transition-all duration-300">
                 Subscribe
-                <ChevronRight className="ml-2 h-4 w-4" />
               </Button>
             </motion.div>
           </div>
@@ -73,7 +72,7 @@ export const Footer: React.FC<FooterProps> = ({
       </div>
 
       {/* Main Footer Content */}
-      <div className="py-16">
+      <div className="md:py-16 py-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 mb-8">
             {/* Brand & Contact */}
@@ -181,7 +180,7 @@ export const Footer: React.FC<FooterProps> = ({
           <Separator className="bg-gray-700 my-8" />
 
           {/* Bottom Section - ONLY copyright placement changed */}
-          <div className="flex flex-col md:flex-row justify-between items-center">
+          <div className="flex flex-col gap-4 md:flex-row justify-between items-center">
             {/* Social Links - Left side */}
             <div className="flex items-center gap-6">
               <span className="text-gray-400 text-sm">Follow us:</span>
@@ -202,13 +201,6 @@ export const Footer: React.FC<FooterProps> = ({
                   </motion.a>
                 ))}
               </div>
-            </div>
-
-            {/* Copyright - Centered */}
-            <div className="text-center my-4 md:my-0">
-              <p className="text-gray-400 text-sm">
-                &copy; {currentYear} AgroFarm Marketplace. All rights reserved.
-              </p>
             </div>
 
             {/* Legal Links - Right side */}
@@ -232,6 +224,12 @@ export const Footer: React.FC<FooterProps> = ({
                 Cookie Policy
               </Link>
             </div>
+          </div>
+          {/* Copyright - Centered */}
+          <div className="text-center mt-4 md:mt-0">
+            <p className="text-gray-400 text-sm">
+              &copy; {currentYear} AgroFarm Marketplace. All rights reserved.
+            </p>
           </div>
         </div>
       </div>

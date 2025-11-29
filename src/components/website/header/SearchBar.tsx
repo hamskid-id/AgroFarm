@@ -4,7 +4,7 @@ import { Input } from "../../ui/input";
 
 const SearchBar = () => {
   return (
-    <div className="flex-1 max-w-xs sm:max-w-md lg:max-w-xl mx-2 sm:mx-4 order-2 sm:order-1 w-full sm:w-auto">
+    <div className="flex-1 md:flex hidden max-w-xs sm:max-w-md lg:max-w-xl mx-2 sm:mx-4 order-2 sm:order-1 w-full sm:w-auto">
       <div className="relative w-full group">
         <Search className="absolute left-3 sm:left-4 top-1/2 transform -translate-y-1/2 h-4 sm:h-5 w-4 sm:w-5 text-gray-400 group-focus-within:text-emerald-600 transition-colors" />
         <Input
