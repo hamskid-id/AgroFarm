@@ -89,7 +89,7 @@ export const Footer: React.FC<FooterProps> = ({
                 </div>
               </div>
 
-              <p className="text-gray-300 leading-relaxed max-w-md">
+              <p className="text-gray-300 text-sm leading-relaxed max-w-md">
                 Nigeria's trusted agricultural marketplace. We connect farmers
                 directly with buyers, ensuring fresh, quality produce with
                 transparency and fair pricing.
@@ -126,7 +126,7 @@ export const Footer: React.FC<FooterProps> = ({
                   <li key={link}>
                     <Link
                       href="#"
-                      className="hover:text-emerald-400 transition-colors hover:translate-x-1 transform duration-300 inline-block"
+                      className="hover:text-emerald-400 transition-colors hover:translate-x-1 transform duration-300 inline-block text-sm"
                     >
                       {link}
                     </Link>
@@ -150,7 +150,7 @@ export const Footer: React.FC<FooterProps> = ({
                   <li key={link}>
                     <Link
                       href="#"
-                      className="hover:text-emerald-400 transition-colors hover:translate-x-1 transform duration-300 inline-block"
+                      className="hover:text-emerald-400 transition-colors hover:translate-x-1 transform duration-300 inline-block text-sm"
                     >
                       {link}
                     </Link>
@@ -167,7 +167,7 @@ export const Footer: React.FC<FooterProps> = ({
                   <li key={link}>
                     <Link
                       href="#"
-                      className="hover:text-emerald-400 transition-colors hover:translate-x-1 transform duration-300 inline-block"
+                      className="hover:text-emerald-400 transition-colors hover:translate-x-1 transform duration-300 inline-block text-sm"
                     >
                       {link}
                     </Link>
