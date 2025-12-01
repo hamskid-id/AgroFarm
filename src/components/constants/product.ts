@@ -34,6 +34,7 @@ export const products: Product[] = [
     },
     images: [image1, image2],
     vendor: {
+      phone: "0803 123 4567",
       id: 9,
       name: "Mountain View Farm",
       farmName: "Mountain View Farm",
@@ -54,6 +55,10 @@ export const products: Product[] = [
       responseRate: 96,
       deliveryTime: "48h",
     },
+    location: "Jos, Plateau",
+    condition: "Fresh",
+    postedDate: "2 days ago",
+    sellerYears: "5+ YEARS ON AGROFARM",
   },
   {
     id: 2,
@@ -78,6 +83,7 @@ export const products: Product[] = [
     },
     images: [image1, image2],
     vendor: {
+      phone: "0803 123 4567",
       id: 10,
       name: "Orchard Fresh",
       farmName: "Orchard Fresh",
@@ -93,6 +99,10 @@ export const products: Product[] = [
       responseRate: 98,
       deliveryTime: "24h",
     },
+    location: "Jos, Plateau",
+    condition: "Fresh",
+    postedDate: "2 days ago",
+    sellerYears: "5+ YEARS ON AGROFARM",
   },
   {
     id: 3,
@@ -117,6 +127,7 @@ export const products: Product[] = [
     },
     images: [image1, image2],
     vendor: {
+      phone: "0803 123 4567",
       id: 1,
       name: "Ahmed Ibrahim",
       farmName: "Green Valley Farm",
@@ -141,6 +152,10 @@ export const products: Product[] = [
       responseRate: 98,
       deliveryTime: "24-48h",
     },
+    location: "Jos, Plateau",
+    condition: "Fresh",
+    postedDate: "2 days ago",
+    sellerYears: "5+ YEARS ON AGROFARM",
   },
   {
     id: 4,
@@ -166,6 +181,7 @@ export const products: Product[] = [
     images: [image1, image2],
     vendor: {
       id: 11,
+      phone: "0803 123 4567",
       name: "Sunshine Gardens",
       farmName: "Sunshine Gardens",
       location: "Ogun, Nigeria",
@@ -185,6 +201,10 @@ export const products: Product[] = [
       responseRate: 97,
       deliveryTime: "24h",
     },
+    location: "Jos, Plateau",
+    condition: "Fresh",
+    postedDate: "2 days ago",
+    sellerYears: "5+ YEARS ON AGROFARM",
   },
   {
     id: 5,
@@ -209,6 +229,7 @@ export const products: Product[] = [
     },
     images: [image1, image2],
     vendor: {
+      phone: "0803 123 4567",
       id: 12,
       name: "Harvest Moon Farm",
       farmName: "Harvest Moon Farm",
@@ -224,6 +245,10 @@ export const products: Product[] = [
       responseRate: 94,
       deliveryTime: "48h",
     },
+    location: "Jos, Plateau",
+    condition: "Fresh",
+    postedDate: "2 days ago",
+    sellerYears: "5+ YEARS ON AGROFARM",
   },
   {
     id: 6,
@@ -248,6 +273,7 @@ export const products: Product[] = [
     },
     images: [image1, image2],
     vendor: {
+      phone: "0803 123 4567",
       id: 13,
       name: "Leafy Greens Co.",
       farmName: "Leafy Greens Co.",
@@ -263,6 +289,10 @@ export const products: Product[] = [
       responseRate: 95,
       deliveryTime: "24h",
     },
+    location: "Jos, Plateau",
+    condition: "Fresh",
+    postedDate: "2 days ago",
+    sellerYears: "5+ YEARS ON AGROFARM",
   },
   {
     id: 7,
@@ -287,6 +317,7 @@ export const products: Product[] = [
     },
     images: [image1, image2],
     vendor: {
+      phone: "0803 123 4567",
       id: 14,
       name: "Rainbow Harvest",
       farmName: "Rainbow Harvest",
@@ -307,6 +338,10 @@ export const products: Product[] = [
       responseRate: 96,
       deliveryTime: "48h",
     },
+    location: "Jos, Plateau",
+    condition: "Fresh",
+    postedDate: "2 days ago",
+    sellerYears: "5+ YEARS ON AGROFARM",
   },
   {
     id: 8,
@@ -331,6 +366,7 @@ export const products: Product[] = [
     },
     images: [image1, image2],
     vendor: {
+      phone: "0803 123 4567",
       id: 1,
       name: "Ahmed Ibrahim",
       farmName: "Green Valley Farm",
@@ -355,6 +391,10 @@ export const products: Product[] = [
       responseRate: 98,
       deliveryTime: "24-48h",
     },
+    location: "Jos, Plateau",
+    condition: "Fresh",
+    postedDate: "2 days ago",
+    sellerYears: "5+ YEARS ON AGROFARM",
   },
   {
     id: 9,
@@ -380,6 +420,7 @@ export const products: Product[] = [
     images: [image1, image2],
     vendor: {
       id: 4,
+      phone: "0803 123 4567",
       name: "Grace Williams",
       farmName: "Berry Best Farms",
       location: "Plateau, Nigeria",
@@ -394,6 +435,10 @@ export const products: Product[] = [
       responseRate: 96,
       deliveryTime: "24h",
     },
+    location: "Jos, Plateau",
+    condition: "Fresh",
+    postedDate: "2 days ago",
+    sellerYears: "5+ YEARS ON AGROFARM",
   },
   {
     id: 10,
@@ -418,6 +463,7 @@ export const products: Product[] = [
     },
     images: [image1, image2],
     vendor: {
+      phone: "0803 123 4567",
       id: 9,
       name: "Mountain View Farm",
       farmName: "Mountain View Farm",
@@ -438,6 +484,10 @@ export const products: Product[] = [
       responseRate: 96,
       deliveryTime: "48h",
     },
+    location: "Jos, Plateau",
+    condition: "Fresh",
+    postedDate: "2 days ago",
+    sellerYears: "5+ YEARS ON AGROFARM",
   },
 ];
 
@@ -525,6 +575,7 @@ export const farmers: Farmer[] = [
     joinDate: "2018",
     responseRate: 98,
     deliveryTime: "24-48h",
+    phone: "0803 123 4567",
   },
   {
     id: 2,
@@ -541,6 +592,7 @@ export const farmers: Farmer[] = [
     joinDate: "2019",
     responseRate: 95,
     deliveryTime: "24h",
+    phone: "0803 123 4567",
   },
   {
     id: 3,
@@ -557,6 +609,7 @@ export const farmers: Farmer[] = [
     joinDate: "2017",
     responseRate: 92,
     deliveryTime: "48-72h",
+    phone:"234 9078637352"
   },
   {
     id: 4,
@@ -573,6 +626,7 @@ export const farmers: Farmer[] = [
     joinDate: "2020",
     responseRate: 96,
     deliveryTime: "24h",
+    phone: "0803 123 4567",
   },
   {
     id: 5,
@@ -589,6 +643,7 @@ export const farmers: Farmer[] = [
     joinDate: "2019",
     responseRate: 90,
     deliveryTime: "48h",
+    phone: "0803 123 4567",
   },
   {
     id: 6,
@@ -605,6 +660,7 @@ export const farmers: Farmer[] = [
     joinDate: "2021",
     responseRate: 94,
     deliveryTime: "72h",
+    phone: "0803 123 4567",
   },
   {
     id: 7,
@@ -621,6 +677,7 @@ export const farmers: Farmer[] = [
     joinDate: "2016",
     responseRate: 97,
     deliveryTime: "24h",
+    phone: "0803 123 4567",
   },
   {
     id: 8,
@@ -637,6 +694,7 @@ export const farmers: Farmer[] = [
     joinDate: "2020",
     responseRate: 93,
     deliveryTime: "48h",
+    phone: "0803 123 4567",
   },
   // Additional farmers to match your products
   {
@@ -654,6 +712,7 @@ export const farmers: Farmer[] = [
     joinDate: "2018",
     responseRate: 96,
     deliveryTime: "48h",
+    phone: "0803 123 4567",
   },
   {
     id: 10,
@@ -670,6 +729,7 @@ export const farmers: Farmer[] = [
     joinDate: "2019",
     responseRate: 98,
     deliveryTime: "24h",
+    phone: "0803 123 4567",
   },
   {
     id: 11,
@@ -686,6 +746,7 @@ export const farmers: Farmer[] = [
     joinDate: "2020",
     responseRate: 97,
     deliveryTime: "24h",
+    phone: "0803 123 4567",
   },
   {
     id: 12,
@@ -702,6 +763,7 @@ export const farmers: Farmer[] = [
     joinDate: "2019",
     responseRate: 94,
     deliveryTime: "48h",
+    phone: "0803 123 4567",
   },
   {
     id: 13,
@@ -718,6 +780,7 @@ export const farmers: Farmer[] = [
     joinDate: "2020",
     responseRate: 95,
     deliveryTime: "24h",
+    phone: "0803 123 4567",
   },
   {
     id: 14,
@@ -739,5 +802,6 @@ export const farmers: Farmer[] = [
     joinDate: "2018",
     responseRate: 96,
     deliveryTime: "48h",
+    phone: "0803 123 4567",
   },
 ];

@@ -1,44 +1,52 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Zap, Shield, Users, BarChart3, Truck, CreditCard } from "lucide-react";
+import {
+  Zap,
+  Shield,
+  Users,
+  Image,
+  Phone,
+  TrendingUp,
+  ArrowRight,
+} from "lucide-react";
 
 const SellerBenefits = () => {
   const benefits = [
     {
       icon: Zap,
       title: "Quick Setup",
-      description: "Get your farm store live in under 10 minutes",
+      description: "List your products in minutes - it's free and easy",
       color: "orange",
     },
     {
       icon: Users,
       title: "Direct Access",
-      description: "Connect directly with thousands of verified buyers",
+      description: "Connect directly with thousands of interested buyers",
       color: "amber",
     },
     {
       icon: Shield,
       title: "Quality Assurance",
-      description: "Our inspection services build buyer trust",
+      description: "Our inspection services verify product quality",
       color: "emerald",
     },
     {
-      icon: BarChart3,
-      title: "Sales Analytics",
-      description: "Track performance and optimize your sales",
+      icon: Image,
+      title: "Photo Upload",
+      description: "Showcase your products with multiple images",
       color: "blue",
     },
     {
-      icon: Truck,
-      title: "Logistics Support",
-      description: "Seamless delivery coordination nationwide",
+      icon: Phone,
+      title: "Direct Contact",
+      description: "Buyers reach you directly - you control the sale",
       color: "purple",
     },
     {
-      icon: CreditCard,
-      title: "Secure Payments",
-      description: "Get paid instantly with secure transactions",
+      icon: TrendingUp,
+      title: "Boost Visibility",
+      description: "Promote your listings to reach more buyers faster",
       color: "green",
     },
   ];
@@ -81,7 +89,7 @@ const SellerBenefits = () => {
       viewport={{ once: true }}
       className="grid grid-cols-2 gap-4"
     >
-      {benefits.map((benefit, index) => (
+      {benefits.map((benefit) => (
         <motion.div
           key={benefit.title}
           variants={itemVariants}

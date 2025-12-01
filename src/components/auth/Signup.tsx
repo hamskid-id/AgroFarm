@@ -86,7 +86,7 @@ const SignUp: React.FC = () => {
           className="flex w-full flex-col gap-4"
         >
           {/* Account Type Selector - Moved INSIDE the Form component */}
-          <div className="mb-6">
+          {/* <div className="mb-6">
             <FormField
               control={form.control}
               name="accountType"
@@ -137,7 +137,7 @@ const SignUp: React.FC = () => {
                 </FormItem>
               )}
             />
-          </div>
+          </div> */}
 
           {accountType === "vendor" && (
             <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-4">

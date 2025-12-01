@@ -65,7 +65,7 @@ export const FarmerCard: React.FC<FarmerCardProps> = ({ farmer }) => {
           </div>
 
           {/* View Products Button - Hidden by default, slides in on group hover */}
-          <button className="w-full bg-gradient-to-r from-emerald-600 to-emerald-700 hover:from-emerald-700 hover:to-emerald-800 text-white py-3 rounded-lg font-medium transition-all duration-300 shadow-sm hover:shadow-md transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100">
+          <button className="w-full bg-gradient-to-r from-emerald-600 to-emerald-700 hover:from-emerald-700 hover:to-emerald-800 text-white py-3 rounded-lg font-medium transition-all duration-300 hover:shadow-md transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100">
             View Products
           </button>
         </CardContent>

@@ -32,101 +32,27 @@ export const Footer: React.FC<FooterProps> = ({
 
   return (
     <footer className="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white">
-      {/* Newsletter Section */}
-      <div className="bg-gradient-to-r from-emerald-600 to-emerald-700 py-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-2 gap-8 items-center">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-            >
-              <h3 className="text-2xl font-bold mb-2">
-                Stay Updated with Farm Fresh Deals
-              </h3>
-              <p className="text-emerald-100 text-[14px]">
-                Get the latest offers and agricultural insights delivered to
-                your inbox
-              </p>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="flex gap-3 items-center"
-            >
-              <input
-                type="email"
-                placeholder="Enter your email"
-                className="flex-1 px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-emerald-200 focus:outline-none focus:ring-2 focus:ring-white/30"
-              />
-              <Button className="bg-[#D89C06] h-full text-white hover:bg-gray-100 px-6 py-3 rounded-lg font-semibold transition-all duration-300">
-                Subscribe
-              </Button>
-            </motion.div>
-          </div>
-        </div>
-      </div>
-
       {/* Main Footer Content */}
-      <div className="md:py-16 py-8">
+      {/* Main Footer Content */}
+      <div className="md:py-12 py-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 mb-8">
-            {/* Brand & Contact */}
-            <div className="lg:col-span-2 space-y-6">
-              <div className="flex items-center gap-3">
-                <div className="w-12 h-12 bg-gradient-to-br from-emerald-500 to-green-600 rounded-xl flex items-center justify-center">
-                  <span className="text-white font-bold text-xl">AF</span>
-                </div>
-                <div>
-                  <span className="text-2xl font-bold">AgroFarm</span>
-                  <div className="text-sm text-gray-400">
-                    Connecting Farmers & Buyers
-                  </div>
-                </div>
-              </div>
-
-              <p className="text-gray-300 text-sm leading-relaxed max-w-md">
-                Nigeria's trusted agricultural marketplace. We connect farmers
-                directly with buyers, ensuring fresh, quality produce with
-                transparency and fair pricing.
-              </p>
-
-              <div className="space-y-3">
-                <div className="flex items-center gap-3 text-gray-300 hover:text-white transition-colors">
-                  <Phone className="h-4 w-4 text-emerald-400" />
-                  <span>+234 901 234 5678</span>
-                </div>
-                <div className="flex items-center gap-3 text-gray-300 hover:text-white transition-colors">
-                  <Mail className="h-4 w-4 text-emerald-400" />
-                  <span>support@agrofarm.ng</span>
-                </div>
-                <div className="flex items-center gap-3 text-gray-300 hover:text-white transition-colors">
-                  <MapPin className="h-4 w-4 text-emerald-400" />
-                  <span>Lagos, Nigeria</span>
-                </div>
-              </div>
-            </div>
-
-            {/* For Farmers */}
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 mb-8">
+            {/* About us */}
             <div>
-              <h3 className="font-semibold text-lg mb-4 text-white">
-                For Farmers
+              <h3 className="font-semibold text-base mb-4 text-white">
+                About us
               </h3>
-              <ul className="space-y-3 text-gray-300">
+              <ul className="space-y-2.5 text-gray-300">
                 {[
-                  "Start Selling",
-                  "Farmer Dashboard",
-                  "Quality Guidelines",
-                  "Success Stories",
+                  "About AgroFarm",
+                  "We are hiring!",
+                  "Terms & Conditions",
+                  "Privacy Policy",
                 ].map((link) => (
                   <li key={link}>
                     <Link
                       href="#"
-                      className="hover:text-emerald-400 transition-colors hover:translate-x-1 transform duration-300 inline-block text-sm"
+                      className="hover:text-emerald-400 transition-colors text-sm"
                     >
                       {link}
                     </Link>
@@ -135,22 +61,22 @@ export const Footer: React.FC<FooterProps> = ({
               </ul>
             </div>
 
-            {/* For Buyers */}
+            {/* Support */}
             <div>
-              <h3 className="font-semibold text-lg mb-4 text-white">
-                For Buyers
+              <h3 className="font-semibold text-base mb-4 text-white">
+                Support
               </h3>
-              <ul className="space-y-3 text-gray-300">
+              <ul className="space-y-2.5 text-gray-300">
                 {[
-                  "Browse Products",
-                  "Quality Assurance",
+                  "support@agrofarm.ng",
+                  "Safety tips",
+                  "Contact Us",
                   "FAQ",
-                  "Contact Support",
                 ].map((link) => (
                   <li key={link}>
                     <Link
                       href="#"
-                      className="hover:text-emerald-400 transition-colors hover:translate-x-1 transform duration-300 inline-block text-sm"
+                      className="hover:text-emerald-400 transition-colors text-sm"
                     >
                       {link}
                     </Link>
@@ -159,74 +85,103 @@ export const Footer: React.FC<FooterProps> = ({
               </ul>
             </div>
 
-            {/* Company */}
+            {/* Our apps */}
             <div>
-              <h3 className="font-semibold text-lg mb-4 text-white">Company</h3>
-              <ul className="space-y-3 text-gray-300">
-                {["About Us", "Our Mission", "Contact Us"].map((link) => (
-                  <li key={link}>
-                    <Link
-                      href="#"
-                      className="hover:text-emerald-400 transition-colors hover:translate-x-1 transform duration-300 inline-block text-sm"
-                    >
-                      {link}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-
-          <Separator className="bg-gray-700 my-8" />
-
-          {/* Bottom Section - ONLY copyright placement changed */}
-          <div className="flex flex-col gap-4 md:flex-row justify-between items-center">
-            {/* Social Links - Left side */}
-            <div className="flex items-center gap-6">
-              <span className="text-gray-400 text-sm">Follow us:</span>
-              <div className="flex gap-4">
-                {[
-                  { icon: Facebook, name: "Facebook" },
-                  { icon: Twitter, name: "Twitter" },
-                  { icon: Instagram, name: "Instagram" },
-                  { icon: Youtube, name: "YouTube" },
-                ].map((social) => (
-                  <motion.a
-                    key={social.name}
-                    href="#"
-                    whileHover={{ scale: 1.1, y: -2 }}
-                    className="w-10 h-10 bg-gray-700 hover:bg-emerald-600 rounded-lg flex items-center justify-center transition-all duration-300"
-                  >
-                    <social.icon className="h-5 w-5" />
-                  </motion.a>
-                ))}
+              <h3 className="font-semibold text-base mb-4 text-white">
+                Our apps
+              </h3>
+              <div className="space-y-3">
+                <Link
+                  href="#"
+                  className="block bg-black hover:bg-gray-800 transition-colors rounded-lg px-4 py-2.5"
+                >
+                  <div className="flex items-center gap-2">
+                    <svg className="w-6 h-6" viewBox="0 0 24 24" fill="white">
+                      <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z" />
+                    </svg>
+                    <div className="flex flex-col">
+                      <span className="text-[10px] text-gray-400">
+                        Download on the
+                      </span>
+                      <span className="text-sm font-semibold text-white">
+                        App Store
+                      </span>
+                    </div>
+                  </div>
+                </Link>
+                <Link
+                  href="#"
+                  className="block bg-black hover:bg-gray-800 transition-colors rounded-lg px-4 py-2.5"
+                >
+                  <div className="flex items-center gap-2">
+                    <svg className="w-6 h-6" viewBox="0 0 24 24" fill="white">
+                      <path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z" />
+                    </svg>
+                    <div className="flex flex-col">
+                      <span className="text-[10px] text-gray-400">
+                        Get it On
+                      </span>
+                      <span className="text-sm font-semibold text-white">
+                        Google Play
+                      </span>
+                    </div>
+                  </div>
+                </Link>
               </div>
             </div>
 
-            {/* Legal Links - Right side */}
-            <div className="flex gap-4 text-xs text-gray-500">
-              <Link
-                href="#"
-                className="hover:text-emerald-400 transition-colors"
-              >
-                Privacy Policy
-              </Link>
-              <Link
-                href="#"
-                className="hover:text-emerald-400 transition-colors"
-              >
-                Terms of Service
-              </Link>
-              <Link
-                href="#"
-                className="hover:text-emerald-400 transition-colors"
-              >
-                Cookie Policy
-              </Link>
+            {/* Our resources */}
+            <div>
+              <h3 className="font-semibold text-base mb-4 text-white">
+                Our resources
+              </h3>
+              <ul className="space-y-2.5 text-gray-300">
+                {[
+                  "AgroFarm on FB",
+                  "Our Instagram",
+                  "Our YouTube",
+                  "Our Twitter",
+                ].map((link) => (
+                  <li key={link}>
+                    <Link
+                      href="#"
+                      className="hover:text-emerald-400 transition-colors text-sm"
+                    >
+                      {link}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Hot links */}
+            <div>
+              <h3 className="font-semibold text-base mb-4 text-white">
+                Hot links
+              </h3>
+              <ul className="space-y-2.5 text-gray-300">
+                {[
+                  "AgroFarm Nigeria",
+                  "Start Selling",
+                  "Quality Guidelines",
+                ].map((link) => (
+                  <li key={link}>
+                    <Link
+                      href="#"
+                      className="hover:text-emerald-400 transition-colors text-sm"
+                    >
+                      {link}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
-          {/* Copyright - Centered */}
-          <div className="text-center mt-4 md:mt-0">
+
+          <Separator className="bg-gray-700 my-6" />
+
+          {/* Bottom Section */}
+          <div className="text-center">
             <p className="text-gray-400 text-sm">
               &copy; {currentYear} AgroFarm Marketplace. All rights reserved.
             </p>

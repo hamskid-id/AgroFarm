@@ -22,9 +22,8 @@ const Header = () => {
 
   return (
     <>
-      <TopBanner />
       <header className="bg-white border-b sticky top-0 z-50 backdrop-blur-md bg-white/95 ">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between flex-wrap gap-4">
             {/* Logo Section */}
             <Brand />

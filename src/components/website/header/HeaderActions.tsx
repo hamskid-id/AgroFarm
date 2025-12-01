@@ -6,6 +6,7 @@ import NotificationsSheet from "./NotificationsSheet";
 import { products } from "@/components/constants/product";
 import Link from "next/link";
 import { UserPlus, Heart, Bell, Menu } from "lucide-react";
+import { useFavoritesStore } from "@/stores/favorites-store";
 
 interface HeaderActionsProps {
   isFavoriteSheetOpen: boolean;
@@ -24,22 +25,14 @@ const HeaderActions = ({
   isMobileMenuOpen,
   setIsMobileMenuOpen,
 }: HeaderActionsProps) => {
-  const favoritesList = products;
+  const { getFavoritesCount, favorites } = useFavoritesStore();
+  const favoritesCount = getFavoritesCount();
 
   return (
     <div className="flex items-center gap-2 sm:gap-3 order-1 sm:order-2">
-      {/* Join as Vendor Button */}
-      <Button
-        variant="outline"
-        className="font-semibold text-orange-800 hidden lg:flex items-center gap-2 bg-orange-50 rounded-xl border border-orange-200 px-4 py-2 text-sm rounded-lg transition-all duration-200"
-        asChild
-      >
-        <Link href="/vendor-registration">
-          <UserPlus className="h-4 w-4" />
-          Sell on FarmCart
-        </Link>
+      <Button className=" bg-orange-500 hover:bg-orange-600 text-white hidden lg:flex">
+        Start Selling
       </Button>
-
       {/* Notifications */}
       <NotificationsSheet
         isOpen={isNotificationsOpen}
@@ -58,15 +51,15 @@ const HeaderActions = ({
             className="relative hover:bg-rose-50 transition-colors h-10 w-10 group"
           >
             <Heart className="h-5 w-5 text-gray-600 group-hover:text-rose-500 transition-colors" />
-            {favoritesList.length > 0 && (
+            {favoritesCount > 0 && (
               <div className="absolute -top-1 -right-1 h-5 w-5 rounded-full bg-gradient-to-r from-rose-500 to-pink-500 text-white text-xs flex items-center justify-center shadow-sm">
-                {favoritesList.length}
+                {favoritesCount}
               </div>
             )}
           </Button>
         }
       >
-        <FavoritesProducts favoritesList={favoritesList} />
+        <FavoritesProducts favoritesList={favorites} />
       </SheetWrapper>
 
       {/* Auth Buttons */}

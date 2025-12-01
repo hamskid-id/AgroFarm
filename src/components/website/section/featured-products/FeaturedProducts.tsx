@@ -96,7 +96,7 @@ const FeaturedProducts = ({
           <Button
             size="lg"
             onClick={onViewAllProducts}
-            className="bg-gradient-to-r from-emerald-600 to-emerald-700 hover:from-emerald-700 hover:to-emerald-800 text-white px-8 py-4 text-lg rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 group"
+            className="bg-gradient-to-r from-emerald-600 to-emerald-700 hover:from-emerald-700 hover:to-emerald-800 text-white px-8 py-4 text-sm rounded-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 group"
           >
             Explore All Products
             <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />

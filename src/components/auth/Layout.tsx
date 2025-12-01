@@ -1,6 +1,6 @@
 "use client";
 
-import { AppleIcon, ArrowLeft } from "lucide-react";
+import { AppleIcon, ArrowLeft, ChevronLeft } from "lucide-react";
 import Link from "next/link";
 import React from "react";
 import { FacebookIcon, GoogleIcon } from "@/svg";
@@ -67,7 +67,7 @@ const AuthLayout: React.FC<IAuthLayout> = ({
               href={backButtonHref}
               className="inline-flex items-center text-emerald-600 hover:text-emerald-700 transition-colors font-medium"
             >
-              <ArrowLeft className="h-4 w-4 mr-2" />
+              <ChevronLeft className="h-4 w-4 mr-2" />
               {backButtonText}
             </Link>
           </div>
@@ -103,19 +103,11 @@ const AuthLayout: React.FC<IAuthLayout> = ({
                             <OrSeparator />
 
                             {/* Social Login */}
-                            <div className="grid grid-cols-3 gap-4">
-                              <button className="bg-white border rounded-[99px] flex justify-center items-center sm:h-[48px] h-[40px] hover:bg-gray-100 transition dark:bg-gray-800 dark:border-gray-700 shadow-sm">
+                            <div className="grid grid-cols-1 gap-4">
+                              <button className="w-full bg-[#FDC316] hover:bg-[#FDC316]/90 rounded-[10px] flex justify-center items-center sm:h-[48px] h-[40px] hover:bg-gray-100 transition dark:bg-gray-800 dark:border-gray-700 shadow-sm">
                                 <GoogleIcon />
                               </button>
-                              <button className="bg-[#1877F2] rounded-[99px] flex justify-center items-center sm:h-[48px] h-[40px] hover:bg-[#1565D8] transition shadow-sm">
-                                <FacebookIcon />
-                              </button>
-                              <button className="bg-black rounded-[99px] flex justify-center items-center sm:h-[48px] h-[40px] hover:bg-gray-800 transition dark:bg-white dark:hover:bg-gray-200 shadow-sm">
-                                <AppleIcon
-                                  fill="currentColor"
-                                  className="dark:text-black text-white"
-                                />
-                              </button>
+                              
                             </div>
 
                             {/* Footer */}

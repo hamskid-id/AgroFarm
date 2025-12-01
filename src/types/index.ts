@@ -117,6 +117,10 @@ export interface Product {
   };
   images: StaticImageData[];
   vendor: Farmer; // Now using the full Farmer interface
+  location: string; // Product location (can be same as vendor.location)
+  condition?: "Fresh" | "Brand New" | "Used"; // Product condition
+  postedDate?: string; // e.g., "2 days ago"
+  sellerYears?: string; // e.g., "3+ YEARS ON AGROFARM"
 }
 
 export interface Vendor {
@@ -139,6 +143,7 @@ export interface Farmer {
   id: number;
   name: string;
   farmName: string;
+  phone: string;
   location: string;
   rating: number;
   reviewCount: number;

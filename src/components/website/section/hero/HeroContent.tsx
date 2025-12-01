@@ -79,43 +79,20 @@ const HeroContent = ({
       <motion.div variants={itemVariants} className="space-y-4">
         <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight">
           <span className="bg-gradient-to-r from-emerald-800 via-emerald-600 to-emerald-700 bg-clip-text text-transparent">
-            Connect Farmers
+            Buy & Sell
           </span>
-          <span className=" ms-2 text-gray-800">&</span>
           <br />
           <span className="bg-gradient-to-r from-amber-600 to-orange-500 bg-clip-text text-transparent">
-            Buyers Directly
+            Farm Products
           </span>
+          <span className="ms-2 text-gray-800">Directly</span>
         </h1>
 
         <p className="text-[14px] sm:text-xl text-gray-600 leading-relaxed max-w-2xl">
-          Join thousands of farmers and buyers in the most trusted agricultural
-          marketplace. Sell fresh produce directly or discover quality
-          agricultural products with inspection guarantees.
+          Nigeria's trusted platform connecting farmers and buyers. List your
+          products for free, or browse thousands of fresh agricultural products
+          and connect directly with sellers.
         </p>
-      </motion.div>
-
-      {/* CTA Buttons */}
-      <motion.div
-        variants={itemVariants}
-        className="flex flex-col sm:flex-row gap-4"
-      >
-        <Button
-          size="lg"
-          onClick={onStartSelling}
-          className="text-sm h-[45px] bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white px-8 py-4 rounded-xl hover:shadow-xl transition-all duration-300 transform hover:scale-105"
-        >
-          Start Selling Today
-        </Button>
-
-        <Button
-          variant="outline"
-          size="lg"
-          onClick={onBrowseProducts}
-          className="text-sm h-[45px] border-2 border-emerald-600 text-emerald-600 hover:bg-emerald-50 px-8 py-4 rounded-xl transition-all duration-300 hover:scale-105"
-        >
-          Browse Products
-        </Button>
       </motion.div>
 
       {/* Features Grid */}
