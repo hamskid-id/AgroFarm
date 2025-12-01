@@ -134,10 +134,10 @@ const FavoritesProducts = ({
   }
 
   return (
-    <div className="bg-white rounded-xl shadow-sm border overflow-hidden">
+    <div className="bg-white rounded-xl  border overflow-hidden">
       {/* Header */}
       {showHeader && (
-        <div className="p-6 border-b bg-gradient-to-r from-gray-50 to-white">
+        <div className="p-4 border-b bg-gradient-to-r from-gray-50 to-white">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
               <div className="p-2 bg-red-50 rounded-lg">
@@ -253,7 +253,7 @@ const FavoritesProducts = ({
                     )}
                   </div>
 
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-center flex-wrap gap-2">
                     <Button
                       size="sm"
                       variant="outline"

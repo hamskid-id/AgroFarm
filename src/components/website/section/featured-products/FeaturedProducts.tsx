@@ -6,6 +6,7 @@ import ProductCard from "./ProductCard";
 import { Product } from "@/types";
 import { Button } from "@/components/ui/button";
 import { products } from "@/components/constants/product";
+import { useRouter } from "next/navigation";
 
 interface FeaturedProductsProps {
   featuredProducts?: Product[];
@@ -14,6 +15,7 @@ interface FeaturedProductsProps {
 const FeaturedProducts = ({
   featuredProducts = products,
 }: FeaturedProductsProps) => {
+  const router = useRouter();
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -36,8 +38,7 @@ const FeaturedProducts = ({
   };
 
   const onViewAllProducts = () => {
-    // Implement navigation to the full products page
-    console.log("hellor");
+    router.push("/products");
   };
 
   return (

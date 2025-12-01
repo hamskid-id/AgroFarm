@@ -188,3 +188,37 @@ export interface FilterState {
 export interface ProductListingProps {
   initialProducts?: any[]; // You can type this properly based on your Product type
 }
+
+// In your types.ts file, add:
+
+export interface Review {
+  id: number;
+  productId: number;
+  userId: number;
+  userName: string;
+  userAvatar: string;
+  rating: number;
+  title?: string;
+  comment: string;
+  date: string;
+  verifiedPurchase: boolean;
+  helpfulCount: number;
+  reply?: {
+    id: number;
+    vendorName: string;
+    comment: string;
+    date: string;
+  };
+}
+
+export interface ReviewStats {
+  averageRating: number;
+  totalReviews: number;
+  ratingCounts: {
+    5: number;
+    4: number;
+    3: number;
+    2: number;
+    1: number;
+  };
+}

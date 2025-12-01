@@ -49,7 +49,7 @@ export const SheetWrapper = memo<SheetWrapperProps>(
         <SheetContent
           side={side}
           className={cn(
-            "p-6  overflow-y-auto max-h-[100vh] custom-scroll sm:max-w-[400px] w-full",
+            "p-4  overflow-y-auto max-h-[100vh] custom-scroll sm:max-w-[400px] w-full",
             width && width,
             bg
           )}

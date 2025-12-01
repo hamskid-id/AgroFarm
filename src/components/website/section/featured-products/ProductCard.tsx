@@ -278,11 +278,11 @@ const ProductCard = ({ product, viewMode = "grid" }: ProductCardProps) => {
               {product.badge}
             </Badge>
           )}
-          {product.organic && (
+          {/* {product.organic && (
             <Badge className="bg-green-500 hover:bg-green-600 text-white text-[10px] px-2 py-0.5">
               Organic
             </Badge>
-          )}
+          )} */}
           {product.featured && (
             <Badge className="bg-amber-500 hover:bg-amber-600 text-white text-[10px] px-2 py-0.5">
               Featured

@@ -7,16 +7,12 @@ import {
   Share2,
   Phone,
   MessageCircle,
-  ShieldCheck,
-  Clock,
-  MapPin,
   ChevronLeft,
   Eye,
   Flag,
   AlertTriangle,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { ProductImageGallery } from "./ProductImageGallery";
 import { ProductInfo } from "./ProductInfo";
@@ -25,7 +21,13 @@ import { VendorInfo } from "./VendorInfo";
 import { ProductTabs } from "./ProductTabs";
 import { ReportDialog } from "./ReportDialog";
 import { PhoneNumberModal } from "./PhoneNumberModal";
-import { products } from "@/components/constants/product";
+import { useFavoritesStore } from "@/stores/favorites-store";
+import { toast } from "sonner";
+import {
+  products,
+  sampleReviews,
+  sampleReviewStats,
+} from "@/components/constants/product";
 import { Product } from "@/types";
 
 export default function ProductDetails() {
@@ -33,10 +35,14 @@ export default function ProductDetails() {
   const router = useRouter();
   const [product, setProduct] = useState<Product | null>(null);
   const [selectedImage, setSelectedImage] = useState(0);
-  const [isFavorite, setIsFavorite] = useState(false);
   const [isReportOpen, setIsReportOpen] = useState(false);
   const [isPhoneModalOpen, setIsPhoneModalOpen] = useState(false);
   const [showPhone, setShowPhone] = useState(false);
+  const [activeTab, setActiveTab] = useState("description");
+
+  // Get favorites store
+  const { toggleFavorite, isInFavorites } = useFavoritesStore();
+  const [isFavorite, setIsFavorite] = useState(false);
 
   useEffect(() => {
     if (params.id) {
@@ -47,14 +53,22 @@ export default function ProductDetails() {
     }
   }, [params.id]);
 
+  // Update favorite status when product loads
+  useEffect(() => {
+    if (product) {
+      setIsFavorite(isInFavorites(product.id));
+    }
+  }, [product, isInFavorites]);
+
   const handleShowPhone = () => {
     setShowPhone(true);
     setIsPhoneModalOpen(true);
   };
 
   const handleSendMessage = () => {
-    // Navigate to chat with seller
-    console.log("Navigate to chat with seller:", product?.vendor.id);
+    toast.info("Chat feature coming soon!", {
+      description: "You'll be able to message the seller directly",
+    });
   };
 
   const handleShare = async () => {
@@ -70,13 +84,28 @@ export default function ProductDetails() {
       }
     } else {
       navigator.clipboard.writeText(window.location.href);
-      alert("Link copied to clipboard!");
+      toast.success("Link copied!", {
+        description: "Product link copied to clipboard",
+      });
     }
   };
 
-  const toggleFavorite = () => {
-    setIsFavorite(!isFavorite);
-    // Add API call to save favorite
+  const handleToggleFavorite = () => {
+    if (!product) return;
+
+    toggleFavorite(product);
+    const newIsFavorite = !isFavorite;
+    setIsFavorite(newIsFavorite);
+
+    if (newIsFavorite) {
+      toast.success("Added to favorites", {
+        description: `${product.name} has been added to your favorites`,
+      });
+    } else {
+      toast.info("Removed from favorites", {
+        description: `${product.name} has been removed from your favorites`,
+      });
+    }
   };
 
   if (!product) {
@@ -90,7 +119,10 @@ export default function ProductDetails() {
           <p className="text-gray-600 mb-4">
             The product you're looking for doesn't exist.
           </p>
-          <Button onClick={() => router.push("/products")}>
+          <Button
+            onClick={() => router.push("/products")}
+            className="bg-emerald-600 hover:bg-emerald-700"
+          >
             Browse Products
           </Button>
         </div>
@@ -116,7 +148,7 @@ export default function ProductDetails() {
               <Button
                 size="icon"
                 variant="ghost"
-                className="h-9 w-9 text-gray-600"
+                className="h-9 w-9 text-gray-600 hover:text-gray-900"
                 onClick={() => setIsReportOpen(true)}
               >
                 <Flag className="h-4 w-4" />
@@ -124,7 +156,7 @@ export default function ProductDetails() {
               <Button
                 size="icon"
                 variant="ghost"
-                className="h-9 w-9 text-gray-600"
+                className="h-9 w-9 text-gray-600 hover:text-gray-900"
                 onClick={handleShare}
               >
                 <Share2 className="h-4 w-4" />
@@ -134,8 +166,8 @@ export default function ProductDetails() {
                 variant="ghost"
                 className={`h-9 w-9 ${
                   isFavorite ? "text-red-500" : "text-gray-600"
-                }`}
-                onClick={toggleFavorite}
+                } hover:text-red-500`}
+                onClick={handleToggleFavorite}
               >
                 <Heart
                   className={`h-4 w-4 ${isFavorite ? "fill-current" : ""}`}
@@ -152,7 +184,7 @@ export default function ProductDetails() {
           {/* Left Column */}
           <div className="lg:col-span-2 space-y-6">
             {/* Product Images */}
-            <div className=" rounded-xl">
+            <div className="bg-white rounded-xl p-4 border ">
               <ProductImageGallery
                 product={product}
                 selectedImage={selectedImage}
@@ -161,30 +193,21 @@ export default function ProductDetails() {
             </div>
 
             {/* Product Info & Actions */}
-            <div className="bg-white rounded-xl p-6  border">
+            <div className="bg-white rounded-xl p-6 border ">
               <ProductInfo product={product} />
 
               <Separator className="my-6" />
 
               {/* Action Buttons */}
               <div className="flex flex-col sm:flex-row gap-3">
-                {!showPhone ? (
-                  <Button
-                    size="lg"
-                    className="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white"
-                    onClick={handleShowPhone}
-                  >
-                    <Phone className="h-5 w-5 mr-2" />
-                    Show Phone Number
-                  </Button>
-                ) : (
-                  <div className="flex-1 text-center p-4 bg-emerald-50 rounded-lg border border-emerald-200">
-                    <div className="text-2xl font-bold text-emerald-700">
-                      {product.vendor.phone || "0803 XXX XXXX"}
-                    </div>
-                    <p className="text-sm text-emerald-600 mt-1">Tap to call</p>
-                  </div>
-                )}
+                <Button
+                  size="lg"
+                  className="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white"
+                  onClick={handleShowPhone}
+                >
+                  <Phone className="h-5 w-5 mr-2" />
+                  Show Phone Number
+                </Button>
 
                 <Button
                   size="lg"
@@ -209,6 +232,7 @@ export default function ProductDetails() {
                       <li>• Meet in public places</li>
                       <li>• Inspect the product before paying</li>
                       <li>• Never pay with gift cards</li>
+                      <li>• Avoid paying in advance</li>
                     </ul>
                   </div>
                 </div>
@@ -216,12 +240,16 @@ export default function ProductDetails() {
             </div>
 
             {/* Product Tabs */}
-            <div className="bg-white rounded-xl  border overflow-hidden">
-              <ProductTabs product={product} />
-            </div>
+            <ProductTabs
+              product={product}
+              activeTab={activeTab}
+              onTabChange={setActiveTab}
+              reviews={sampleReviews}
+              reviewStats={sampleReviewStats}
+            />
 
             {/* Viewed Counter */}
-            <div className="flex items-center justify-between text-sm text-gray-500">
+            <div className="flex items-center justify-between text-sm text-gray-500 px-2">
               <div className="flex items-center gap-1">
                 <Eye className="h-4 w-4" />
                 <span>{Math.floor(Math.random() * 500) + 100} views</span>
@@ -239,7 +267,7 @@ export default function ProductDetails() {
       </div>
 
       {/* Fixed Bottom Action Bar - Mobile */}
-      <div className="lg:hidden fixed bottom-0 left-0 right-0 bg-white border-t p-4 shadow-lg">
+      <div className="lg:hidden fixed bottom-0 left-0 right-0 bg-white border-t p-4 shadow-lg z-50">
         <div className="flex gap-3">
           <Button
             size="lg"
@@ -263,8 +291,8 @@ export default function ProductDetails() {
             variant="ghost"
             className={`h-12 w-12 ${
               isFavorite ? "text-red-500" : "text-gray-600"
-            }`}
-            onClick={toggleFavorite}
+            } hover:text-red-500`}
+            onClick={handleToggleFavorite}
           >
             <Heart className={`h-5 w-5 ${isFavorite ? "fill-current" : ""}`} />
           </Button>

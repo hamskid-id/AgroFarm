@@ -9,6 +9,99 @@ import image7 from "../../../public/images/chesse3.jpeg";
 import image8 from "../../../public/images/chicken.jpeg";
 import image9 from "../../../public/images/chicken2.jpeg";
 import image0 from "../../../public/images/crabs2.jpeg";
+// components/constants/reviews.ts
+import { Review, ReviewStats } from "@/types";
+
+export const sampleReviews: Review[] = [
+  {
+    id: 1,
+    productId: 1,
+    userId: 101,
+    userName: "Chinwe Okoro",
+    userAvatar: "/users/chinwe.jpg",
+    rating: 5,
+    title: "Excellent Quality Potatoes!",
+    comment: "The potatoes were fresh, well-packaged, and exactly as described. They arrived on time and were perfect for making chips. Will definitely order again!",
+    date: "2024-02-15",
+    verifiedPurchase: true,
+    helpfulCount: 24,
+    reply: {
+      id: 1,
+      vendorName: "Mountain View Farm",
+      comment: "Thank you for your wonderful review! We're glad you enjoyed our potatoes. We take pride in delivering fresh produce directly from our farm.",
+      date: "2024-02-16",
+    },
+  },
+  {
+    id: 2,
+    productId: 1,
+    userId: 102,
+    userName: "Ahmed Bello",
+    userAvatar: "/users/ahmed.jpg",
+    rating: 4,
+    title: "Good but smaller than expected",
+    comment: "Potatoes were fresh and tasty, but some were smaller than I expected based on the photos. Delivery was fast though.",
+    date: "2024-02-10",
+    verifiedPurchase: true,
+    helpfulCount: 12,
+  },
+  {
+    id: 3,
+    productId: 1,
+    userId: 103,
+    userName: "Grace Williams",
+    userAvatar: "/users/grace.jpg",
+    rating: 5,
+    comment: "Perfect for making mashed potatoes! Very fresh and clean. The vendor was responsive and answered all my questions.",
+    date: "2024-02-05",
+    verifiedPurchase: true,
+    helpfulCount: 18,
+  },
+  {
+    id: 4,
+    productId: 1,
+    userId: 104,
+    userName: "Emeka Nwosu",
+    userAvatar: "/users/emeka.jpg",
+    rating: 3,
+    title: "Average quality",
+    comment: "Some potatoes had bruises and weren't as fresh as I'd hoped. They were still usable but not the best quality I've seen.",
+    date: "2024-01-28",
+    verifiedPurchase: true,
+    helpfulCount: 5,
+    reply: {
+      id: 2,
+      vendorName: "Mountain View Farm",
+      comment: "We're sorry to hear about your experience. We've addressed this with our quality control team to ensure better sorting. Please contact us for a partial refund.",
+      date: "2024-01-29",
+    },
+  },
+  {
+    id: 5,
+    productId: 1,
+    userId: 105,
+    userName: "Fatima Yusuf",
+    userAvatar: "/users/fatima.jpg",
+    rating: 5,
+    title: "Farm fresh potatoes!",
+    comment: "These are genuinely farm-fresh potatoes. You can tell they were recently harvested. Great for roasting and baking.",
+    date: "2024-01-20",
+    verifiedPurchase: true,
+    helpfulCount: 31,
+  },
+];
+
+export const sampleReviewStats: ReviewStats = {
+  averageRating: 4.4,
+  totalReviews: 156,
+  ratingCounts: {
+    5: 89,
+    4: 42,
+    3: 18,
+    2: 5,
+    1: 2,
+  },
+};
 
 export const products: Product[] = [
   {

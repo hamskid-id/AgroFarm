@@ -1,62 +1,19 @@
 "use client";
 
-import { useState } from "react";
-import { Product } from "@/types";
-import { Package, Truck, FileText } from "lucide-react";
+import { Product, Review, ReviewStats } from "@/types";
+import { Package, Truck, FileText, Star } from "lucide-react";
+import { ReviewsSection } from "./ReviewsSection";
+import { CustomTabs } from "@/components/ui/CustomTab";
 
 interface ProductTabsProps {
   product: Product;
+  activeTab: string;
+  onTabChange: (tab: string) => void;
+  reviews: Review[];
+  reviewStats: ReviewStats;
 }
 
-export const ProductTabs = ({ product }: ProductTabsProps) => {
-  const [activeTab, setActiveTab] = useState("specifications");
-
-  const tabs = [
-    {
-      id: "specifications",
-      label: "Specifications",
-      icon: <Package className="h-4 w-4" />,
-    },
-    { id: "shipping", label: "Shipping", icon: <Truck className="h-4 w-4" /> },
-    {
-      id: "description",
-      label: "Full Details",
-      icon: <FileText className="h-4 w-4" />,
-    },
-  ];
-
-  return (
-    <div className="border-b">
-      {/* Tab Headers */}
-      <div className="flex border-b">
-        {tabs.map((tab) => (
-          <button
-            key={tab.id}
-            onClick={() => setActiveTab(tab.id)}
-            className={`flex-1 flex items-center justify-center gap-2 py-4 text-sm font-medium transition-colors ${
-              activeTab === tab.id
-                ? "text-emerald-600 border-b-2 border-emerald-600"
-                : "text-gray-500 hover:text-gray-700"
-            }`}
-          >
-            {tab.icon}
-            {tab.label}
-          </button>
-        ))}
-      </div>
-
-      {/* Tab Content */}
-      <div className="p-6">
-        {activeTab === "specifications" && (
-          <SpecificationsTab product={product} />
-        )}
-        {activeTab === "shipping" && <ShippingTab />}
-        {activeTab === "description" && <DescriptionTab product={product} />}
-      </div>
-    </div>
-  );
-};
-
+// Tab content components
 const SpecificationsTab = ({ product }: { product: Product }) => (
   <div className="space-y-6">
     <h3 className="text-lg font-semibold text-gray-900">
@@ -110,6 +67,25 @@ const SpecificationsTab = ({ product }: { product: Product }) => (
         </div>
       </div>
     </div>
+
+    {/* Tags */}
+    {product.tags && product.tags.length > 0 && (
+      <div className="pt-6">
+        <h4 className="font-semibold text-gray-900 text-lg mb-4">
+          Product Tags
+        </h4>
+        <div className="flex flex-wrap gap-2">
+          {product.tags.map((tag, index) => (
+            <span
+              key={index}
+              className="bg-gray-100 text-gray-700 px-3 py-2 rounded-full text-sm font-medium"
+            >
+              #{tag}
+            </span>
+          ))}
+        </div>
+      </div>
+    )}
   </div>
 );
 
@@ -127,6 +103,11 @@ const ShippingTab = () => (
           Seller offers delivery within the state. Contact seller for delivery
           options and pricing.
         </p>
+        <div className="mt-3 text-xs text-gray-500">
+          <p>• Delivery fee varies by location</p>
+          <p>• Usually delivered within 1-3 business days</p>
+          <p>• Contact seller for exact pricing</p>
+        </div>
       </div>
 
       <div className="border rounded-lg p-4">
@@ -137,6 +118,11 @@ const ShippingTab = () => (
         <p className="text-sm text-gray-600">
           You can arrange to pick up the product from the seller's location.
         </p>
+        <div className="mt-3 text-xs text-gray-500">
+          <p>• Meet at seller's location or agreed public place</p>
+          <p>• Inspect product before payment</p>
+          <p>• Bring exact cash amount</p>
+        </div>
       </div>
     </div>
 
@@ -167,20 +153,102 @@ const DescriptionTab = ({ product }: { product: Product }) => (
 
     <div>
       <h4 className="font-semibold text-gray-900 mb-3">Key Features</h4>
-      <ul className="space-y-2">
+      <ul className="space-y-3">
         <li className="flex items-start gap-3">
-          <div className="w-1.5 h-1.5 bg-emerald-500 rounded-full mt-2"></div>
-          <span className="text-gray-700">Farm fresh quality</span>
+          <div className="w-1.5 h-1.5 bg-emerald-500 rounded-full mt-2 flex-shrink-0"></div>
+          <span className="text-gray-700">
+            Farm fresh quality, harvested at peak ripeness
+          </span>
         </li>
         <li className="flex items-start gap-3">
-          <div className="w-1.5 h-1.5 bg-emerald-500 rounded-full mt-2"></div>
-          <span className="text-gray-700">Properly stored and handled</span>
+          <div className="w-1.5 h-1.5 bg-emerald-500 rounded-full mt-2 flex-shrink-0"></div>
+          <span className="text-gray-700">
+            Properly stored and handled to maintain freshness
+          </span>
         </li>
         <li className="flex items-start gap-3">
-          <div className="w-1.5 h-1.5 bg-emerald-500 rounded-full mt-2"></div>
-          <span className="text-gray-700">Quality checked before posting</span>
+          <div className="w-1.5 h-1.5 bg-emerald-500 rounded-full mt-2 flex-shrink-0"></div>
+          <span className="text-gray-700">
+            Quality checked before posting to ensure standards
+          </span>
+        </li>
+        <li className="flex items-start gap-3">
+          <div className="w-1.5 h-1.5 bg-emerald-500 rounded-full mt-2 flex-shrink-0"></div>
+          <span className="text-gray-700">
+            Perfect for various recipes and cooking methods
+          </span>
+        </li>
+      </ul>
+    </div>
+
+    {/* Storage Tips */}
+    <div className="pt-6 border-t">
+      <h4 className="font-semibold text-gray-900 mb-3">Storage Tips</h4>
+      <ul className="space-y-3 text-gray-700">
+        <li className="flex items-start gap-3">
+          <div className="w-1.5 h-1.5 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
+          <span>Store in a cool, dry place away from direct sunlight</span>
+        </li>
+        <li className="flex items-start gap-3">
+          <div className="w-1.5 h-1.5 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
+          <span>Refrigerate after opening to maintain freshness</span>
+        </li>
+        <li className="flex items-start gap-3">
+          <div className="w-1.5 h-1.5 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
+          <span>Consume within recommended period for best quality</span>
         </li>
       </ul>
     </div>
   </div>
 );
+
+export const ProductTabs = ({
+  product,
+  activeTab,
+  onTabChange,
+  reviews,
+  reviewStats,
+}: ProductTabsProps) => {
+  const tabOptions = [
+    {
+      value: "description",
+      label: "Description",
+      content: <DescriptionTab product={product} />,
+    },
+    {
+      value: "specifications",
+      label: "Specifications",
+      content: <SpecificationsTab product={product} />,
+    },
+    {
+      value: "reviews",
+      label: "Reviews",
+      content: (
+        <ReviewsSection
+          product={product}
+          reviews={reviews}
+          reviewStats={reviewStats}
+        />
+      ),
+    },
+    {
+      value: "shipping",
+      label: "Shipping",
+      content: <ShippingTab />,
+    },
+  ];
+
+  return (
+    <div className="bg-white rounded-xl">
+      <CustomTabs
+        defaultValue={activeTab}
+        options={tabOptions}
+        onValueChange={onTabChange}
+        className="p-6"
+        tabsListClassName="bg-gray-50 p-1 rounded-lg border border-gray-200"
+        triggerClassName="data-[state=active]:bg-white data-[state=active]:text-emerald-600 data-[state=active]:shadow-sm border border-transparent data-[state=active]:border-emerald-200"
+        contentClassName="pt-6"
+      />
+    </div>
+  );
+};
