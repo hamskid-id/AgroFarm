@@ -4,6 +4,7 @@ import { products } from "@/components/constants/product";
 import { ProductCard } from "../featured-products";
 import { Product } from "@/types";
 import { Button } from "@/components/ui/button";
+import { ChevronRight } from "lucide-react";
 
 interface RelatedProductsProps {
   currentProduct: Product;
@@ -22,7 +23,7 @@ export const RelatedProducts = ({ currentProduct }: RelatedProductsProps) => {
   if (relatedProducts.length === 0) return null;
 
   return (
-    <div className="bg-white rounded-xl p-6 border ">
+    <div className="bg-white rounded-xl p-4 border ">
       <div className="mb-6">
         <h2 className="text-lg font-semibold text-gray-900">
           Similar Listings
@@ -48,7 +49,7 @@ export const RelatedProducts = ({ currentProduct }: RelatedProductsProps) => {
           (window.location.href = `/products?category=${currentProduct.category.name.toLowerCase()}`)
         }
       >
-        View more in {currentProduct.category.name} →
+        View more in {currentProduct.category.name} <ChevronRight/>
       </Button>
     </div>
   );

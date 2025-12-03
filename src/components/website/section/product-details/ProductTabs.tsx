@@ -239,15 +239,14 @@ export const ProductTabs = ({
   ];
 
   return (
-    <div className="bg-white rounded-xl">
+    <div className="bg-white rounded-xl border">
       <CustomTabs
+        tabsListClassName="p-0"
+        triggerClassName="m-2"
         defaultValue={activeTab}
         options={tabOptions}
         onValueChange={onTabChange}
-        className="p-6"
-        tabsListClassName="bg-gray-50 p-1 rounded-lg border border-gray-200"
-        triggerClassName="data-[state=active]:bg-white data-[state=active]:text-emerald-600 data-[state=active]:shadow-sm border border-transparent data-[state=active]:border-emerald-200"
-        contentClassName="pt-6"
+        contentClassName="px-4"
       />
     </div>
   );

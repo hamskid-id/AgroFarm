@@ -179,7 +179,7 @@ export default function ProductDetails() {
       </div>
 
       {/* Main Content */}
-      <div className="max-w-7xl mx-auto px-4 py-6">
+      <div className="max-w-7xl mx-auto px-4 py-4">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Left Column */}
           <div className="lg:col-span-2 space-y-6">
@@ -193,7 +193,7 @@ export default function ProductDetails() {
             </div>
 
             {/* Product Info & Actions */}
-            <div className="bg-white rounded-xl p-6 border ">
+            <div className="bg-white rounded-xl p-4 border ">
               <ProductInfo product={product} />
 
               <Separator className="my-6" />
@@ -202,7 +202,7 @@ export default function ProductDetails() {
               <div className="flex flex-col sm:flex-row gap-3">
                 <Button
                   size="lg"
-                  className="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white"
+                  className="flex-1 min-h-[45px] bg-emerald-600 hover:bg-emerald-700 text-white"
                   onClick={handleShowPhone}
                 >
                   <Phone className="h-5 w-5 mr-2" />
@@ -212,7 +212,7 @@ export default function ProductDetails() {
                 <Button
                   size="lg"
                   variant="outline"
-                  className="flex-1 border-emerald-600 text-emerald-600 hover:bg-emerald-50"
+                  className="flex-1 min-h-[45px] border-emerald-600 text-emerald-600 hover:bg-emerald-50"
                   onClick={handleSendMessage}
                 >
                   <MessageCircle className="h-5 w-5 mr-2" />

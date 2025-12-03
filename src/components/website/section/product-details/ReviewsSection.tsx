@@ -73,31 +73,12 @@ export const ReviewsSection = ({
     <div className="bg-white rounded-xl border ">
       {/* Header */}
       <div className="p-6 border-b">
-        <div className="flex items-center justify-between mb-4">
+        <div className="flex items-center flex-wrap gap-3 justify-between mb-4">
           <div>
             <h2 className="text-xl font-bold text-gray-900">
               Customer Reviews
             </h2>
-            <div className="flex items-center gap-3 mt-1">
-              <div className="flex items-center gap-1">
-                {[...Array(5)].map((_, i) => (
-                  <Star
-                    key={i}
-                    className={`h-5 w-5 ${
-                      i < Math.floor(reviewStats.averageRating)
-                        ? "text-amber-400 fill-current"
-                        : "text-gray-300"
-                    }`}
-                  />
-                ))}
-              </div>
-              <span className="text-lg font-bold text-gray-900">
-                {reviewStats.averageRating.toFixed(1)}
-              </span>
-              <span className="text-gray-500">
-                ({reviewStats.totalReviews} reviews)
-              </span>
-            </div>
+           
           </div>
 
           <Button

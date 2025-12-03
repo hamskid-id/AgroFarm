@@ -2,8 +2,8 @@ import { cn } from "@/lib/utils";
 import CustomButton from "../ui/custom-button";
 import { CustomModal } from "../ui/custom-modal";
 import { ActionButtonProps } from "./SuccessModal";
-import FailedIcon from "@/public/assets/icon/failed-icon.svg";
 import { CustomImage } from "../ui/custom-image";
+import FailedIcon from "../../../public/failed-icon.svg";
 
 const AlertModal: React.FC<{
   isOpen: boolean;

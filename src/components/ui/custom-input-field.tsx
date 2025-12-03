@@ -1,3 +1,4 @@
+// components/ui/custom-input-field.tsx
 "use client";
 
 import {
@@ -8,7 +9,13 @@ import {
   ControllerRenderProps,
   FieldPath,
 } from "react-hook-form";
-import { memo, ReactNode, useState } from "react";
+import {
+  memo,
+  ReactNode,
+  useState,
+  InputHTMLAttributes,
+  TextareaHTMLAttributes,
+} from "react";
 import Image from "next/image";
 import { Eye, EyeClosed } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -24,7 +31,7 @@ import {
 type Option = string | { label: string; value: string };
 
 interface CustomProps<T extends FieldValues> {
-  control: Control<T>;
+  control?: Control<T>;
   fieldType: FormFieldType;
   name: Path<T>;
   label?: string;
@@ -43,10 +50,19 @@ interface CustomProps<T extends FieldValues> {
   min?: number;
   max?: number;
   step?: number;
+  // Additional props for direct input handling
+  value?: string;
+  onChange?: (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => void;
+  onKeyPress?: (
+    e: React.KeyboardEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => void;
+  onBlur?: () => void;
 }
 
 interface RenderFieldProps<T extends FieldValues> {
-  field: ControllerRenderProps<T, FieldPath<T>>;
+  field?: ControllerRenderProps<T, FieldPath<T>>;
   props: CustomProps<T>;
 }
 
@@ -83,10 +99,13 @@ const RenderField = <T extends FieldValues>({
     min,
     max,
     step,
+    value: externalValue,
+    onChange: externalOnChange,
+    onKeyPress,
+    onBlur: externalOnBlur,
   } = props;
 
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
-
   const togglePasswordVisibility = () => setIsPasswordVisible((prev) => !prev);
 
   const renderIcon = () =>
@@ -96,16 +115,46 @@ const RenderField = <T extends FieldValues>({
       icon
     );
 
+  // Common props for all input types
+  const commonProps = {
+    disabled,
+    placeholder,
+    className:
+      "w-full h-full bg-transparent text-[#171717] dark:text-white text-[12px] placeholder:text-[#A3A3A3] dark:placeholder:text-neutral-400 placeholder:font-light outline-none",
+  };
+
+  // Handle controlled vs uncontrolled
+  const getInputProps = () => {
+    if (field) {
+      return {
+        ...field,
+        ...commonProps,
+      };
+    }
+
+    return {
+      ...commonProps,
+      value: externalValue,
+      onChange: externalOnChange,
+      onKeyPress,
+      onBlur: externalOnBlur,
+    };
+  };
+
+  const getTextareaProps = () => {
+    const baseProps = getInputProps();
+    return {
+      ...baseProps,
+      className:
+        "w-full px-3 py-2 text-[12px] min-h-[9rem] border border-[#f5f5f5] md:border-[#e5e5e5] dark:border-neutral-800 rounded-lg bg-white dark:bg-transparent overflow-y-auto resize-none text-[#404040] dark:text-white placeholder:text-[#a3a3a3] dark:placeholder:text-neutral-400 placeholder:font-normal outline-none",
+    };
+  };
+
   switch (fieldType) {
     case FormFieldType.INPUT:
       return (
         <InputWrapper className={className}>
-          <input
-            {...field}
-            disabled={disabled}
-            placeholder={placeholder}
-            className="w-full h-full bg-transparent text-[#171717] dark:text-white text-[12px] placeholder:text-[#A3A3A3] dark:placeholder:text-neutral-400 placeholder:font-light outline-none"
-          />
+          <input {...getInputProps()} />
           {renderIcon()}
         </InputWrapper>
       );
@@ -113,13 +162,7 @@ const RenderField = <T extends FieldValues>({
     case FormFieldType.EMAIL:
       return (
         <InputWrapper className={className}>
-          <input
-            {...field}
-            type="email"
-            disabled={disabled}
-            placeholder={placeholder}
-            className="w-full h-full bg-transparent text-[#171717] dark:text-white text-[12px] placeholder:text-[#A3A3A3] dark:placeholder:text-neutral-400 placeholder:font-light outline-none"
-          />
+          <input type="email" {...getInputProps()} />
           {renderIcon()}
         </InputWrapper>
       );
@@ -128,11 +171,8 @@ const RenderField = <T extends FieldValues>({
       return (
         <InputWrapper className={className}>
           <input
-            {...field}
             type={isPasswordVisible ? "text" : "password"}
-            disabled={disabled}
-            placeholder={placeholder}
-            className="w-full h-full bg-transparent text-[#171717] dark:text-white text-[12px] placeholder:text-[#A3A3A3] dark:placeholder:text-neutral-400 placeholder:font-light outline-none"
+            {...getInputProps()}
           />
           <button type="button" onClick={togglePasswordVisibility}>
             {isPasswordVisible ? (
@@ -147,13 +187,7 @@ const RenderField = <T extends FieldValues>({
     case FormFieldType.PHONE_INPUT:
       return (
         <InputWrapper className={className}>
-          <input
-            {...field}
-            type="tel"
-            disabled={disabled}
-            placeholder={placeholder}
-            className="w-full h-full text-[12px] bg-transparent text-[#171717] dark:text-white placeholder:text-[#A3A3A3] dark:placeholder:text-neutral-400 placeholder:font-light outline-none"
-          />
+          <input type="tel" {...getInputProps()} />
         </InputWrapper>
       );
 
@@ -161,38 +195,11 @@ const RenderField = <T extends FieldValues>({
       return (
         <InputWrapper className={className}>
           <input
-            {...field}
             type="number"
             min={min}
             max={max}
             step={step}
-            disabled={disabled}
-            placeholder={placeholder}
-            className="w-full h-full text-[12px] bg-transparent text-[#171717] dark:text-white placeholder:text-[#A3A3A3] dark:placeholder:text-neutral-400 placeholder:font-light outline-none"
-            onChange={(e) => {
-              const value = e.target.value;
-              // Handle empty value
-              if (value === "") {
-                field.onChange("");
-                return;
-              }
-
-              const numValue = parseFloat(value);
-
-              // Apply min constraint
-              if (min !== undefined && numValue < min) {
-                field.onChange(min);
-                return;
-              }
-
-              // Apply max constraint
-              if (max !== undefined && numValue > max) {
-                field.onChange(max);
-                return;
-              }
-
-              field.onChange(numValue);
-            }}
+            {...getInputProps()}
           />
           {renderIcon()}
         </InputWrapper>
@@ -201,52 +208,72 @@ const RenderField = <T extends FieldValues>({
     case FormFieldType.DATE:
       return (
         <InputWrapper className={className}>
-          <input
-            {...field}
-            type="date"
-            disabled={disabled}
-            placeholder={placeholder}
-            className="w-full h-full text-[12px] bg-transparent text-[#171717] dark:text-white text-sm md:text-base placeholder:text-[#A3A3A3] dark:placeholder:text-neutral-400 placeholder:font-light outline-none"
-          />
+          <input type="date" {...getInputProps()} />
           {renderIcon()}
         </InputWrapper>
       );
 
     case FormFieldType.TEXTAREA:
-      return (
-        <textarea
-          {...field}
-          disabled={disabled}
-          placeholder={placeholder}
-          className="w-full px-3 py-2 text-[12px] min-h-[9rem] border border-[#f5f5f5] md:border-[#e5e5e5] dark:border-neutral-800 rounded-lg bg-white dark:bg-transparent overflow-y-auto resize-none text-[#404040] dark:text-white placeholder:text-[#a3a3a3] dark:placeholder:text-neutral-400 placeholder:font-normal outline-none"
-        />
-      );
+      return <textarea {...getTextareaProps()} />;
 
     case FormFieldType.SELECT:
       return (
         <InputWrapper className={className}>
-          <Select
-            onValueChange={field.onChange}
-            value={field.value || ""}
-            disabled={disabled}
-          >
-            <SelectTrigger className="w-full border-none bg-none h-12 p-0 dark:border-neutral-800 rounded-lg text-left dark:bg-transparent focus:ring-0 focus:ring-none">
-              <SelectValue placeholder={placeholder || "Select an option..."} />
-            </SelectTrigger>
-            <SelectContent>
-              {options?.map((option) => {
-                const value =
-                  typeof option === "string" ? option : option.value;
-                const label =
-                  typeof option === "string" ? option : option.label;
-                return (
-                  <SelectItem key={value} value={value}>
-                    {label}
-                  </SelectItem>
-                );
-              })}
-            </SelectContent>
-          </Select>
+          {field ? (
+            <Select
+              onValueChange={field.onChange}
+              value={field.value || ""}
+              disabled={disabled}
+            >
+              <SelectTrigger className="w-full border-none bg-none h-12 p-0 dark:border-neutral-800 rounded-lg text-left dark:bg-transparent focus:ring-0 focus:ring-none">
+                <SelectValue
+                  placeholder={placeholder || "Select an option..."}
+                />
+              </SelectTrigger>
+              <SelectContent>
+                {options?.map((option) => {
+                  const value =
+                    typeof option === "string" ? option : option.value;
+                  const label =
+                    typeof option === "string" ? option : option.label;
+                  return (
+                    <SelectItem key={value} value={value}>
+                      {label}
+                    </SelectItem>
+                  );
+                })}
+              </SelectContent>
+            </Select>
+          ) : (
+            <Select
+              onValueChange={(value) => {
+                if (externalOnChange) {
+                  externalOnChange({ target: { value } } as any);
+                }
+              }}
+              value={externalValue || ""}
+              disabled={disabled}
+            >
+              <SelectTrigger className="w-full border-none bg-none h-12 p-0 dark:border-neutral-800 rounded-lg text-left dark:bg-transparent focus:ring-0 focus:ring-none">
+                <SelectValue
+                  placeholder={placeholder || "Select an option..."}
+                />
+              </SelectTrigger>
+              <SelectContent>
+                {options?.map((option) => {
+                  const value =
+                    typeof option === "string" ? option : option.value;
+                  const label =
+                    typeof option === "string" ? option : option.label;
+                  return (
+                    <SelectItem key={value} value={value}>
+                      {label}
+                    </SelectItem>
+                  );
+                })}
+              </SelectContent>
+            </Select>
+          )}
         </InputWrapper>
       );
 
@@ -265,20 +292,25 @@ const CustomFormField = <T extends FieldValues>(props: CustomProps<T>) => {
           {label}
         </label>
       )}
-      <Controller
-        control={control}
-        name={name}
-        render={({ field, fieldState }) => (
-          <>
-            <RenderField field={field} props={props} />
-            {fieldState.error && (
-              <p className="text-sm font-normal text-red-400">
-                {fieldState.error.message}
-              </p>
-            )}
-          </>
-        )}
-      />
+
+      {control ? (
+        <Controller
+          control={control}
+          name={name}
+          render={({ field, fieldState }) => (
+            <>
+              <RenderField field={field} props={props} />
+              {fieldState.error && (
+                <p className="text-sm font-normal text-red-400">
+                  {fieldState.error.message}
+                </p>
+              )}
+            </>
+          )}
+        />
+      ) : (
+        <RenderField props={props} />
+      )}
     </div>
   );
 };

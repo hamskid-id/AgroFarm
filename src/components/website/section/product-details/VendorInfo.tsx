@@ -22,7 +22,7 @@ export const VendorInfo = ({ vendor }: VendorInfoProps) => {
   };
 
   return (
-    <div className="bg-white rounded-xl p-6 border ">
+    <div className="bg-white rounded-xl p-4 border ">
       <div className="flex items-center justify-between mb-4">
         <h3 className="font-semibold text-lg text-gray-900">
           Seller Information
@@ -117,13 +117,13 @@ export const VendorInfo = ({ vendor }: VendorInfoProps) => {
           <Button
             onClick={handleViewProfile}
             variant="outline"
-            className="w-full border-emerald-600 text-emerald-600 hover:bg-emerald-50"
+            className="w-full h-[45px] border-emerald-600 text-emerald-600 hover:bg-emerald-50"
           >
             View Seller Profile
           </Button>
           <Button
             onClick={handleCallVendor}
-            className="w-full bg-emerald-600 hover:bg-emerald-700 text-white"
+            className="w-full h-[45px] bg-emerald-600 hover:bg-emerald-700 text-white"
           >
             Contact Seller
           </Button>

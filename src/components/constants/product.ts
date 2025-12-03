@@ -9,8 +9,24 @@ import image7 from "../../../public/images/chesse3.jpeg";
 import image8 from "../../../public/images/chicken.jpeg";
 import image9 from "../../../public/images/chicken2.jpeg";
 import image0 from "../../../public/images/crabs2.jpeg";
-// components/constants/reviews.ts
 import { Review, ReviewStats } from "@/types";
+
+export const CATEGORIES = [
+  { id: "vegetables", name: "Vegetables", icon: "🥕" },
+  { id: "fruits", name: "Fruits", icon: "🍎" },
+  { id: "grains", name: "Grains", icon: "🌾" },
+  { id: "dairy", name: "Dairy", icon: "🥛" },
+  { id: "meat", name: "Meat & Poultry", icon: "🥩" },
+  { id: "seafood", name: "Seafood", icon: "🐟" },
+] as const;
+
+export const CONDITIONS = [
+  { value: "fresh", label: "Fresh" },
+  { value: "processed", label: "Processed" },
+  { value: "organic", label: "Organic" },
+  { value: "dried", label: "Dried" },
+] as const;
+
 
 export const sampleReviews: Review[] = [
   {
@@ -898,3 +914,4 @@ export const farmers: Farmer[] = [
     phone: "0803 123 4567",
   },
 ];
+

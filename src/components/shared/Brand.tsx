@@ -2,7 +2,7 @@
 
 import { cn } from "@/lib/utils";
 import { useRouter } from "nextjs-toploader/app";
-import BrandLogo from "../../../public/LOGO.svg";
+import BrandLogo from "../../../public/agroFarmLogo.webp";
 import { CustomImage } from "../ui/custom-image";
 
 interface BrandProps {
@@ -16,6 +16,7 @@ export const Brand: React.FC<BrandProps> = ({ style }) => {
     <CustomImage
       src={BrandLogo}
       style={cn("w-[96px] h-[71px]", style)}
+      imgStyle="object-contain"
       clickFunc={navigateToHome}
     />
   );
