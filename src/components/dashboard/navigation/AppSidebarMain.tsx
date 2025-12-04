@@ -71,8 +71,8 @@ export function NavMain({ items }: NavMainProps) {
                   className={cn(
                     "transition-colors duration-200 rounded-[12px] !px-4",
                     active
-                      ? "bg-primary_40 text-white"
-                      : "text-[#CAEAD4] hover:text-white hover:bg-primary_40/70"
+                      ? "bg-primary_40/60 text-white"
+                      : "text-gray hover:text-white hover:bg-primary_40/70"
                   )}
                   data-active={active}
                 >

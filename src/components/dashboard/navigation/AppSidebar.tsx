@@ -49,7 +49,7 @@ export function AppSidebar({ data, ...props }: AppSidebarProps) {
   };
 
   return (
-    <Sidebar collapsible="icon" {...props}>
+    <Sidebar collapsible="icon" {...props} className="border border-gray-200">
       {/* Header */}
       <SidebarHeader>
         <SidebarMenu>
