@@ -96,7 +96,7 @@ export const ReviewsSection = ({
       {/* Filters & Sort */}
       <div className="p-6 border-b bg-gray-50">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-          <div className="flex items-center gap-4">
+          <div className="md:flex hidden items-center gap-4">
             <div className="flex items-center gap-2">
               <Filter className="h-4 w-4 text-gray-500" />
               <span className="text-sm font-medium text-gray-700">

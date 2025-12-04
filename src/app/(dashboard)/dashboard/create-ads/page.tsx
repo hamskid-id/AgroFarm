@@ -1,5 +1,4 @@
-import { AccountView } from "@/components/dashboard/account/AccountView";
-import { PostAdView } from "@/components/dashboard/post-ad/PostAdView";
+import PostAdView from "@/components/dashboard/post-ad/PostAdView";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {

@@ -107,3 +107,4 @@ export const formatPercentage = (value: number): string => {
 
 export const formatFileSize = (bytes: number) =>
   `${Math.round(bytes / 1024)} KB`;
+

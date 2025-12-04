@@ -8,23 +8,13 @@ export const navItems = [
     icon: DashboardIcon,
   },
   {
-    title: "My Ads",
-    url: "/dashboard/my-ads",
+    title: "Create Ads",
+    url: "/dashboard/create-ads",
     icon: Package,
   },
   {
-    title: "Messages",
-    url: "/dashboard/messages",
-    icon: MessageSquare,
-  },
-  {
-    title: "Profile",
-    url: "/dashboard/profile",
-    icon: User,
-  },
-  {
     title: "Settings",
-    url: "/dashboard/settings",
+    url: "/dashboard/profile",
     icon: SettingsIcon,
   },
 ];

@@ -38,16 +38,16 @@ export const ReviewItem = ({ review }: ReviewItemProps) => {
   };
 
   return (
-    <div className="p-6">
+    <div className="p-4">
       {/* Review Header */}
       <div className="flex items-start justify-between mb-4">
-        <div className="flex items-center gap-3">
+        <div className="flex md:flex-row flex-col md:items-center items-start gap-3">
           <CustomAvatar
             name={review.userName}
             className="w-10 h-10 border-2 border-emerald-100"
           />
           <div>
-            <div className="flex items-center gap-2">
+            <div className="flex md:flex-row flex-col md:items-center items-start gap-2">
               <h4 className="font-semibold text-gray-900">{review.userName}</h4>
               {review.verifiedPurchase && (
                 <span className="inline-flex items-center gap-1 text-xs bg-emerald-100 text-emerald-700 px-2 py-0.5 rounded">
@@ -83,7 +83,7 @@ export const ReviewItem = ({ review }: ReviewItemProps) => {
         {review.title && (
           <h5 className="font-medium text-gray-900 mb-2">{review.title}</h5>
         )}
-        <p className="text-gray-700 leading-relaxed">{review.comment}</p>
+        <p className="text-gray-700 leading-relaxed text-sm">{review.comment}</p>
       </div>
 
       {/* Actions */}

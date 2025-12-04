@@ -246,7 +246,7 @@ export const ProductTabs = ({
         defaultValue={activeTab}
         options={tabOptions}
         onValueChange={onTabChange}
-        contentClassName="px-4"
+        contentClassName="px-4 pb-4"
       />
     </div>
   );

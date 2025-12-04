@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import React, { useState } from "react";
 import {
@@ -28,9 +28,12 @@ import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 import { Badge } from "@/components/ui/badge";
 import { mockUserProfile } from "@/lib/mockData";
+import { LoadingSpinner } from "@/components/shared/LoadingSpinner";
+import { CustomTabs } from "@/components/ui/CustomTab";
 
 export const AccountView = () => {
   const [activeTab, setActiveTab] = useState("profile");
+  const isLoading = false;
   const [isEditing, setIsEditing] = useState(false);
   const [profileData, setProfileData] = useState(mockUserProfile);
   const [passwordData, setPasswordData] = useState({
@@ -45,6 +48,15 @@ export const AccountView = () => {
     adPerformance: true,
     priceAlerts: false,
   });
+
+  const renderTabContent = (content: React.ReactNode) => {
+    if (isLoading) {
+      return <LoadingSpinner loadingText="Fetching Details" />;
+    }
+    return content;
+  };
+
+  // In your Reporting component, update the tabOptions to pass currentTab:
 
   // Profile Tab
   const ProfileTab = () => (
@@ -251,81 +263,6 @@ export const AccountView = () => {
           </Button>
         </div>
       </div>
-
-      {/* Two-Factor Authentication */}
-      <div className="pt-6 border-t">
-        <h3 className="font-semibold text-gray-900 mb-4 flex items-center gap-2">
-          <Shield className="h-5 w-5 text-blue-600" />
-          Two-Factor Authentication
-        </h3>
-        <Card>
-          <CardContent className="p-4">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="font-medium text-gray-900">2FA Status</p>
-                <p className="text-sm text-gray-600">Not enabled</p>
-              </div>
-              <Button className="bg-blue-600 hover:bg-blue-700">
-                Enable 2FA
-              </Button>
-            </div>
-          </CardContent>
-        </Card>
-      </div>
-
-      {/* Recent Login Activity */}
-      <div className="pt-6 border-t">
-        <h3 className="font-semibold text-gray-900 mb-4">
-          Recent Login Activity
-        </h3>
-        <div className="space-y-3">
-          {[
-            {
-              device: "Chrome on Windows",
-              location: "Lagos, Nigeria",
-              time: "2 hours ago",
-              current: true,
-            },
-            {
-              device: "Safari on iPhone",
-              location: "Lagos, Nigeria",
-              time: "1 day ago",
-              current: false,
-            },
-            {
-              device: "Chrome on Windows",
-              location: "Abuja, Nigeria",
-              time: "3 days ago",
-              current: false,
-            },
-          ].map((login, index) => (
-            <Card key={index} className="hover:bg-gray-50">
-              <CardContent className="p-4">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <p className="font-medium text-gray-900 flex items-center gap-2">
-                      {login.device}
-                      {login.current && (
-                        <Badge
-                          variant="secondary"
-                          className="flex items-center gap-1"
-                        >
-                          <CheckCircle className="h-3 w-3" />
-                          Current
-                        </Badge>
-                      )}
-                    </p>
-                    <p className="text-sm text-gray-600 flex items-center gap-2">
-                      <Clock className="h-3 w-3" />
-                      {login.location} • {login.time}
-                    </p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
-      </div>
     </div>
   );
 
@@ -373,7 +310,7 @@ export const AccountView = () => {
           desc: "Get notified about similar product prices",
         },
       ].map((item) => (
-        <Card key={item.key} className="hover:bg-gray-50">
+        <Card key={item.key} className="shadow-none border border-gray-200">
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
@@ -426,7 +363,7 @@ export const AccountView = () => {
       <div>
         <h3 className="font-semibold text-gray-900 mb-4">Account Statistics</h3>
         <div className="grid grid-cols-2 gap-4">
-          <Card>
+          <Card className="shadow-none border border-gray-200 ">
             <CardContent className="p-4">
               <div className="flex items-center gap-2 mb-2">
                 <Calendar className="h-4 w-4 text-gray-600" />
@@ -437,7 +374,7 @@ export const AccountView = () => {
               </p>
             </CardContent>
           </Card>
-          <Card>
+          <Card className="shadow-none border border-gray-200">
             <CardContent className="p-4">
               <div className="flex items-center gap-2 mb-2">
                 <Star className="h-4 w-4 text-amber-400" />
@@ -476,49 +413,60 @@ export const AccountView = () => {
     </div>
   );
 
+  const tabOptions = [
+    {
+      value: "profile",
+      label: "Profile",
+      content: renderTabContent(
+        <>
+          <ProfileTab />
+        </>
+      ),
+    },
+    {
+      value: "security",
+      label: "Security",
+      content: renderTabContent(
+        <>
+          <SecurityTab />
+        </>
+      ),
+    },
+    {
+      value: "notifications",
+      label: "Notifications",
+      content: renderTabContent(
+        <>
+          <NotificationsTab />
+        </>
+      ),
+    },
+    {
+      value: "settings",
+      label: "Settings",
+      content: renderTabContent(
+        <>
+          <SettingsTab />
+        </>
+      ),
+    },
+  ];
+
   return (
     <div className="space-y-6">
       <h2 className="text-2xl font-bold text-gray-900">Account Settings</h2>
 
       {/* Tabs */}
-      <Card>
-        <Tabs value={activeTab} onValueChange={setActiveTab}>
-          <TabsList className="grid grid-cols-4 p-2">
-            <TabsTrigger value="profile" className="flex items-center gap-2">
-              <User className="h-4 w-4" />
-              Profile
-            </TabsTrigger>
-            <TabsTrigger value="security" className="flex items-center gap-2">
-              <Shield className="h-4 w-4" />
-              Security
-            </TabsTrigger>
-            <TabsTrigger
-              value="notifications"
-              className="flex items-center gap-2"
-            >
-              <Bell className="h-4 w-4" />
-              Notifications
-            </TabsTrigger>
-            <TabsTrigger value="settings" className="flex items-center gap-2">
-              <Settings className="h-4 w-4" />
-              Settings
-            </TabsTrigger>
-          </TabsList>
-          <div className="p-6">
-            <TabsContent value="profile">
-              <ProfileTab />
-            </TabsContent>
-            <TabsContent value="security">
-              <SecurityTab />
-            </TabsContent>
-            <TabsContent value="notifications">
-              <NotificationsTab />
-            </TabsContent>
-            <TabsContent value="settings">
-              <SettingsTab />
-            </TabsContent>
-          </div>
-        </Tabs>
+      <Card className="shadow-none border border-gray-200 p-4">
+        <CustomTabs
+          defaultValue="profile"
+          options={tabOptions}
+          onValueChange={(value) => {
+            setActiveTab(value);
+          }}
+          className="border-none"
+          triggerClassName="max-w-fit"
+        />
       </Card>
     </div>
   );

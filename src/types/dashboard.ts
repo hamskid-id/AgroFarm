@@ -77,3 +77,78 @@ export interface PostAdFormData {
   phoneNumber: string;
   tags: string[];
 }
+
+export interface MyAdsViewProps {
+  onNavigate: (view: string) => void;
+}
+
+export interface EditFormState {
+  name: string;
+  description: string;
+  price: string;
+  stockCount: string;
+  status: string;
+  featured: boolean;
+  condition: string;
+  inStock: boolean;
+  category: string;
+  location: string;
+  tags: string;
+}
+
+export type ProductAction =
+  | "view"
+  | "edit"
+  | "delete"
+  | "toggleStock"
+  | "toggleStatus";
+
+
+  export interface PostAdFormData {
+    category: string;
+    title: string;
+    condition: string;
+    price: string;
+    originalPrice: string;
+    quantity: string;
+    unit: string;
+    description: string;
+    location: string;
+    phoneNumber: string;
+    tags: string[];
+  }
+
+  export interface Step {
+    number: number;
+    label: string;
+    icon: React.ReactNode;
+  }
+
+  export interface BasicInfoStepProps {
+    formData: PostAdFormData;
+    setFormData: (formData: PostAdFormData) => void;
+  }
+
+  export interface PhotosStepProps {
+    images: File[];
+    setImages: (images: File[]) => void;
+  }
+
+  export interface DetailsStepProps {
+    formData: PostAdFormData;
+    setFormData: (formData: PostAdFormData) => void;
+  }
+
+  export interface LocationStepProps {
+    formData: PostAdFormData;
+    setFormData: (formData: PostAdFormData) => void;
+  }
+
+  export interface NavigationButtonsProps {
+    currentStep: number;
+    totalSteps: number;
+    canProceed: boolean;
+    onPrevious: () => void;
+    onNext: () => void;
+    onSubmit: () => void;
+  }

@@ -1,19 +1,13 @@
-"use client";
+import React from "react";
+import { Camera, X, ImageIcon, AlertCircle } from "lucide-react";
+import { PhotosStepProps } from "@/types/dashboard";
+import { PHOTO_TIPS } from "../../constants/form-constants";
 
-import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Camera, X, AlertCircle } from "lucide-react";
-
-interface PhotosStepProps {
-  images: File[];
-  setImages: (images: File[]) => void;
-}
-
-export default function PhotosStep({ images, setImages }: PhotosStepProps) {
+const PhotosStep: React.FC<PhotosStepProps> = ({ images, setImages }) => {
   const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = Array.from(e.target.files || []);
     const validImages = files.filter(
-      (file) => file.type.startsWith("image/") && file.size <= 5 * 1024 * 1024 // 5MB
+      (file) => file.type.startsWith("image/") && file.size <= 5 * 1024 * 1024
     );
 
     if (validImages.length + images.length > 5) {
@@ -29,40 +23,39 @@ export default function PhotosStep({ images, setImages }: PhotosStepProps) {
   };
 
   return (
-    <div className="space-y-6">
-      <div>
-        <h2 className="text-xl font-semibold text-gray-900 mb-2">Add Photos</h2>
+    <div className="space-y-8 animate-fadeIn">
+      <div className="text-center">
+        <div className="inline-flex items-center justify-center w-16 h-16 bg-blue-100 rounded-2xl mb-4">
+          <ImageIcon className="w-8 h-8 text-blue-600" />
+        </div>
+        <h2 className="text-2xl font-bold text-gray-900 mb-2">Add Photos</h2>
         <p className="text-gray-600">
-          Upload clear photos of your product (Maximum 5)
+          Great photos help sell faster (up to 5 images)
         </p>
       </div>
 
       {/* Image Grid */}
-      <div className="grid grid-cols-3 md:grid-cols-5 gap-4">
+      <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
         {/* Uploaded Images */}
         {images.map((image, index) => (
-          <div key={index} className="relative group">
-            <Card className="overflow-hidden aspect-square">
-              <CardContent className="p-0">
-                <img
-                  src={URL.createObjectURL(image)}
-                  alt={`Preview ${index + 1}`}
-                  className="w-full h-full object-cover"
-                />
-              </CardContent>
-            </Card>
-            <Button
+          <div key={index} className="relative group animate-scaleIn">
+            <div className="aspect-square border-2 border-gray-200 rounded-2xl overflow-hidden bg-gray-50">
+              <img
+                src={URL.createObjectURL(image)}
+                alt={`Preview ${index + 1}`}
+                className="w-full h-full object-cover"
+              />
+            </div>
+            <button
               type="button"
-              size="icon"
-              variant="destructive"
-              className="absolute -top-2 -right-2 h-6 w-6"
               onClick={() => removeImage(index)}
+              className="absolute -top-2 -right-2 w-8 h-8 bg-red-500 text-white rounded-full flex items-center justify-center hover:bg-red-600 transition-all hover:scale-110 shadow-lg"
             >
-              <X className="h-3 w-3" />
-            </Button>
+              <X className="w-4 h-4" />
+            </button>
             {index === 0 && (
-              <div className="absolute bottom-0 left-0 right-0 bg-emerald-600 text-white text-xs py-1 px-2 text-center">
-                Cover Photo
+              <div className="absolute bottom-2 left-2 right-2 bg-emerald-600 text-white text-xs font-semibold py-2 px-3 rounded-lg text-center">
+                📸 Cover Photo
               </div>
             )}
           </div>
@@ -70,43 +63,48 @@ export default function PhotosStep({ images, setImages }: PhotosStepProps) {
 
         {/* Upload Button */}
         {images.length < 5 && (
-          <Card className="aspect-square border-2 border-dashed border-gray-300 hover:border-emerald-400 hover:bg-emerald-50 transition-colors">
-            <CardContent className="h-full flex flex-col items-center justify-center p-0">
-              <label className="cursor-pointer w-full h-full flex flex-col items-center justify-center">
-                <Camera className="h-8 w-8 text-gray-400 mb-2" />
-                <span className="text-sm text-gray-500 font-medium">
-                  Add Photo
-                </span>
-                <input
-                  type="file"
-                  accept="image/*"
-                  multiple
-                  onChange={handleImageUpload}
-                  className="hidden"
-                />
-              </label>
-            </CardContent>
-          </Card>
+          <label className="aspect-square border-3 border-dashed border-gray-300 rounded-2xl hover:border-emerald-400 hover:bg-emerald-50 transition-all cursor-pointer flex flex-col items-center justify-center group">
+            <div className="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center mb-3 group-hover:bg-emerald-100 transition-colors">
+              <Camera className="w-6 h-6 text-gray-400 group-hover:text-emerald-500" />
+            </div>
+            <span className="text-sm text-gray-600 font-medium">Add Photo</span>
+            <span className="text-xs text-gray-400 mt-1">
+              {images.length}/5
+            </span>
+            <input
+              type="file"
+              accept="image/*"
+              multiple
+              onChange={handleImageUpload}
+              className="hidden"
+            />
+          </label>
         )}
       </div>
 
       {/* Tips */}
-      <Card className="bg-blue-50 border-blue-200">
-        <CardContent className="p-4">
-          <div className="flex items-start gap-3">
-            <AlertCircle className="h-5 w-5 text-blue-600 flex-shrink-0 mt-0.5" />
-            <div className="text-sm">
-              <h5 className="font-medium text-blue-900 mb-2">Photo Tips</h5>
-              <ul className="text-blue-800 space-y-1">
-                <li>• Use natural lighting for best results</li>
-                <li>• Show product from different angles</li>
-                <li>• Keep background clean and simple</li>
-                <li>• First photo will be the cover image</li>
-              </ul>
+      <div className="bg-blue-50 border-2 border-blue-200 rounded-2xl p-6">
+        <div className="flex gap-3">
+          <div className="flex-shrink-0">
+            <div className="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center">
+              <AlertCircle className="w-5 h-5 text-white" />
             </div>
           </div>
-        </CardContent>
-      </Card>
+          <div>
+            <h5 className="font-semibold text-gray-900 mb-2">Photo Tips</h5>
+            <ul className="space-y-1.5 text-sm text-gray-700">
+              {PHOTO_TIPS.map((tip, index) => (
+                <li key={index} className="flex items-start gap-2">
+                  <span className="text-blue-500 mt-0.5">✓</span>
+                  <span>{tip}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
   );
-}
+};
+
+export default PhotosStep;

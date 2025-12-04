@@ -23,18 +23,13 @@ export const MobileNav: React.FC<MobileNavProps> = ({ items }) => {
 
   const userRole = user?.role;
 
-  const filteredItems = useMemo(() => {
-    if (!userRole) return [];
-    return items.filter((item) => item.roles?.includes(userRole));
-  }, [items, userRole]);
-
   const getActiveUrl = useCallback(() => {
     // Exact match first
-    const exactMatch = filteredItems.find((item) => pathname === item.url);
+    const exactMatch = items.find((item) => pathname === item.url);
     if (exactMatch) return exactMatch.url;
 
     // Find all matching parent routes
-    const matchingItems = filteredItems.filter((item) =>
+    const matchingItems = items.filter((item) =>
       pathname.startsWith(item.url + "/"),
     );
 
@@ -44,7 +39,7 @@ export const MobileNav: React.FC<MobileNavProps> = ({ items }) => {
     }
 
     return null;
-  }, [pathname, filteredItems]);
+  }, [pathname, items]);
 
   const activeUrl = getActiveUrl();
   const isActive = (url: string) => url === activeUrl;
@@ -85,7 +80,7 @@ export const MobileNav: React.FC<MobileNavProps> = ({ items }) => {
                     <div className="h-3 w-16 rounded bg-gray-400/30" />
                   </div>
                 ))
-              : filteredItems.map((item, index) => {
+              : items.map((item, index) => {
                   const active = isActive(item.url);
 
                   return (

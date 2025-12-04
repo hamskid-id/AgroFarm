@@ -64,7 +64,7 @@ export function AppSidebar({ data, ...props }: AppSidebarProps) {
         </SidebarMenu>
         <div
           onClick={toggleSidebar}
-          className="cursor-pointer mr-[-2rem] w-fit absolute top-[6rem] right-[1rem]"
+          className="cursor-pointer mr-[-3rem] w-fit absolute top-[6rem] right-[1rem]"
         >
           <SideBarCollapseTrigger />
         </div>
