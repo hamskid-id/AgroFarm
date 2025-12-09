@@ -20,6 +20,7 @@ import AlertModal from "@/components/shared/AlertModal";
 import { useAuthStore } from "@/stores/auth-store";
 import { usePost } from "@/hooks/use-queries";
 import { ApiResponse } from "@/types";
+import CustomAvatar from "@/components/ui/custom-avatar";
 
 interface AppSidebarProps extends React.ComponentProps<typeof Sidebar> {
   data: AppSidebarData;
@@ -49,29 +50,43 @@ export function AppSidebar({ data, ...props }: AppSidebarProps) {
   };
 
   return (
-    <Sidebar collapsible="icon" {...props} className="border border-gray-200">
+    <Sidebar
+      collapsible="icon"
+      {...props}
+      className=" border border-gray-200 rounded-lg"
+    >
       {/* Header */}
       <SidebarHeader>
         <SidebarMenu>
           <SidebarMenuItem>
             <SidebarMenuButton
               size="lg"
-              className="mt-6 mb-[2rem] h-[71px] data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground !px-1"
+              className="mb-[2rem] h-[71px] data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground !px-1"
             >
-              {LogoComponent && !isCollapsed && <LogoComponent />}
+              {LogoComponent && !isCollapsed && (
+                <LogoComponent style="w-[120px] h-[100px]" />
+              )}
             </SidebarMenuButton>
           </SidebarMenuItem>
         </SidebarMenu>
-        <div
+        {/* <div
           onClick={toggleSidebar}
           className="cursor-pointer mr-[-3rem] w-fit absolute top-[6rem] right-[1rem]"
         >
           <SideBarCollapseTrigger />
-        </div>
+        </div> */}
       </SidebarHeader>
 
       {/* Content */}
       <SidebarContent className="px-3">
+        <div className="mb-4 flex flex-col items-center gap-2">
+          <CustomAvatar
+            className="w-[70px] h-[70px] border-2 border-green-200"
+            name="Hamzat"
+          />
+          <h1 className="text-gray-500 font-400 text-[14px]">Welcome back,</h1>
+          <p className="font-400 text-[16px]">Fabian More</p>
+        </div>
         <NavMain items={navMain} />
       </SidebarContent>
 
@@ -83,8 +98,8 @@ export function AppSidebar({ data, ...props }: AppSidebarProps) {
               className="flex items-center gap-2 text-sm font-medium"
               onClick={() => setIsLogoutModalOpen(true)}
             >
-              <LogOut className="h-4 w-4 text-[#FF5C5C]" />
-              {!isCollapsed && <span className="text-[#FF5C5C]">Logout</span>}
+              <LogOut className="h-4 w-4 text-gray-500" />
+              {!isCollapsed && <span className="text-gray-500 font-[500]">Sign Out</span>}
             </SidebarMenuButton>
           </SidebarMenuItem>
         </SidebarMenu>

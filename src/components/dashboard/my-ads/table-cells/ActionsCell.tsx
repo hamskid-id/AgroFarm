@@ -1,11 +1,12 @@
 import React from "react";
-import { MoreVertical } from "lucide-react";
+import { ChevronRight, MoreVertical } from "lucide-react";
 import CustomDropdown from "@/components/ui/custom-dropdown";
 import { Product } from "@/types";
 import { getDropdownItems } from "@/lib/dropdown-utils";
 
 interface ActionsCellProps {
   product: Product;
+  trigger?: React.ReactNode;
   onView: (product: Product) => void;
   onEdit: (product: Product) => void;
   onToggleStock: (product: Product) => void;
@@ -20,6 +21,7 @@ const ActionsCell: React.FC<ActionsCellProps> = ({
   onToggleStock,
   onToggleStatus,
   onDelete,
+  trigger,
 }) => {
   const dropdownItems = getDropdownItems(product, {
     onView,
@@ -32,8 +34,8 @@ const ActionsCell: React.FC<ActionsCellProps> = ({
   return (
     <CustomDropdown
       trigger={
-        <button className="p-2 hover:bg-gray-100 rounded-md">
-          <MoreVertical size={18} className="text-[#444846]" />
+        <button>
+          {trigger || <ChevronRight size={18} className="text-[#444846]" />}
         </button>
       }
       items={dropdownItems}

@@ -222,3 +222,9 @@ export interface ReviewStats {
     1: number;
   };
 }
+
+export interface LegendItem {
+  label: string;
+  value: string;
+  color: string;
+}

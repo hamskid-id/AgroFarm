@@ -1,83 +1,69 @@
 "use client";
 
 import { useState } from "react";
-import { PostAdFormData } from "@/types/dashboard";
-import { useFormValidation } from "@/hooks/use-form-validation";
-import BasicInfoStep from "./BasicInfoStep";
-import PhotosStep from "./PhotosStep";
-import DetailsStep from "./DetailsStep";
-import LocationStep from "./LocationStep";
-import ModernStepProgress from "./ModernStepProgress";
-import { FORM_STEPS } from "@/components/constants/form-constants";
-import NavigationButtons from "./NavigationButtons";
+import PreviewSidebar from "./PreviewSidebar";
+import ProductForm from "./ProductForm";
+import { FormData } from "@/components/constants/form-constants";
 
 const PostAdView = () => {
-  const [currentStep, setCurrentStep] = useState(1);
-  const [formData, setFormData] = useState<PostAdFormData>({
+  const [thumbnailImage, setThumbnailImage] = useState<File | null>(null);
+  const [formData, setFormData] = useState<FormData>({
+    productName: "",
     category: "",
-    title: "",
-    condition: "fresh",
-    price: "",
-    originalPrice: "",
     quantity: "",
     unit: "kg",
-    description: "",
+    price: "",
+    originalPrice: "",
+    condition: "fresh",
     location: "",
     phoneNumber: "",
-    tags: [],
+    description: "",
   });
-  const [images, setImages] = useState<File[]>([]);
 
-  const { canProceed } = useFormValidation(formData, images, currentStep);
-
-  const handleSubmit = () => {
-    alert("🎉 Ad posted successfully!");
-    // Here you would typically make an API call
+  const handleThumbnailUpload = (file: File) => {
+    setThumbnailImage(file);
   };
 
-  const renderStepContent = () => {
-    switch (currentStep) {
-      case 1:
-        return <BasicInfoStep formData={formData} setFormData={setFormData} />;
-      case 2:
-        return <PhotosStep images={images} setImages={setImages} />;
-      case 3:
-        return <DetailsStep formData={formData} setFormData={setFormData} />;
-      case 4:
-        return <LocationStep formData={formData} setFormData={setFormData} />;
-      default:
-        return null;
-    }
+  const handleFormChange = (field: keyof FormData, value: string) => {
+    setFormData((prev) => ({
+      ...prev,
+      [field]: value,
+    }));
+  };
+
+  const handleCancel = () => {
+    // Implement cancel logic
+    console.log("Cancelled");
+  };
+
+  const handlePost = () => {
+    // Implement post logic
+    console.log("Posting ad", { formData, thumbnailImage });
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 py-8 px-4">
-      <div className="max-w-3xl mx-auto">
-        {/* Header */}
-        <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">
-            Post Your Ad
-          </h1>
-          <p className="text-gray-600">Sell your products in 4 easy steps</p>
+    <div className="min-h-screen bg-gray-50">
+      <div className="max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          {/* Left Side - Preview */}
+          <div className="lg:col-span-1">
+            <PreviewSidebar
+              formData={formData}
+              thumbnailImage={thumbnailImage}
+              onCancel={handleCancel}
+              onPost={handlePost}
+            />
+          </div>
+
+          {/* Right Side - Form */}
+          <div className="lg:col-span-2">
+            <ProductForm
+              formData={formData}
+              onFormChange={handleFormChange}
+              onThumbnailUpload={handleThumbnailUpload}
+            />
+          </div>
         </div>
-
-        {/* Progress */}
-        <ModernStepProgress steps={FORM_STEPS} currentStep={currentStep} />
-
-        {/* Form Content */}
-        <div className="bg-white rounded-3xl border border-gray-200 p-8 mb-6">
-          {renderStepContent()}
-        </div>
-
-        {/* Navigation Buttons */}
-        <NavigationButtons
-          currentStep={currentStep}
-          totalSteps={FORM_STEPS.length}
-          canProceed={canProceed}
-          onPrevious={() => setCurrentStep(currentStep - 1)}
-          onNext={() => setCurrentStep(currentStep + 1)}
-          onSubmit={handleSubmit}
-        />
       </div>
     </div>
   );

@@ -16,7 +16,7 @@ export const StatCard = ({
   change,
   trend,
 }: StatCardProps) => (
-  <div className="bg-white rounded-xl p-6 border border-gray-200 hover:shadow-lg transition-shadow">
+  <div className="bg-white rounded-xl p-6 border border-gray-200 ">
     <div className="flex items-start justify-between">
       <div>
         <p className="text-sm text-gray-600 mb-1">{label}</p>

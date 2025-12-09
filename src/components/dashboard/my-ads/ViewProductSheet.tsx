@@ -105,8 +105,8 @@ const ViewProductSheet: React.FC<ViewProductSheetProps> = ({
           </div>
 
           <div>
-            <Label className="text-sm text-gray-600">Description</Label>
-            <p className="text-gray-700">{product.description}</p>
+            <Label className="text-sm ">Description</Label>
+            <p className="text-gray-700 text-sm">{product.description}</p>
           </div>
 
           {/* Stats */}

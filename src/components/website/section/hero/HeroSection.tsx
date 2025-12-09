@@ -16,7 +16,7 @@ const HeroSection = () => {
     console.log("Navigating to start selling...");
   };
   return (
-    <section className="relative bg-gradient-to-br from-emerald-50 via-white to-amber-50 py-14  overflow-hidden">
+    <section className="relative bg-white py-14  overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 bg-[url('/placeholder.svg?height=800&width=1200')] opacity-5"></div>
 

@@ -29,17 +29,18 @@ import {
 } from "@/components/ui/select";
 
 type Option = string | { label: string; value: string };
+type OptionArray = Option[] | readonly Option[];
 
 interface CustomProps<T extends FieldValues> {
   control?: Control<T>;
   fieldType: FormFieldType;
   name: Path<T>;
-  label?: string;
+  label?: ReactNode; // Changed from string to ReactNode
   placeholder?: string;
   disabled?: boolean;
   children?: ReactNode;
   icon?: ReactNode;
-  options?: Option[];
+  options?: OptionArray;
   iconSrc?: string;
   iconAlt?: string;
   dateFormat?: string;
@@ -60,6 +61,7 @@ interface CustomProps<T extends FieldValues> {
   ) => void;
   onBlur?: () => void;
 }
+
 
 interface RenderFieldProps<T extends FieldValues> {
   field?: ControllerRenderProps<T, FieldPath<T>>;

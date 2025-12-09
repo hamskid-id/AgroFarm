@@ -12,9 +12,16 @@ import { useFavoritesStore } from "@/stores/favorites-store";
 interface ProductCardProps {
   product: Product;
   viewMode?: "grid" | "list";
+  viewInStore?: boolean;
+  onClick?: () => void;
 }
 
-const ProductCard = ({ product, viewMode = "grid" }: ProductCardProps) => {
+const ProductCard = ({
+  product,
+  viewMode = "grid",
+  viewInStore,
+  onClick,
+}: ProductCardProps) => {
   const [isHovered, setIsHovered] = useState(false);
   const router = useRouter();
 
@@ -33,7 +40,11 @@ const ProductCard = ({ product, viewMode = "grid" }: ProductCardProps) => {
   const handleCardClick = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
-    router.push(`/products/${product.id}`);
+    if (onClick) {
+      onClick?.();
+    } else {
+      router.push(`/products/${product.id}`);
+    }
   };
 
   const handleFavorite = (e: React.MouseEvent) => {
@@ -130,42 +141,43 @@ const ProductCard = ({ product, viewMode = "grid" }: ProductCardProps) => {
             <h3 className="font-semibold text-gray-900 text-sm mb-1 line-clamp-1 group-hover:text-emerald-600 transition-colors">
               {product.name}
             </h3>
-
             {/* Description */}
             <p className="text-gray-600 text-xs mb-2 line-clamp-1">
               {product.description || "Quality agricultural product"}
             </p>
-
             {/* Location & Time */}
-            <div className="flex items-center justify-between text-xs text-gray-500">
-              <div className="flex items-center gap-1">
-                <MapPin className="h-3 w-3" />
-                <span>{product.location || "Lagos"}</span>
-              </div>
-              <span className="text-gray-400">
-                {product.postedDate || "Today"}
-              </span>
-            </div>
-
-            {/* Seller Info */}
-            <div className="flex items-center gap-2 mt-2 flex-wrap">
-              <div className="flex items-center gap-1 text-xs text-gray-700">
-                <Star className="h-3 w-3 text-amber-400 fill-current" />
-                <span>{product.rating || "N/A"}</span>
+            {!viewInStore && (
+              <div className="flex items-center justify-between text-xs text-gray-500">
+                <div className="flex items-center gap-1">
+                  <MapPin className="h-3 w-3" />
+                  <span>{product.location || "Lagos"}</span>
+                </div>
                 <span className="text-gray-400">
-                  ({product.reviewCount || 0})
+                  {product.postedDate || "Today"}
                 </span>
               </div>
-              <span className="text-gray-400 text-xs">•</span>
-              <span className="text-xs text-gray-700 truncate">
-                {product.vendor?.name || "Unknown Seller"}
-              </span>
-              {/* Years on Platform Badge */}
-              <Badge className="bg-amber-100 text-amber-700 text-[10px] px-1.5 py-0.5">
-                <Award className="h-2 w-2 mr-1" />
-                {getYearsOnPlatform()}
-              </Badge>
-            </div>
+            )}
+            {/* Seller Info */}
+            {!viewInStore && (
+              <div className="flex items-center gap-2 mt-2 flex-wrap">
+                <div className="flex items-center gap-1 text-xs text-gray-700">
+                  <Star className="h-3 w-3 text-amber-400 fill-current" />
+                  <span>{product.rating || "N/A"}</span>
+                  <span className="text-gray-400">
+                    ({product.reviewCount || 0})
+                  </span>
+                </div>
+                <span className="text-gray-400 text-xs">•</span>
+                <span className="text-xs text-gray-700 truncate">
+                  {product.vendor?.name || "Unknown Seller"}
+                </span>
+                {/* Years on Platform Badge */}
+                <Badge className="bg-amber-100 text-amber-700 text-[10px] px-1.5 py-0.5">
+                  <Award className="h-2 w-2 mr-1" />
+                  {getYearsOnPlatform()}
+                </Badge>
+              </div>
+            )}
           </div>
 
           {/* Arrow Indicator */}
@@ -308,27 +320,29 @@ const ProductCard = ({ product, viewMode = "grid" }: ProductCardProps) => {
         </div>
 
         {/* Seller Info */}
-        <div className="flex items-center gap-2">
-          <div className="flex-1 min-w-0">
-            <div className="flex items-center gap-1 text-xs text-gray-600">
-              <Star className="h-3 w-3 text-amber-400 fill-current" />
-              <span>{product.rating || "N/A"}</span>
-              <span className="text-gray-400">
-                ({product.reviewCount || 0})
-              </span>
-            </div>
-            <div className="flex items-center gap-1 mt-1 flex-wrap">
-              <span className="text-xs font-medium text-gray-700 truncate">
-                {product.vendor?.name || "Unknown Seller"}
-              </span>
-              {/* Years on Platform Badge */}
-              <Badge className="bg-amber-100 text-amber-700 text-[10px] px-1.5 py-0.5">
-                <Award className="h-2 w-2 mr-1" />
-                {getYearsOnPlatform()}
-              </Badge>
+        {!viewInStore && (
+          <div className="flex items-center gap-2">
+            <div className="flex-1 min-w-0">
+              <div className="flex items-center gap-1 text-xs text-gray-600">
+                <Star className="h-3 w-3 text-amber-400 fill-current" />
+                <span>{product.rating || "N/A"}</span>
+                <span className="text-gray-400">
+                  ({product.reviewCount || 0})
+                </span>
+              </div>
+              <div className="flex items-center gap-1 mt-1 flex-wrap">
+                <span className="text-xs font-medium text-gray-700 truncate">
+                  {product.vendor?.name || "Unknown Seller"}
+                </span>
+                {/* Years on Platform Badge */}
+                <Badge className="bg-amber-100 text-amber-700 text-[10px] px-1.5 py-0.5">
+                  <Award className="h-2 w-2 mr-1" />
+                  {getYearsOnPlatform()}
+                </Badge>
+              </div>
             </div>
           </div>
-        </div>
+        )}
 
         {/* Stock Status */}
         <div className="mt-2 flex items-center justify-between text-xs">

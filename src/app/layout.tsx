@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { DM_Sans, PT_Sans } from "next/font/google";
+import { Inter, PT_Sans } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/sonner";
 import { Suspense } from "react";
@@ -7,10 +7,9 @@ import QueryProvider from "@/providers/QueryProvider";
 import NextTopLoader from "nextjs-toploader";
 import AuthHydrator from "@/providers/AuthHydrator";
 
-const pt_sans = PT_Sans({
+const inter = Inter({
   subsets: ["latin"],
-  display: "block",
-  weight: "400",
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
 });
 
 export const metadata: Metadata = {
@@ -25,7 +24,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={` ${pt_sans.className} antialiased text-bl-base`}>
+      <body className={` ${inter.className} antialiased text-bl-base`}>
         <NextTopLoader color="#AFEB2B" showSpinner={false} />
         <Suspense fallback={<div></div>}>
           <QueryProvider>

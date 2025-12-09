@@ -35,12 +35,12 @@ export default function AppLayout({ children }: AppLayoutProps) {
   );
 
   return (
-    <SidebarProvider>
-      <AppSidebar data={sidebarData} />
+    <SidebarProvider className="bg-gray-50 p-5 md:gap-5 gap-0">
+      <AppSidebar data={sidebarData}/>
 
-      <SidebarInset className="w-full md:w-[900px]">
+      <SidebarInset className="w-full bg-gray-50 md:w-[900px] flex flex-col gap-4">
         <AppHeader />
-        <main className="bg-gray-50 px-4 md:px-8 py-6 h-full">{children}</main>
+        <main className=" h-full">{children}</main>
       </SidebarInset>
 
       <MobileNav items={sidebarData.navMain} />

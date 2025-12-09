@@ -161,7 +161,7 @@ export const MyAdsView = () => {
 
       <ProductsTable columns={productTableColumns} rows={rows} />
 
-      <ViewProductSheet
+      {/* <ViewProductSheet
         isOpen={isViewSheetOpen}
         setIsOpen={setIsViewSheetOpen}
         product={selectedProduct}
@@ -183,7 +183,7 @@ export const MyAdsView = () => {
         setIsOpen={setIsDeleteModalOpen}
         product={selectedProduct}
         onSubmit={handleDeleteSubmit}
-      />
+      /> */}
     </div>
   );
 };

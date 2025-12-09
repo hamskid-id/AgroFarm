@@ -17,31 +17,15 @@ export const CONDITIONS = [
   { value: "fair", label: "Fair" },
 ] as const;
 
-export const UNITS = [
-  { value: "kg", label: "Kilogram (kg)" },
-  { value: "g", label: "Gram (g)" },
-  { value: "ton", label: "Ton" },
-  { value: "piece", label: "Piece" },
-  { value: "bunch", label: "Bunch" },
-  { value: "bag", label: "Bag" },
-  { value: "crate", label: "Crate" },
-] as const;
-
-export const FORM_STEPS: Step[] = [
-  { number: 1, label: "Basic Info", icon: <Package className="w-6 h-6" /> },
-  { number: 2, label: "Photos", icon: <ImageIcon className="w-6 h-6" /> },
-  { number: 3, label: "Details", icon: <FileText className="w-6 h-6" /> },
-  { number: 4, label: "Location", icon: <MapPinIcon className="w-6 h-6" /> },
-];
-
-export const PHOTO_TIPS = [
-  "Use natural lighting for best results",
-  "Show product from multiple angles",
-  "Keep background clean and simple",
-];
-
-export const SAFETY_TIPS = [
-  "Meet buyers in safe, public places",
-  "Don't share sensitive personal information",
-  "Get full payment before delivery",
-];
+export type FormData = {
+  productName: string;
+  category: string;
+  quantity: string;
+  unit: string;
+  price: string;
+  originalPrice: string;
+  condition: string;
+  location: string;
+  phoneNumber: string;
+  description: string;
+};

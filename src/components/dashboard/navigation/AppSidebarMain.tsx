@@ -29,7 +29,7 @@ export function NavMain({ items }: NavMainProps) {
 
     // All matching parent routes
     const matchingItems = items.filter((item) =>
-      pathname.startsWith(item.url + "/"),
+      pathname.startsWith(item.url + "/")
     );
 
     // Return the longest (most specific) match
@@ -69,10 +69,10 @@ export function NavMain({ items }: NavMainProps) {
                   tooltip={item.title}
                   asChild
                   className={cn(
-                    "transition-colors duration-200 rounded-[12px] !px-4",
-                    active
-                      ? "bg-primary_40/60 text-white"
-                      : "text-gray hover:text-white hover:bg-primary_40/70"
+                    "transition-colors duration-200 rounded-[12px] !px-4"
+                    // active
+                    //   ? "bg-primary_40/60 text-white"
+                    //   : "text-gray hover:text-white hover:bg-primary_40/70"
                   )}
                   data-active={active}
                 >
@@ -81,7 +81,16 @@ export function NavMain({ items }: NavMainProps) {
                     className="flex items-center gap-3 w-full"
                   >
                     {item.icon && (
-                      <item.icon className="w-[24px] h-[24px] flex-shrink-0" />
+                      <div
+                        className={cn(
+                          "flex transition-colors duration-200 p-2 rounded-full border items-center justify-center",
+                          active
+                            ? "bg-primary_40/60 text-white"
+                            : "text-gray hover:text-white hover:bg-primary_40/70"
+                        )}
+                      >
+                        <item.icon className="w-[24px] h-[24px] flex-shrink-0" />
+                      </div>
                     )}
                     <span className="text-[14px] font-[500]">{item.title}</span>
                   </Link>

@@ -20,6 +20,16 @@ export const CATEGORIES = [
   { id: "seafood", name: "Seafood", icon: "🐟" },
 ] as const;
 
+export const UNITS = [
+  { value: "kg", label: "Kilogram (kg)" },
+  { value: "g", label: "Gram (g)" },
+  { value: "ton", label: "Ton" },
+  { value: "piece", label: "Piece" },
+  { value: "bunch", label: "Bunch" },
+  { value: "bag", label: "Bag" },
+  { value: "crate", label: "Crate" },
+] ;
+
 export const CONDITIONS = [
   { value: "fresh", label: "Fresh" },
   { value: "processed", label: "Processed" },
