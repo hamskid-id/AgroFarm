@@ -13,7 +13,6 @@ import {
   useSidebar,
 } from "@/components/ui/sidebar";
 import { AppSidebarData } from "@/types/navigation";
-import { SideBarCollapseTrigger } from "@/svg";
 import { NavMain } from "./AppSidebarMain";
 import { LogOut } from "lucide-react";
 import AlertModal from "@/components/shared/AlertModal";
@@ -69,12 +68,6 @@ export function AppSidebar({ data, ...props }: AppSidebarProps) {
             </SidebarMenuButton>
           </SidebarMenuItem>
         </SidebarMenu>
-        {/* <div
-          onClick={toggleSidebar}
-          className="cursor-pointer mr-[-3rem] w-fit absolute top-[6rem] right-[1rem]"
-        >
-          <SideBarCollapseTrigger />
-        </div> */}
       </SidebarHeader>
 
       {/* Content */}

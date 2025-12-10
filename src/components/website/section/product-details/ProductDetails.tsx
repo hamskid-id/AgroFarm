@@ -29,6 +29,7 @@ import {
   sampleReviewStats,
 } from "@/components/constants/product";
 import { Product } from "@/types";
+import { WhatsAppButton } from "@/components/shared/WhatsAppButton";
 
 export default function ProductDetails() {
   const params = useParams();
@@ -208,16 +209,21 @@ export default function ProductDetails() {
                   <Phone className="h-5 w-5 mr-2" />
                   Show Phone Number
                 </Button>
-
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="flex-1 min-h-[45px] border-emerald-600 text-emerald-600 hover:bg-emerald-50"
-                  onClick={handleSendMessage}
+                <WhatsAppButton
+                  phone={product?.vendor?.phone}
+                  sellerName={product?.vendor?.name}
+                  productName={product?.name}
                 >
-                  <MessageCircle className="h-5 w-5 mr-2" />
-                  Send Message
-                </Button>
+                  <Button
+                    size="lg"
+                    variant="outline"
+                    className="flex-1 min-h-[45px] border-emerald-600 text-emerald-600 hover:bg-emerald-50"
+                    onClick={handleSendMessage}
+                  >
+                    <MessageCircle className="h-5 w-5 mr-2" />
+                    Send Message
+                  </Button>
+                </WhatsAppButton>
               </div>
 
               {/* Safety Tips */}
@@ -260,7 +266,7 @@ export default function ProductDetails() {
 
           {/* Right Column */}
           <div className="space-y-6">
-            <VendorInfo vendor={product.vendor} />
+            <VendorInfo vendor={product.vendor} product={product} />
             <RelatedProducts currentProduct={product} />
           </div>
         </div>

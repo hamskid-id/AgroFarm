@@ -35,10 +35,10 @@ export default function AppLayout({ children }: AppLayoutProps) {
   );
 
   return (
-    <SidebarProvider className="bg-gray-50 p-5 md:gap-5 gap-0">
+    <SidebarProvider className="bg-white p-5 md:gap-5 gap-0">
       <AppSidebar data={sidebarData}/>
 
-      <SidebarInset className="w-full bg-gray-50 md:w-[900px] flex flex-col gap-4">
+      <SidebarInset className="w-full bg-white md:w-[900px] flex flex-col gap-4">
         <AppHeader />
         <main className=" h-full">{children}</main>
       </SidebarInset>

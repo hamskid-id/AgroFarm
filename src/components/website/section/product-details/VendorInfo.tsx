@@ -1,16 +1,18 @@
 "use client";
 
-import { Star, MapPin, Shield, Clock, CheckCircle, Award } from "lucide-react";
+import { Star, MapPin, Shield, CheckCircle, Award } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Farmer } from "@/types";
+import { Farmer, Product } from "@/types";
 import CustomAvatar from "@/components/ui/custom-avatar";
+import { WhatsAppButton } from "@/components/shared/WhatsAppButton";
 
 interface VendorInfoProps {
   vendor: Farmer;
+  product:Product;
 }
 
-export const VendorInfo = ({ vendor }: VendorInfoProps) => {
+export const VendorInfo = ({ vendor,product }: VendorInfoProps) => {
   const handleViewProfile = () => {
     // Navigate to vendor profile
     console.log("View vendor profile:", vendor.id);
@@ -121,12 +123,18 @@ export const VendorInfo = ({ vendor }: VendorInfoProps) => {
           >
             View Seller Profile
           </Button>
-          <Button
-            onClick={handleCallVendor}
-            className="w-full h-[45px] bg-emerald-600 hover:bg-emerald-700 text-white"
+          <WhatsAppButton
+            phone={product?.vendor?.phone}
+            sellerName={product?.vendor?.name}
+            productName={product?.name}
           >
-            Contact Seller
-          </Button>
+            <Button
+              onClick={handleCallVendor}
+              className="w-full h-[45px] bg-emerald-600 hover:bg-emerald-700 text-white"
+            >
+              Contact Seller
+            </Button>
+          </WhatsAppButton>
         </div>
       </div>
     </div>

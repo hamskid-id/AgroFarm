@@ -1,8 +1,9 @@
 "use client";
 
-import { Heart, Share2, Phone, MessageCircle } from "lucide-react";
+import { Phone, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Product } from "@/types";
+import { WhatsAppButton } from "@/components/shared/WhatsAppButton";
 
 interface ProductActionsProps {
   product: Product;
@@ -31,16 +32,21 @@ export const ProductActions = ({
         <Phone className="h-5 w-5 mr-2" />
         Show Phone
       </Button>
-
-      <Button
-        size="lg"
-        variant="outline"
-        className="flex-1 border-emerald-600 text-emerald-600 hover:bg-emerald-50"
-        onClick={onSendMessage}
+      <WhatsAppButton
+        phone={product?.vendor?.phone}
+        sellerName={product?.vendor?.name}
+        productName={product?.name}
       >
-        <MessageCircle className="h-5 w-5 mr-2" />
-        Chat
-      </Button>
+        <Button
+          size="lg"
+          variant="outline"
+          className="flex-1 border-emerald-600 text-emerald-600 hover:bg-emerald-50"
+          onClick={onSendMessage}
+        >
+          <MessageCircle className="h-5 w-5 mr-2" />
+          Chat
+        </Button>
+      </WhatsAppButton>
     </div>
   );
 };

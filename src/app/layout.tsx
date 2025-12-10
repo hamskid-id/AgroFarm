@@ -13,8 +13,8 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "FHFL IFRS9",
-  description: "IFRS9 Model Execution",
+  title: "AgroCommerce",
+  description: "Agricultural Produce market place",
 };
 
 export default function RootLayout({

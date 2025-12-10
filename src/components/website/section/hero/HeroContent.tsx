@@ -3,7 +3,6 @@
 import { motion } from "framer-motion";
 import { Star, Users, Package, Shield } from "lucide-react";
 import FeatureCard from "./FeatureCard";
-import { Button } from "@/components/ui/button";
 
 interface HeroContentProps {
   onBrowseProducts: () => void;
