@@ -1,33 +1,10 @@
 "use client";
 
-import { motion } from "framer-motion";
-import {
-  Phone,
-  Mail,
-  MapPin,
-  Truck,
-  Shield,
-  Star,
-  Facebook,
-  Twitter,
-  Instagram,
-  Youtube,
-  ArrowRight,
-  ChevronRight,
-} from "lucide-react";
 import Link from "next/link";
 import { Separator } from "@/components/ui/separator";
-import { Button } from "@/components/ui/button";
 
-interface FooterProps {
-  categories?: any[];
-  handleCategoryClick?: (category: string) => void;
-}
 
-export const Footer: React.FC<FooterProps> = ({
-  categories = [],
-  handleCategoryClick = () => {},
-}) => {
+export const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
 
   return (
@@ -44,8 +21,7 @@ export const Footer: React.FC<FooterProps> = ({
               </h3>
               <ul className="space-y-2.5 text-gray-300">
                 {[
-                  "About AgroFarm",
-                  "We are hiring!",
+                  "About AgroCommerce",
                   "Terms & Conditions",
                   "Privacy Policy",
                 ].map((link) => (
@@ -68,7 +44,7 @@ export const Footer: React.FC<FooterProps> = ({
               </h3>
               <ul className="space-y-2.5 text-gray-300">
                 {[
-                  "support@agrofarm.ng",
+                  "support@agroCommerce.ng",
                   "Safety tips",
                   "Contact Us",
                   "FAQ",
@@ -137,7 +113,7 @@ export const Footer: React.FC<FooterProps> = ({
               </h3>
               <ul className="space-y-2.5 text-gray-300">
                 {[
-                  "AgroFarm on FB",
+                  "AgroCommerce on FB",
                   "Our Instagram",
                   "Our YouTube",
                   "Our Twitter",
@@ -161,7 +137,7 @@ export const Footer: React.FC<FooterProps> = ({
               </h3>
               <ul className="space-y-2.5 text-gray-300">
                 {[
-                  "AgroFarm Nigeria",
+                  "AgroCommerce Nigeria",
                   "Start Selling",
                   "Quality Guidelines",
                 ].map((link) => (
@@ -183,7 +159,7 @@ export const Footer: React.FC<FooterProps> = ({
           {/* Bottom Section */}
           <div className="text-center">
             <p className="text-gray-400 text-sm">
-              &copy; {currentYear} AgroFarm Marketplace. All rights reserved.
+              &copy; {currentYear} AgroCommerce Marketplace. All rights reserved.
             </p>
           </div>
         </div>
