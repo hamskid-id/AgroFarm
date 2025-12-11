@@ -51,6 +51,7 @@ export default function ProductDetails() {
         (p) => p.id === parseInt(params.id as string)
       );
       setProduct(foundProduct || null);
+      setSelectedImage(0); // Reset selected image when product changes
     }
   }, [params.id]);
 

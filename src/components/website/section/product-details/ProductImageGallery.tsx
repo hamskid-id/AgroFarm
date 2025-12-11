@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import { ZoomIn } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -19,6 +19,11 @@ export const ProductImageGallery = ({
   onSelectImage,
 }: ProductImageGalleryProps) => {
   const [isZoomed, setIsZoomed] = useState(false);
+
+  // Reset zoom state when product changes
+  useEffect(() => {
+    setIsZoomed(false);
+  }, [product.id]); // Reset when product ID changes
 
   const images =
     product.images && product.images.length > 0
@@ -74,7 +79,7 @@ export const ProductImageGallery = ({
         <div className="flex gap-3 overflow-x-auto pb-2">
           {images.map((image, index) => (
             <button
-              key={index}
+              key={`${product.id}-${index}`} // Add product.id to key to force re-render
               onClick={() => onSelectImage(index)}
               className={`flex-shrink-0 relative aspect-square w-20 overflow-hidden rounded-lg border-2 transition-all ${
                 selectedImage === index
