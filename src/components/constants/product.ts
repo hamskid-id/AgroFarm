@@ -200,7 +200,7 @@ export const products: Product[] = [
       name: "Fruits",
       icon: "🍎",
     },
-    images: [image1, image2],
+    images: [image2, image3],
     vendor: {
       phone: "0803 123 4567",
       id: 10,
@@ -244,7 +244,7 @@ export const products: Product[] = [
       name: "Vegetables",
       icon: "🥕",
     },
-    images: [image1, image2],
+    images: [image3, image4],
     vendor: {
       phone: "0803 123 4567",
       id: 1,
@@ -297,7 +297,7 @@ export const products: Product[] = [
       name: "Vegetables",
       icon: "🍅",
     },
-    images: [image1, image2],
+    images: [image4, image5],
     vendor: {
       id: 11,
       phone: "0803 123 4567",
@@ -346,7 +346,7 @@ export const products: Product[] = [
       name: "Vegetables",
       icon: "🌽",
     },
-    images: [image1, image2],
+    images: [image5, image6],
     vendor: {
       phone: "0803 123 4567",
       id: 12,
@@ -390,7 +390,7 @@ export const products: Product[] = [
       name: "Vegetables",
       icon: "🥬",
     },
-    images: [image1, image2],
+    images: [image7, image8],
     vendor: {
       phone: "0803 123 4567",
       id: 13,
@@ -434,7 +434,7 @@ export const products: Product[] = [
       name: "Vegetables",
       icon: "🫑",
     },
-    images: [image1, image2],
+    images: [image9, image1],
     vendor: {
       phone: "0803 123 4567",
       id: 14,
