@@ -52,7 +52,7 @@ export const Footer: React.FC = () => {
                   <li key={link}>
                     <Link
                       href="#"
-                      className="hover:text-emerald-400 transition-colors text-sm"
+                      className="break-all hover:text-emerald-400 transition-colors text-sm"
                     >
                       {link}
                     </Link>

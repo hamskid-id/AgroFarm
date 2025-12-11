@@ -59,10 +59,10 @@ export const SettingsTab = () => {
                     <Shield className="h-6 w-6" />
                   </div>
                   <div>
-                    <p className="font-bold text-emerald-900 text-lg">
+                    <p className="font-bold text-emerald-900 text-sm">
                       {levelInfo.label}
                     </p>
-                    <p className="text-emerald-700">
+                    <p className="text-emerald-700 text-sm">
                       Trust Score:{" "}
                       <span className="font-bold">
                         {sellerStats.trustScore}/100
@@ -74,25 +74,25 @@ export const SettingsTab = () => {
                 <div className="grid grid-cols-2 gap-4">
                   <div className="flex items-center gap-2">
                     <Package className="h-4 w-4 text-gray-500" />
-                    <span className="text-sm">
+                    <span className="text-xs">
                       {sellerStats.activeListings} Active Listings
                     </span>
                   </div>
                   <div className="flex items-center gap-2">
                     <Users className="h-4 w-4 text-gray-500" />
-                    <span className="text-sm">
+                    <span className="text-xs">
                       {sellerStats.totalSales} Total Sales
                     </span>
                   </div>
                   <div className="flex items-center gap-2">
                     <MessageSquare className="h-4 w-4 text-gray-500" />
-                    <span className="text-sm">
+                    <span className="text-xs">
                       {sellerStats.responseRate} Response Rate
                     </span>
                   </div>
                   <div className="flex items-center gap-2">
                     <Star className="h-4 w-4 text-amber-400" />
-                    <span className="text-sm">
+                    <span className="text-xs">
                       {sellerStats.positiveReviews} Reviews
                     </span>
                   </div>
@@ -175,9 +175,11 @@ export const SettingsTab = () => {
             </div>
 
             <div className="space-y-3">
-              <div className="flex items-center justify-between">
+              <div className="flex items-center justify-between gap-3 flex-wrap">
                 <div>
-                  <p className="font-medium text-gray-900">Requirements</p>
+                  <p className="font-medium text-gray-900 text-sm">
+                    Requirements
+                  </p>
                   <p className="text-sm text-gray-600">
                     Complete these to reach Verified status
                   </p>
@@ -206,14 +208,14 @@ export const SettingsTab = () => {
                     key={index}
                     className="flex items-center justify-between py-2 border-b border-gray-100 last:border-0"
                   >
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-3">
                       {req.completed ? (
                         <CheckCircle className="h-5 w-5 text-emerald-500" />
                       ) : (
                         <div className="h-5 w-5 rounded-full border-2 border-gray-300"></div>
                       )}
                       <span
-                        className={`${
+                        className={`text-sm ${
                           req.completed ? "text-emerald-600" : "text-gray-700"
                         }`}
                       >
@@ -233,26 +235,26 @@ export const SettingsTab = () => {
 
       {/* Danger Zone */}
       <div className="pt-6 border-t">
-        <h3 className="font-semibold text-red-600 mb-4 flex items-center gap-2">
+        <h3 className="font-semibold text-red-600 mb-4 flex items-center gap-2 text-sm">
           <AlertCircle className="h-5 w-5" />
           Account Actions
         </h3>
         <div className="space-y-3">
           <Button
             variant="outline"
-            className="w-full border-gray-300 text-gray-700 hover:bg-gray-50"
+            className="text-sm w-full border-gray-300 text-gray-700 hover:bg-gray-50"
           >
             Download Account Data
           </Button>
           <Button
             variant="outline"
-            className="w-full border-orange-300 text-orange-600 hover:bg-orange-50"
+            className="text-sm w-full border-orange-300 text-orange-600 hover:bg-orange-50"
           >
             Temporarily Deactivate
           </Button>
           <Button
             variant="outline"
-            className="w-full border-red-300 text-red-600 hover:bg-red-50"
+            className="text-sm w-full border-red-300 text-red-600 hover:bg-red-50"
           >
             Delete Account
           </Button>

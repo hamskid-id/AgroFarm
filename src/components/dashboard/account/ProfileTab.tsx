@@ -13,7 +13,7 @@ import {
   Package,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+import { Input} from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { mockUserProfile } from "@/lib/mockData";
@@ -40,7 +40,7 @@ export const ProfileTab = () => {
       <div className="flex flex-col lg:flex-row lg:items-start gap-6">
         {/* Left Column - Profile */}
         <div className="flex-1">
-          <div className="flex items-center gap-6">
+          <div className="flex items-center gap-6 flex-wrap">
             <div className="relative">
               <div className="w-24 h-24 bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-full flex items-center justify-center text-white text-3xl font-bold">
                 {profileData.name
@@ -62,10 +62,10 @@ export const ProfileTab = () => {
               </div>
             </div>
             <div className="flex-1">
-              <h3 className="text-xl font-bold text-gray-900">
+              <h3 className="text-md font-bold text-gray-900">
                 {profileData.name}
               </h3>
-              <p className="text-gray-600">{profileData.email}</p>
+              <p className="text-gray-600 text-[13px]">{profileData.email}</p>
               <div className="flex flex-wrap items-center gap-2 mt-2">
                 <div className="flex items-center gap-1">
                   <CheckCircle className="h-4 w-4 text-blue-600" />
@@ -144,8 +144,9 @@ export const ProfileTab = () => {
       {/* Profile Form - Unchanged */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
-          <Label className="mb-2">Full Name</Label>
+          <Label className="mb-2 text-sm">Full Name</Label>
           <Input
+          className="text-xs"
             type="text"
             value={profileData.name}
             onChange={(e) =>
@@ -156,8 +157,9 @@ export const ProfileTab = () => {
         </div>
 
         <div>
-          <Label className="mb-2">Business/Trade Name</Label>
+          <Label className="mb-2 text-sm">Business/Trade Name</Label>
           <Input
+          className="text-xs"
             type="text"
             value={profileData.businessName}
             onChange={(e) =>
@@ -168,8 +170,9 @@ export const ProfileTab = () => {
         </div>
 
         <div>
-          <Label className="mb-2">Email Address</Label>
+          <Label className="mb-2 text-sm">Email Address</Label>
           <Input
+          className="text-xs"
             type="email"
             value={profileData.email}
             onChange={(e) =>
@@ -180,8 +183,9 @@ export const ProfileTab = () => {
         </div>
 
         <div>
-          <Label className="mb-2">Phone Number</Label>
+          <Label className="mb-2 text-sm">Phone Number</Label>
           <Input
+          className="text-xs"
             type="tel"
             value={profileData.phone}
             onChange={(e) =>
@@ -193,7 +197,7 @@ export const ProfileTab = () => {
       </div>
 
       <div>
-        <Label className="mb-2">Location (City/Area)</Label>
+        <Label className="mb-2 text-sm">Location (City/Area)</Label>
         <div className="relative">
           <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
           <Input
@@ -203,7 +207,7 @@ export const ProfileTab = () => {
               setProfileData({ ...profileData, location: e.target.value })
             }
             disabled={!isEditing}
-            className="pl-10"
+            className="pl-10 text-xs"
           />
         </div>
         <p className="text-xs text-gray-500 mt-1">
@@ -212,8 +216,9 @@ export const ProfileTab = () => {
       </div>
 
       <div>
-        <Label className="mb-2">About Your Business</Label>
+        <Label className="mb-2 text-sm">About Your Business</Label>
         <Textarea
+        className="text-xs"
           value={profileData.bio}
           onChange={(e) =>
             setProfileData({ ...profileData, bio: e.target.value })
@@ -229,12 +234,12 @@ export const ProfileTab = () => {
 
       {/* Preferred Meeting Spots */}
       <div>
-        <Label className="mb-2">Preferred Meeting Spots (Optional)</Label>
+        <Label className="mb-2 text-sm">Preferred Meeting Spots (Optional)</Label>
         <Textarea
           placeholder="Example: City Market parking, Sarit Centre food court, or near my shop in Industrial Area"
           disabled={!isEditing}
           rows={2}
-          className="text-sm"
+          className="text-xs"
         />
         <p className="text-xs text-gray-500 mt-1">
           Suggest safe, public locations for transactions

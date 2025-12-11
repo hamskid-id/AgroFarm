@@ -1,5 +1,3 @@
-import { Step } from "@/types/dashboard";
-import { Package, ImageIcon, FileText, MapPinIcon } from "lucide-react";
 
 
 export const CATEGORIES = [

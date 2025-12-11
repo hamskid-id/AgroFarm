@@ -27,7 +27,7 @@ const PreviewSidebar = ({
   };
 
   return (
-    <div className="bg-white rounded-lg p-6 sticky top-6">
+    <div className="bg-white border border-gray-200 rounded-lg p-4 sticky top-6">
       {/* Product Image Preview */}
       <div className="mb-6">
         <div className="w-full aspect-square rounded-lg overflow-hidden mb-4">

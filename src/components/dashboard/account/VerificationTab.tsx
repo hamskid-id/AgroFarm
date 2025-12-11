@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
@@ -9,15 +9,16 @@ import {
   AlertCircle,
   Shield,
   BadgeCheck,
-  Camera,
   MapPin,
   FileText,
   MessageSquare,
-  Star,
-  Truck,
   Package,
-  Phone,
 } from "lucide-react";
+import {
+  verificationLevels,
+  verificationSteps,
+} from "@/components/constants/account";
+import { handleAction } from "@/lib/account-utils";
 
 export const VerificationTab = () => {
   const [verificationStatus, setVerificationStatus] = useState({
@@ -27,158 +28,12 @@ export const VerificationTab = () => {
     totalSteps: 8,
   });
 
-  const verificationSteps = [
-    {
-      id: 1,
-      title: "Verify Email",
-      description: "Confirm your email address",
-      icon: CheckCircle,
-      completed: true,
-      points: 10,
-      action: null,
-    },
-    {
-      id: 2,
-      title: "Verify Phone",
-      description: "Confirm your mobile number",
-      icon: Phone,
-      completed: true,
-      points: 15,
-      action: null,
-    },
-    {
-      id: 3,
-      title: "Complete Profile",
-      description: "Add profile photo & bio",
-      icon: CheckCircle,
-      completed: true,
-      points: 10,
-      action: null,
-    },
-    {
-      id: 4,
-      title: "Add Business Info",
-      description: "Business name & location",
-      icon: CheckCircle,
-      completed: true,
-      points: 10,
-      action: null,
-    },
-    {
-      id: 5,
-      title: "List First Product",
-      description: "Add your first product for sale",
-      icon: Package,
-      completed: true,
-      points: 15,
-      action: "list_product",
-    },
-    {
-      id: 6,
-      title: "Verify Identity",
-      description: "Upload government ID for security",
-      icon: FileText,
-      completed: false,
-      points: 20,
-      action: "upload_id",
-    },
-    {
-      id: 7,
-      title: "Verify Location",
-      description: "Confirm your business/shop location",
-      icon: MapPin,
-      completed: false,
-      points: 15,
-      action: "verify_location",
-    },
-    {
-      id: 8,
-      title: "Build Reputation",
-      description: "Get positive reviews from buyers",
-      icon: Star,
-      completed: false,
-      points: 15,
-      action: "build_reputation",
-    },
-  ];
-
-  const verificationLevels = [
-    {
-      level: "unverified",
-      label: "Unverified",
-      minScore: 0,
-      badgeColor: "bg-gray-100 text-gray-600",
-      benefits: ["List up to 3 products", "Basic messaging"],
-    },
-    {
-      level: "basic",
-      label: "Basic Verified",
-      minScore: 40,
-      badgeColor: "bg-blue-50 text-blue-600",
-      benefits: [
-        "Basic badge",
-        "List up to 20 products",
-        "Phone verified badge",
-        "Priority in search",
-      ],
-    },
-    {
-      level: "verified",
-      label: "Verified Seller",
-      minScore: 70,
-      badgeColor: "bg-emerald-50 text-emerald-600",
-      benefits: [
-        "Verified badge",
-        "Unlimited products",
-        "Featured in category",
-        "Fast-track support",
-        "Negotiation insights",
-      ],
-    },
-    {
-      level: "premium",
-      label: "Trusted Seller",
-      minScore: 90,
-      badgeColor: "bg-purple-50 text-purple-600",
-      benefits: [
-        "Trusted badge",
-        "Top search results",
-        "Profile highlighting",
-        "Verified badge on ads",
-        "Premium support",
-      ],
-    },
-  ];
-
-  const handleAction = (action: string) => {
-    switch (action) {
-      case "upload_id":
-        // Open document upload modal
-        alert("Open ID document upload");
-        break;
-      case "verify_location":
-        // Open location verification
-        alert("Open location verification map");
-        break;
-      case "list_product":
-        // Redirect to product listing page
-        alert("Redirect to create product page");
-        break;
-      case "build_reputation":
-        // Show tips for getting reviews
-        alert("Tips for getting buyer reviews");
-        break;
-      default:
-        break;
-    }
-  };
-
   return (
     <div className="space-y-6">
       {/* Verification Header */}
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between gap-3 flex-wrap">
         <div>
-          <h3 className="text-lg font-semibold text-gray-900">
+          <h3 className="text-md font-semibold text-gray-900">
             Seller Verification
           </h3>
           <p className="text-sm text-gray-600">
@@ -255,7 +110,7 @@ export const VerificationTab = () => {
           {verificationSteps.map((step) => (
             <Card key={step.id} className="shadow-none border">
               <CardContent className="p-4">
-                <div className="flex items-center justify-between">
+                <div className="flex items-center justify-between gap-3 flex-wrap">
                   <div className="flex items-center gap-3">
                     <div
                       className={`p-2 rounded-lg ${
@@ -278,7 +133,7 @@ export const VerificationTab = () => {
                       </span>
                     </div>
                   </div>
-                  <div>
+                  <div className="ms-auto">
                     {step.completed ? (
                       <div className="flex items-center gap-1 text-emerald-600">
                         <CheckCircle className="h-5 w-5" />

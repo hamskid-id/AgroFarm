@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { Bell, Phone, TrendingUp, AlertCircle } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Switch } from "@/components/ui/switch";
+import { notificationItems } from "@/components/constants/account";
 
 export const NotificationsTab = () => {
   const [notifications, setNotifications] = useState({
@@ -14,43 +15,10 @@ export const NotificationsTab = () => {
     priceAlerts: false,
   });
 
-  const notificationItems = [
-    {
-      key: "emailNotifications",
-      icon: Bell,
-      title: "Email Notifications",
-      desc: "Receive notifications via email",
-    },
-    {
-      key: "smsNotifications",
-      icon: Phone,
-      title: "SMS Notifications",
-      desc: "Get SMS alerts for important updates",
-    },
-    {
-      key: "pushNotifications",
-      icon: Bell,
-      title: "Push Notifications",
-      desc: "Browser push notifications",
-    },
-    {
-      key: "adPerformance",
-      icon: TrendingUp,
-      title: "Ad Performance",
-      desc: "Weekly reports on your ad performance",
-    },
-    {
-      key: "priceAlerts",
-      icon: AlertCircle,
-      title: "Price Alerts",
-      desc: "Get notified about similar product prices",
-    },
-  ];
-
   return (
     <div className="space-y-4">
       <div className="mb-4">
-        <h3 className="font-semibold text-gray-900 mb-1">
+        <h3 className="text-md font-semibold text-gray-900 mb-1">
           Notification Preferences
         </h3>
         <p className="text-sm text-gray-600">
@@ -67,8 +35,8 @@ export const NotificationsTab = () => {
                   <item.icon className="h-4 w-4 text-gray-600" />
                 </div>
                 <div>
-                  <p className="font-medium text-gray-900">{item.title}</p>
-                  <p className="text-sm text-gray-600">{item.desc}</p>
+                  <p className="font-medium text-sm text-gray-900">{item.title}</p>
+                  <p className="text-[13px] text-gray-600">{item.desc}</p>
                 </div>
               </div>
               <Switch

@@ -9,10 +9,10 @@ import { toast } from "sonner";
 import { useFavoritesStore } from "@/stores/favorites-store";
 import ActionsCell from "../my-ads/table-cells/ActionsCell";
 import { EditFormState } from "@/types/dashboard";
-import { initialEditFormState } from "@/components/constants/table-config";
 import ViewProductSheet from "../my-ads/ViewProductSheet";
 import EditProductModal from "../my-ads/EditProductModal";
 import DeleteProductModal from "../my-ads/DeleteProductModal";
+import { initialEditFormState } from "@/components/constants/table-config";
 
 interface ProductCardProps {
   product: Product;
@@ -105,24 +105,24 @@ const ProductCard = ({ product }: ProductCardProps) => {
   };
 
   const handleEditSubmit = () => {
-      if (selectedProduct) {
-        alert(`Product "${selectedProduct.name}" updated!`);
-        setIsEditModalOpen(false);
-        setSelectedProduct(null);
-      }
-    };
-  
-    const handleDeleteSubmit = () => {
-      if (selectedProduct) {
-        alert(`Product "${selectedProduct.name}" deleted!`);
-        setIsDeleteModalOpen(false);
-        setSelectedProduct(null);
-      }
-    };
-  
-    const handleFormChange = (field: keyof EditFormState, value: any) => {
-      setEditForm((prev) => ({ ...prev, [field]: value }));
-    };
+    if (selectedProduct) {
+      alert(`Product "${selectedProduct.name}" updated!`);
+      setIsEditModalOpen(false);
+      setSelectedProduct(null);
+    }
+  };
+
+  const handleDeleteSubmit = () => {
+    if (selectedProduct) {
+      alert(`Product "${selectedProduct.name}" deleted!`);
+      setIsDeleteModalOpen(false);
+      setSelectedProduct(null);
+    }
+  };
+
+  const handleFormChange = (field: keyof EditFormState, value: any) => {
+    setEditForm((prev) => ({ ...prev, [field]: value }));
+  };
 
   return (
     <>

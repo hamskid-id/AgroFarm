@@ -51,7 +51,7 @@ export const AccountView = () => {
 
   return (
     <div className="space-y-6">
-      <h2 className="text-2xl font-bold text-gray-900">Account Settings</h2>
+      <h2 className="text-md font-bold text-gray-900">Account Settings</h2>
 
       {/* Tabs */}
       <Card className="shadow-none border border-gray-200 p-4">

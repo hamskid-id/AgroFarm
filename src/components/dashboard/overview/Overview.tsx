@@ -3,15 +3,10 @@
 import { StatCard } from "@/components/shared/StatCard";
 import { mockStats } from "@/lib/mockData";
 import { Package, Eye, Activity, Star, Plus } from "lucide-react";
-import { MyAdsView } from "../my-ads/MyAdsView";
 import { DashboardAds } from "./Products";
 import ChartDetailsCard from "./ChartDetails";
-import { MostSoldProducts } from "./MostSoldProducts";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
-import ViewProductSheet from "../my-ads/ViewProductSheet";
-import EditProductModal from "../my-ads/EditProductModal";
-import DeleteProductModal from "../my-ads/DeleteProductModal";
 
 export const OverviewView = () => {
   const router = useRouter();
@@ -20,22 +15,22 @@ export const OverviewView = () => {
       {/* Stats Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         <StatCard
-          icon={<Package className="h-6 w-6 text-emerald-600" />}
+          icon={<Package className="h-4 w-4 text-emerald-600" />}
           label="Total Ads"
           value={mockStats.totalAds}
         />
         <StatCard
-          icon={<Eye className="h-6 w-6 text-emerald-600" />}
+          icon={<Eye className="h-4 w-4 text-emerald-600" />}
           label="Total Views"
           value={mockStats.totalViews.toLocaleString()}
         />
         <StatCard
-          icon={<Activity className="h-6 w-6 text-emerald-600" />}
+          icon={<Activity className="h-4 w-4 text-emerald-600" />}
           label="Active Ads"
           value={mockStats.activeAds}
         />
         <StatCard
-          icon={<Star className="h-6 w-6 text-emerald-600" />}
+          icon={<Star className="h-4 w-4 text-emerald-600" />}
           label="Rating"
           value="4.8"
         />

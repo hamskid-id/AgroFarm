@@ -52,11 +52,11 @@ const FeaturedProducts = ({
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <div className="inline-flex items-center gap-2 bg-gradient-to-r from-amber-100 to-orange-100 text-amber-800 px-4 py-2 rounded-full text-sm font-semibold mb-4 border border-amber-200">
+          <div className="inline-flex items-center gap-2 bg-gradient-to-r from-amber-100 to-orange-100 text-amber-800 px-4 py-2 rounded-full text-xs font-semibold mb-4 border border-amber-200">
             <Star className="h-4 w-4 fill-current" />
             Fresh From Farms
           </div>
-          <h2 className="text-3xl sm:text-5xl font-bold text-gray-900 mb-4">
+          <h2 className="text-2xl sm:text-5xl font-bold text-gray-900 mb-4">
             Fresh Agricultural Products
           </h2>
           <p className="sm:text-lg text-[14px] text-gray-600 max-w-3xl mx-auto leading-relaxed">

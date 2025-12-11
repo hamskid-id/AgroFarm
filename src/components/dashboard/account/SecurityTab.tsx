@@ -17,11 +17,12 @@ export const SecurityTab = () => {
       {/* Change Password */}
       <div>
         <h3 className="font-semibold text-gray-900 mb-4">Change Password</h3>
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-2 gap-4 mb-4">
           <div>
             <Label className="mb-2">Current Password</Label>
             <Input
               type="password"
+              className="text-xs"
               value={passwordData.currentPassword}
               onChange={(e) =>
                 setPasswordData({
@@ -35,6 +36,7 @@ export const SecurityTab = () => {
           <div>
             <Label className="mb-2">New Password</Label>
             <Input
+              className="text-xs"
               type="password"
               value={passwordData.newPassword}
               onChange={(e) =>
@@ -46,26 +48,27 @@ export const SecurityTab = () => {
               placeholder="Enter new password"
             />
           </div>
-          <div>
-            <Label className="mb-2">Confirm New Password</Label>
-            <Input
-              type="password"
-              value={passwordData.confirmPassword}
-              onChange={(e) =>
-                setPasswordData({
-                  ...passwordData,
-                  confirmPassword: e.target.value,
-                })
-              }
-              placeholder="Confirm new password"
-            />
-          </div>
+        </div>
+        <div>
+          <Label className="mb-2">Confirm New Password</Label>
+          <Input
+            className="text-xs"
+            type="password"
+            value={passwordData.confirmPassword}
+            onChange={(e) =>
+              setPasswordData({
+                ...passwordData,
+                confirmPassword: e.target.value,
+              })
+            }
+            placeholder="Confirm new password"
+          />
         </div>
         <div className="flex justify-end items-center">
           <Button
             type="button"
             onClick={() => alert("Password updated!")}
-            className="text-center mt-4 w-[300px] ms-auto bg-emerald-600 hover:bg-emerald-700"
+            className="text-center mt-4 max-w-[300px] ms-auto bg-emerald-600 hover:bg-emerald-700"
           >
             Update Password
           </Button>

@@ -1,5 +1,5 @@
 import { DashboardIcon, SettingsIcon } from "@/svg";
-import { MessageSquare, Package, User } from "lucide-react";
+import { Package } from "lucide-react";
 
 export const navItems = [
   {

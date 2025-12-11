@@ -42,7 +42,7 @@ const PostAdView = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen">
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Left Side - Preview */}

@@ -1,0 +1,168 @@
+import {
+    AlertCircle,
+    Bell,
+  CheckCircle,
+  FileText,
+  MapPin,
+  Package,
+  Phone,
+  Star,
+  TrendingUp,
+} from "lucide-react";
+
+export const verificationSteps = [
+  {
+    id: 1,
+    title: "Verify Email",
+    description: "Confirm your email address",
+    icon: CheckCircle,
+    completed: true,
+    points: 10,
+    action: null,
+  },
+  {
+    id: 2,
+    title: "Verify Phone",
+    description: "Confirm your mobile number",
+    icon: Phone,
+    completed: true,
+    points: 15,
+    action: null,
+  },
+  {
+    id: 3,
+    title: "Complete Profile",
+    description: "Add profile photo & bio",
+    icon: CheckCircle,
+    completed: true,
+    points: 10,
+    action: null,
+  },
+  {
+    id: 4,
+    title: "Add Business Info",
+    description: "Business name & location",
+    icon: CheckCircle,
+    completed: true,
+    points: 10,
+    action: null,
+  },
+  {
+    id: 5,
+    title: "List First Product",
+    description: "Add your first product for sale",
+    icon: Package,
+    completed: true,
+    points: 15,
+    action: "list_product",
+  },
+  {
+    id: 6,
+    title: "Verify Identity",
+    description: "Upload government ID for security",
+    icon: FileText,
+    completed: false,
+    points: 20,
+    action: "upload_id",
+  },
+  {
+    id: 7,
+    title: "Verify Location",
+    description: "Confirm your business/shop location",
+    icon: MapPin,
+    completed: false,
+    points: 15,
+    action: "verify_location",
+  },
+  {
+    id: 8,
+    title: "Build Reputation",
+    description: "Get positive reviews from buyers",
+    icon: Star,
+    completed: false,
+    points: 15,
+    action: "build_reputation",
+  },
+];
+
+export const verificationLevels = [
+  {
+    level: "unverified",
+    label: "Unverified",
+    minScore: 0,
+    badgeColor: "bg-gray-100 text-gray-600",
+    benefits: ["List up to 3 products", "Basic messaging"],
+  },
+  {
+    level: "basic",
+    label: "Basic Verified",
+    minScore: 40,
+    badgeColor: "bg-blue-50 text-blue-600",
+    benefits: [
+      "Basic badge",
+      "List up to 20 products",
+      "Phone verified badge",
+      "Priority in search",
+    ],
+  },
+  {
+    level: "verified",
+    label: "Verified Seller",
+    minScore: 70,
+    badgeColor: "bg-emerald-50 text-emerald-600",
+    benefits: [
+      "Verified badge",
+      "Unlimited products",
+      "Featured in category",
+      "Fast-track support",
+      "Negotiation insights",
+    ],
+  },
+  {
+    level: "premium",
+    label: "Trusted Seller",
+    minScore: 90,
+    badgeColor: "bg-purple-50 text-purple-600",
+    benefits: [
+      "Trusted badge",
+      "Top search results",
+      "Profile highlighting",
+      "Verified badge on ads",
+      "Premium support",
+    ],
+  },
+];
+
+
+export const notificationItems = [
+  {
+    key: "emailNotifications",
+    icon: Bell,
+    title: "Email Notifications",
+    desc: "Receive notifications via email",
+  },
+  {
+    key: "smsNotifications",
+    icon: Phone,
+    title: "SMS Notifications",
+    desc: "Get SMS alerts for important updates",
+  },
+  {
+    key: "pushNotifications",
+    icon: Bell,
+    title: "Push Notifications",
+    desc: "Browser push notifications",
+  },
+  {
+    key: "adPerformance",
+    icon: TrendingUp,
+    title: "Ad Performance",
+    desc: "Weekly reports on your ad performance",
+  },
+  {
+    key: "priceAlerts",
+    icon: AlertCircle,
+    title: "Price Alerts",
+    desc: "Get notified about similar product prices",
+  },
+];

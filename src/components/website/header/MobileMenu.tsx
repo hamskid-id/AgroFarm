@@ -51,12 +51,12 @@ const MobileMenu = () => {
       </div>
 
       {/* Vendor Section */}
-      <div className="p-4 bg-orange-50 rounded-xl border border-orange-200">
-        <h3 className="font-semibold text-orange-800 mb-2">Join as Vendor</h3>
-        <p className="text-sm text-orange-600 mb-3">
+      <div className="p-4  rounded-xl border border-gray-200">
+        <h3 className="font-semibold text-gray-500 mb-2">Join as Vendor</h3>
+        <p className="text-sm mb-3">
           Sell your farm products to thousands of customers
         </p>
-        <Button className="w-full bg-orange-500 hover:bg-orange-600 text-white">
+        <Button className="w-full bg-emerald-600 hover:bg-orange-600 text-white">
           Start Selling
         </Button>
       </div>

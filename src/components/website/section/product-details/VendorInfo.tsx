@@ -116,21 +116,22 @@ export const VendorInfo = ({ vendor,product }: VendorInfoProps) => {
 
         {/* Action Buttons */}
         <div className="pt-4 space-y-3">
-          <Button
+          {/* <Button
             onClick={handleViewProfile}
             variant="outline"
             className="w-full h-[45px] border-emerald-600 text-emerald-600 hover:bg-emerald-50"
           >
             View Seller Profile
-          </Button>
+          </Button> */}
           <WhatsAppButton
             phone={product?.vendor?.phone}
             sellerName={product?.vendor?.name}
             productName={product?.name}
           >
             <Button
+              variant="outline"
               onClick={handleCallVendor}
-              className="w-full h-[45px] bg-emerald-600 hover:bg-emerald-700 text-white"
+              className="w-full h-[45px] border-emerald-600 text-emerald-600 hover:bg-emerald-50"
             >
               Contact Seller
             </Button>
