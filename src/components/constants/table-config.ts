@@ -1,3 +1,5 @@
+import { TableColumn } from "../ui/custom-table";
+
 export const initialEditFormState = {
   name: "",
   description: "",
@@ -11,3 +13,46 @@ export const initialEditFormState = {
   location: "",
   tags: "",
 };
+
+export const productTableColumns: TableColumn[] = [
+  {
+    key: "product",
+    label: "Product",
+    width: "30%",
+  },
+  {
+    key: "category",
+    label: "Category",
+    align: "center",
+  },
+  {
+    key: "price",
+    label: "Price",
+    align: "center",
+  },
+  {
+    key: "status",
+    label: "Status",
+    align: "center",
+  },
+  {
+    key: "rating",
+    label: "Rating",
+    align: "center",
+  },
+  {
+    key: "stock",
+    label: "Stock",
+    align: "center",
+  },
+  {
+    key: "postedDate",
+    label: "Posted",
+    align: "center",
+  },
+  {
+    key: "actions",
+    label: "Actions",
+    align: "center",
+  },
+];
