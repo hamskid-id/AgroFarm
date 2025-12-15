@@ -170,11 +170,11 @@ const FavoritesProducts = ({
 
       {/* Products List */}
       <div className={`p-4 ${maxHeight} overflow-y-auto`}>
-        <div className="space-y-3">
+        <div className="space-y-5">
           {favorites.map((item) => (
             <div
               key={item.id}
-              className="flex items-start gap-4 p-4 bg-gradient-to-r from-gray-50 to-white rounded-xl border border-gray-200 hover:border-emerald-200 hover:shadow-sm transition-all group"
+              className="cursor-pointer flex items-start gap-4 transition-all group"
             >
               {/* Product Image with Quick View */}
               <div

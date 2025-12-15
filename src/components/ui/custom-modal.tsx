@@ -50,7 +50,7 @@ export const CustomModal = memo<CustomModalProps>(
         >
           <DialogHeader className={cn("hidden", title && "block")}>
             <DialogTitle
-              className={cn("text-start ", isAlert && "text-center")}
+              className={cn("text-start mb-4 ", isAlert && "text-center")}
             >
               {title}
             </DialogTitle>

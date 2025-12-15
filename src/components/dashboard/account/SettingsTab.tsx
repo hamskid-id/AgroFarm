@@ -118,51 +118,6 @@ export const SettingsTab = () => {
         </Card>
       </div>
 
-      {/* Stats Grid */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <Card className="shadow-none">
-          <CardContent className="p-4">
-            <div className="text-center">
-              <div className="text-2xl font-bold text-emerald-600 mb-1">
-                {sellerStats.totalSales}
-              </div>
-              <p className="text-sm text-gray-600">Successful Deals</p>
-            </div>
-          </CardContent>
-        </Card>
-
-        <Card className="shadow-none">
-          <CardContent className="p-4">
-            <div className="text-center">
-              <div className="text-2xl font-bold text-blue-600 mb-1">
-                {sellerStats.responseRate}
-              </div>
-              <p className="text-sm text-gray-600">Response Rate</p>
-            </div>
-          </CardContent>
-        </Card>
-
-        <Card className="shadow-none">
-          <CardContent className="p-4">
-            <div className="text-center">
-              <div className="text-2xl font-bold text-amber-600 mb-1">4.2</div>
-              <p className="text-sm text-gray-600">Average Rating</p>
-            </div>
-          </CardContent>
-        </Card>
-
-        <Card className="shadow-none">
-          <CardContent className="p-4">
-            <div className="text-center">
-              <div className="text-2xl font-bold text-purple-600 mb-1">
-                {sellerStats.trustScore}
-              </div>
-              <p className="text-sm text-gray-600">Trust Score</p>
-            </div>
-          </CardContent>
-        </Card>
-      </div>
-
       {/* Next Level Requirements */}
       <Card className="shadow-none">
         <CardContent className="p-6">
@@ -239,18 +194,12 @@ export const SettingsTab = () => {
           <AlertCircle className="h-5 w-5" />
           Account Actions
         </h3>
-        <div className="space-y-3">
-          <Button
-            variant="outline"
-            className="text-sm w-full border-gray-300 text-gray-700 hover:bg-gray-50"
-          >
-            Download Account Data
-          </Button>
+        <div className="gap-4 grid grid-cols-2">
           <Button
             variant="outline"
             className="text-sm w-full border-orange-300 text-orange-600 hover:bg-orange-50"
           >
-            Temporarily Deactivate
+           Deactivate
           </Button>
           <Button
             variant="outline"

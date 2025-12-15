@@ -19,15 +19,16 @@ export const OverviewView = () => {
           label="Total Ads"
           value={mockStats.totalAds}
         />
-        <StatCard
-          icon={<Eye className="h-4 w-4 text-emerald-600" />}
-          label="Total Views"
-          value={mockStats.totalViews.toLocaleString()}
-        />
+
         <StatCard
           icon={<Activity className="h-4 w-4 text-emerald-600" />}
           label="Active Ads"
           value={mockStats.activeAds}
+        />
+        <StatCard
+          icon={<Eye className="h-4 w-4 text-emerald-600" />}
+          label="SuccessFul Deals"
+          value={mockStats.totalViews.toLocaleString()}
         />
         <StatCard
           icon={<Star className="h-4 w-4 text-emerald-600" />}

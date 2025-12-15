@@ -87,58 +87,6 @@ export const ProfileTab = () => {
             </div>
           </div>
         </div>
-
-        {/* Right Column - Stats */}
-        <div className="lg:w-64">
-          <Card className="shadow-none">
-            <CardContent className="p-4">
-              <div className="space-y-4">
-                <div>
-                  <div className="flex justify-between items-center mb-1">
-                    <span className="text-sm font-medium text-gray-700">
-                      Trust Score
-                    </span>
-                    <span className="text-sm font-bold text-emerald-600">
-                      {sellerStats.trustScore}/100
-                    </span>
-                  </div>
-                  <Progress value={sellerStats.trustScore} className="h-2" />
-                </div>
-
-                <div className="grid grid-cols-2 gap-3">
-                  <div className="text-center">
-                    <div className="flex items-center justify-center gap-1 mb-1">
-                      <MessageSquare className="h-4 w-4 text-blue-500" />
-                      <span className="text-sm font-medium">
-                        {sellerStats.responseRate}
-                      </span>
-                    </div>
-                    <p className="text-xs text-gray-500">Response Rate</p>
-                  </div>
-
-                  <div className="text-center">
-                    <div className="flex items-center justify-center gap-1 mb-1">
-                      <Clock className="h-4 w-4 text-green-500" />
-                      <span className="text-sm font-medium">
-                        {sellerStats.avgResponseTime}
-                      </span>
-                    </div>
-                    <p className="text-xs text-gray-500">Avg. Response</p>
-                  </div>
-                </div>
-
-                <Button
-                  size="sm"
-                  className="w-full bg-emerald-600 hover:bg-emerald-700"
-                  onClick={() => (window.location.hash = "#verification")}
-                >
-                  <Shield className="h-4 w-4 mr-2" />
-                  Boost Trust Score
-                </Button>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
       </div>
 
       {/* Profile Form - Unchanged */}

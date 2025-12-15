@@ -28,7 +28,6 @@ const ViewProductSheet: React.FC<ViewProductSheetProps> = ({
       setOpen={setIsOpen}
       title="Product Details"
       description="View detailed information about this product"
-      width="w-[400px] sm:w-[500px]"
     >
       <div className="space-y-6">
         {/* Product Header */}

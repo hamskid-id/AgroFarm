@@ -40,68 +40,7 @@ export const VerificationTab = () => {
             Build trust with buyers through verification
           </p>
         </div>
-        <div
-          className={`inline-flex items-center gap-2 px-3 py-1 rounded-full ${
-            verificationLevels.find((l) => l.level === verificationStatus.level)
-              ?.badgeColor
-          }`}
-        >
-          <Shield className="h-4 w-4" />
-          <span className="text-sm font-medium">
-            {
-              verificationLevels.find(
-                (l) => l.level === verificationStatus.level
-              )?.label
-            }
-          </span>
-        </div>
       </div>
-
-      {/* Progress Section */}
-      <Card className="shadow-none border-emerald-100 bg-emerald-50">
-        <CardContent className="p-6">
-          <div className="space-y-4">
-            <div className="flex justify-between items-center">
-              <div>
-                <p className="font-medium text-emerald-900">Trust Score</p>
-                <p className="text-sm text-emerald-700">
-                  Higher score = More buyer confidence
-                </p>
-              </div>
-              <span className="font-bold text-emerald-900">
-                {verificationStatus.score}/100
-              </span>
-            </div>
-            <Progress value={verificationStatus.score} className="h-2" />
-            <div className="flex justify-between text-xs text-emerald-600">
-              <span>Basic: 40</span>
-              <span>Verified: 70</span>
-              <span>Trusted: 90</span>
-            </div>
-          </div>
-        </CardContent>
-      </Card>
-
-      {/* Trust Building Tips */}
-      <Card className="border-blue-100 bg-blue-50 shadow-none">
-        <CardContent className="p-4">
-          <div className="flex items-start gap-3">
-            <MessageSquare className="h-5 w-5 text-blue-600 mt-0.5" />
-            <div>
-              <p className="font-medium text-blue-900 mb-1">
-                Tips for Building Trust
-              </p>
-              <ul className="text-sm text-blue-700 space-y-1">
-                <li>• Use clear, high-quality product photos</li>
-                <li>• Be responsive to buyer messages</li>
-                <li>• Meet in safe, public locations for transactions</li>
-                <li>• Provide accurate product descriptions</li>
-                <li>• Ask buyers to leave reviews after successful deals</li>
-              </ul>
-            </div>
-          </div>
-        </CardContent>
-      </Card>
 
       {/* Verification Steps */}
       <div className="space-y-4">
