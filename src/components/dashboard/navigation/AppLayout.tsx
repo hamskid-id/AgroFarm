@@ -40,7 +40,7 @@ export default function AppLayout({ children }: AppLayoutProps) {
 
       <SidebarInset className="w-full bg-white md:w-[900px] flex flex-col gap-4">
         <AppHeader />
-        <main className=" h-full">{children}</main>
+        <main className=" h-full mb-18">{children}</main>
       </SidebarInset>
 
       <MobileNav items={sidebarData.navMain} />

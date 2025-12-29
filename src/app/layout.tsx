@@ -1,16 +1,12 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/sonner";
 import { Suspense } from "react";
 import QueryProvider from "@/providers/QueryProvider";
 import NextTopLoader from "nextjs-toploader";
 import AuthHydrator from "@/providers/AuthHydrator";
-
-const inter = Inter({
-  subsets: ["latin"],
-  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
-});
+import { GeistSans } from "geist/font/sans";
+import { GeistMono } from "geist/font/mono";
 
 export const metadata: Metadata = {
   title: "AgroCommerce",
@@ -23,8 +19,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={` ${inter.className} antialiased text-bl-base`}>
+    <html lang="en" className={`${GeistSans.variable} ${GeistMono.variable}`}>
+      <body
+        className={`${GeistSans.variable} ${GeistMono.variable} antialiased text-bl-base`}
+      >
         <NextTopLoader color="#AFEB2B" showSpinner={false} />
         <Suspense fallback={<div></div>}>
           <QueryProvider>

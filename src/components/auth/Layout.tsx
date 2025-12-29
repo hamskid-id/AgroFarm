@@ -65,7 +65,7 @@ const AuthLayout: React.FC<IAuthLayout> = ({
           <div className="mb-6">
             <Link
               href={backButtonHref}
-              className="inline-flex items-center text-emerald-600 hover:text-emerald-700 transition-colors font-medium"
+              className="inline-flex items-center text-[#00bc7d] hover:text-emerald-700 transition-colors font-medium"
             >
               <ChevronLeft className="h-4 w-4 mr-2" />
               {backButtonText}
@@ -107,7 +107,6 @@ const AuthLayout: React.FC<IAuthLayout> = ({
                               <button className="w-full bg-[#FDC316] hover:bg-[#FDC316]/90 rounded-[10px] flex justify-center items-center sm:h-[48px] h-[40px] hover:bg-gray-100 transition dark:bg-gray-800 dark:border-gray-700 shadow-sm">
                                 <GoogleIcon />
                               </button>
-                              
                             </div>
 
                             {/* Footer */}

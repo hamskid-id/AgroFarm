@@ -1,10 +1,9 @@
 "use client";
 
-import React, { useState, useMemo, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { motion } from "framer-motion";
 import { NavItem } from "@/types/navigation";
 import { cn } from "@/lib/utils";
 import { useAuthStore } from "@/stores/auth-store";
@@ -15,13 +14,9 @@ interface MobileNavProps {
 
 export const MobileNav: React.FC<MobileNavProps> = ({ items }) => {
   const pathname = usePathname();
-
-  const [open, setOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
 
   const { user, isLoading } = useAuthStore((s) => s);
-
-  const userRole = user?.role;
 
   const getActiveUrl = useCallback(() => {
     // Exact match first
@@ -30,7 +25,7 @@ export const MobileNav: React.FC<MobileNavProps> = ({ items }) => {
 
     // Find all matching parent routes
     const matchingItems = items.filter((item) =>
-      pathname.startsWith(item.url + "/"),
+      pathname.startsWith(item.url + "/")
     );
 
     // Return the longest (most specific) match
@@ -52,85 +47,72 @@ export const MobileNav: React.FC<MobileNavProps> = ({ items }) => {
 
   return (
     <div className="block md:hidden">
-      <motion.button
-        onClick={() => setOpen((s) => !s)}
-        initial={false}
-        animate={{ rotate: open ? 90 : 0 }}
-        transition={{ duration: 0.3 }}
-        className="fixed bottom-6 right-6 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-black text-white shadow-lg"
-      >
-        {open ? <X size={24} /> : <Menu size={24} />}
-      </motion.button>
+      <nav className="fixed bottom-0 left-0 right-0 z-50 bg-white border-t border-neutral-200 safe-area-inset-bottom">
+        <div className="flex items-center justify-around px-2 py-1">
+          {isLoading
+            ? [...Array(4)].map((_, i) => (
+                <div
+                  key={i}
+                  className="flex flex-col items-center justify-center gap-1 py-2 px-3 w-full animate-pulse"
+                >
+                  <div className="h-6 w-6 rounded-full bg-gray-300/40" />
+                  <div className="h-2 w-12 rounded bg-gray-300/30 mt-1" />
+                </div>
+              ))
+            : items.map((item, index) => {
+                const active = isActive(item.url);
 
-      <AnimatePresence>
-        {open && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed bottom-[7rem] right-6 z-40 flex flex-col items-end gap-3"
-          >
-            {isLoading
-              ? [...Array(4)].map((_, i) => (
-                  <div
-                    key={i}
-                    className="flex items-center gap-3 rounded-full bg-black/60 px-4 py-3 animate-pulse shadow-md"
+                return (
+                  <Link
+                    key={`${item.url || "item"}-${index}`}
+                    href={item.url}
+                    className="flex-1 min-w-0"
                   >
-                    <div className="h-4 w-4 rounded-full bg-gray-400/40" />
-                    <div className="h-3 w-16 rounded bg-gray-400/30" />
-                  </div>
-                ))
-              : items.map((item, index) => {
-                  const active = isActive(item.url);
-
-                  return (
                     <motion.div
-                      key={`${item.url || "item"}-${index}`}
-                      initial={{ opacity: 0, scale: 0.8, y: 30 }}
-                      animate={{ opacity: 1, scale: 1, y: 0 }}
-                      exit={{ opacity: 0, scale: 0.8, y: 30 }}
-                      transition={{
-                        delay: index * 0.08,
-                        type: "spring",
-                        stiffness: 300,
-                      }}
+                      whileTap={{ scale: 0.95 }}
+                      className={cn(
+                        "flex flex-col items-center justify-center gap-1 py-2 px-1 rounded-lg transition-colors",
+                        active
+                          ? "text-primary_40"
+                          : "text-neutral-400 hover:text-neutral-700"
+                      )}
                     >
-                      <Link href={item.url}>
+                      <motion.div
+                        animate={{
+                          scale: active ? 1.1 : 1,
+                          y: active ? -2 : 0,
+                        }}
+                        transition={{ type: "spring", stiffness: 300 }}
+                      >
+                        <item.icon className="h-6 w-6" />
+                      </motion.div>
+
+                      <span
+                        className={cn(
+                          "text-[10px] font-medium truncate w-full text-center",
+                          active ? "text-[#CAEAD4]" : ""
+                        )}
+                      >
+                        {item.title}
+                      </span>
+
+                      {active && (
                         <motion.div
-                          layout
-                          initial={{ width: "3.5rem" }}
-                          whileHover={{ width: "auto" }}
+                          layoutId="activeIndicator"
+                          className="absolute bottom-0 left-1/2 -translate-x-1/2 h-0.5 w-12 bg-primary_40 rounded-full"
                           transition={{
                             type: "spring",
-                            stiffness: 250,
-                            damping: 20,
+                            stiffness: 380,
+                            damping: 30,
                           }}
-                          className={cn(
-                            "group flex items-center rounded-full shadow-md transition-colors bg-black text-white cursor-pointer",
-                            "hover:bg-neutral-800",
-                            active && "bg-primary_40",
-                          )}
-                        >
-                          <div className="flex h-14 w-14 shrink-0 items-center justify-center">
-                            <item.icon className="h-4 w-4" />
-                          </div>
-
-                          <motion.span
-                            initial={{ opacity: 0, x: -10 }}
-                            whileHover={{ opacity: 1, x: 0 }}
-                            transition={{ duration: 0.3 }}
-                            className="pr-4 text-[13px] font-medium text-[#CAEAD4] whitespace-nowrap"
-                          >
-                            {item.title}
-                          </motion.span>
-                        </motion.div>
-                      </Link>
+                        />
+                      )}
                     </motion.div>
-                  );
-                })}
-          </motion.div>
-        )}
-      </AnimatePresence>
+                  </Link>
+                );
+              })}
+        </div>
+      </nav>
     </div>
   );
 };
