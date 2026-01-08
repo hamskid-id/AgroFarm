@@ -1,7 +1,7 @@
 "use client";
 
-import { useState } from "react";
-import { motion, useScroll, useMotionValueEvent } from "framer-motion";
+import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 import Link from "next/link";
 import { ChevronDown } from "lucide-react";
 import { Brand } from "@/components/shared/Brand";
@@ -13,26 +13,56 @@ const Header = () => {
   const [isNotificationsOpen, setIsNotificationsOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(0);
 
-  const { scrollY } = useScroll();
+  // Debounced scroll handler
+  useEffect(() => {
+    let lastScrollY = window.scrollY;
+    let ticking = false;
+    let scrollTimeout: NodeJS.Timeout;
 
-  useMotionValueEvent(scrollY, "change", (latest) => {
-    const previous = scrollY.getPrevious() || 0;
-    const isScrollingUp = latest < previous;
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const currentScrollY = window.scrollY;
 
-    if (isScrollingUp && latest > 100) {
-      setIsVisible(true);
-    } else if (!isScrollingUp && latest > 100 && latest - previous > 10) {
-      setIsVisible(false);
-    }
+          // Only update if scroll position changed significantly
+          const scrollDelta = Math.abs(currentScrollY - lastScrollY);
 
-    if (latest < 10) {
-      setIsVisible(true);
-    }
+          if (scrollDelta > 5) {
+            // Minimum scroll delta to prevent micro-updates
+            const isScrollingUp = currentScrollY < lastScrollY;
 
-    setLastScrollY(latest);
-  });
+            if (isScrollingUp && currentScrollY > 100) {
+              setIsVisible(true);
+            } else if (!isScrollingUp && currentScrollY > 100) {
+              setIsVisible(false);
+            }
+
+            if (currentScrollY < 50) {
+              setIsVisible(true);
+            }
+
+            lastScrollY = currentScrollY;
+          }
+
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    const throttledScroll = () => {
+      clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(handleScroll, 50);
+    };
+
+    window.addEventListener("scroll", throttledScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener("scroll", throttledScroll);
+      clearTimeout(scrollTimeout);
+    };
+  }, []);
 
   return (
     <motion.header
@@ -43,12 +73,13 @@ const Header = () => {
       }}
       transition={{
         type: "spring",
-        stiffness: 260,
-        damping: 20,
+        stiffness: 200,
+        damping: 25,
+        mass: 0.5,
       }}
     >
       <div className="max-w-7xl mx-auto">
-        <nav className="bg-white/80 backdrop-blur-lg rounded-2xl  border border-gray-200/90 px-3 sm:px-6 sm:py-3 py-1">
+        <nav className="bg-white/80 backdrop-blur-lg rounded-2xl border border-gray-200/90 px-3 sm:px-6 sm:py-3 py-1">
           <div className="flex items-center justify-between">
             <Brand />
 
