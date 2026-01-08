@@ -68,7 +68,7 @@ const HeroContent = ({
     >
       {/* Badge */}
       <motion.div variants={itemVariants}>
-        <div className="inline-flex items-center gap-2 bg-gradient-to-r from-amber-100 to-orange-100 text-amber-800 px-4 py-2 rounded-full text-xs font-semibold border border-amber-200">
+        <div className="inline-flex items-center gap-2 bg-gradient-to-r from-amber-100 to-orange-100 text-amber-800 px-4 py-2 rounded-md text-xs font-semibold border border-amber-200">
           <Star className="h-4 w-4 fill-current" />
           #1 Agricultural Marketplace in Nigeria
         </div>

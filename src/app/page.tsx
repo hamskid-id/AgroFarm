@@ -7,13 +7,13 @@ import { HeroSection } from "@/components/website/section/hero";
 
 export default function Home() {
   return (
-    <>
+    < div className="mt-28">
       <Header />
       <HeroSection />
       <FeaturedProducts/>
       {/* <FeaturedFarmers/> */}
       <BecomeSeller/>
       <Footer/>
-    </>
+    </div>
   );
 }

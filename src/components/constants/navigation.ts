@@ -18,3 +18,20 @@ export const navItems = [
     icon: SettingsIcon,
   },
 ];
+
+
+export const navLinks = [
+  { label: "Why AgroFarm?", href: "/why" },
+  {
+    label: "Products",
+    href: "/products",
+    hasDropdown: true,
+  },
+  {
+    label: "Services",
+    href: "/services",
+    hasDropdown: true,
+  },
+  { label: "Pricing", href: "/pricing" },
+  { label: "Impact", href: "/impact" },
+];

@@ -1,5 +1,7 @@
 // import { useEffect, useState } from "react";
 
+import { useState } from "react";
+
 // const debounce = <T extends (...args: any[]) => any[]>(
 //   func: any,
 //   delay: number
@@ -51,7 +53,6 @@
 //   };
 // };
 
-
 // const flattenList=(arr:any[])=>{
 //   const result:any[] =[];
 //   arr.forEach((item)=>{
@@ -63,3 +64,88 @@
 //   })
 //   return result;
 // }
+
+type itemStatus = "pending" | "completed";
+
+type todoItem = {
+  title: string;
+  status: "pending" | "completed";
+};
+
+const todoListSample: todoItem[] = [
+  { title: "Buy groceries", status: "pending" },
+  { title: "Walk the dog", status: "completed" },
+  { title: "Read a book", status: "pending" },
+];
+
+export const TodoApp = () => {
+  const [todoList, setTodoList] = useState<todoItem[]>(todoListSample);
+  const [filtredList, setFilteredList] = useState<todoItem[]>(todoListSample);
+
+  const addTodo = (todo: todoItem) => {
+    setTodoList((prevList) => [...prevList, todo]);
+    setFilteredList((prevList) => [...prevList, todo]);
+  };
+
+  const removeTodo = (index: number) => {
+    setTodoList((prevList) => prevList.filter((_, i) => i !== index));
+    setFilteredList((prevList) => prevList.filter((_, i) => i !== index));
+  };
+
+  const editTodo = (index: number, newTodo: todoItem) => {
+    setTodoList((prevList) =>
+      prevList.map((item, i) => (i === index ? newTodo : item))
+    );
+    setFilteredList((prevList) =>
+      prevList.map((item, i) => (i === index ? newTodo : item))
+    );
+  };
+
+  const handleFilterChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const filterValue = event.target.value;
+
+    const activeList = todoList.filter((todo) => todo.status === "pending");
+    const completedList = todoList.filter(
+      (todo) => todo.status === "completed"
+    );
+
+    switch (filterValue) {
+      case "all":
+        setFilteredList(todoList);
+        break;
+      case "active":
+        setFilteredList(activeList);
+        break;
+      case "completed":
+        setFilteredList(completedList);
+        break;
+      default:
+        setFilteredList(todoList);
+    }
+  };
+
+  return (
+    <div>
+      <h1>Todo App</h1>
+      <div>
+        <h2>All Todos</h2>
+        <div className="flex gap-2">
+          FilterBy:
+          <select onChange={(e) => handleFilterChange(e)}>
+            <option value="all">All</option>
+            <option value="active">Active</option>
+            <option value="completed">Completed</option>
+          </select>
+        </div>
+        <ul>
+          {filtredList?.map((todo, index) => (
+            <li key={index}>
+              {todo.title} - {todo.status}
+              <button onClick={() => removeTodo(index)}>Remove</button>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  );
+};

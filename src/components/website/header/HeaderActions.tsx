@@ -30,9 +30,6 @@ const HeaderActions = ({
 
   return (
     <div className="flex items-center gap-2 sm:gap-3 order-1 sm:order-2">
-      <Button className=" bg-orange-500 hover:bg-orange-600 text-white hidden lg:flex">
-        Start Selling
-      </Button>
       {/* Notifications */}
       <NotificationsSheet
         isOpen={isNotificationsOpen}
@@ -64,6 +61,9 @@ const HeaderActions = ({
 
       {/* Auth Buttons */}
       <div className="flex items-center gap-2">
+        <Button className=" bg-orange-500 hover:bg-orange-600 text-white hidden lg:flex">
+          Start Selling
+        </Button>
         <Button
           variant="ghost"
           asChild
@@ -71,16 +71,10 @@ const HeaderActions = ({
         >
           <Link href="/auth/sign-in">Sign in</Link>
         </Button>
-        <Button
-          asChild
-          className="hidden md:inline-flex bg-[#D89C06] hover:from-emerald-700 hover:to-emerald-800 text-white px-4 py-2 text-sm rounded-lg hover:shadow-lg transition-all"
-        >
-          <Link href="/auth/sign-up">Sign up</Link>
-        </Button>
       </div>
 
       {/* Mobile Menu */}
-      <SheetWrapper
+      {/* <SheetWrapper
         open={isMobileMenuOpen}
         title="Menu"
         setOpen={setIsMobileMenuOpen}
@@ -95,7 +89,7 @@ const HeaderActions = ({
         }
       >
         <MobileMenu />
-      </SheetWrapper>
+      </SheetWrapper> */}
     </div>
   );
 };
