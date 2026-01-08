@@ -4,10 +4,10 @@ import ProductListingSection from "@/components/website/section/product-listings
 
 export default function ProductList() {
   return (
-    <>
+    <div className="pt-28 bg-neutral-50 ">
       <Header />
       <ProductListingSection />
       <Footer />
-    </>
+    </div>
   );
 }
