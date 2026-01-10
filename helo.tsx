@@ -149,3 +149,102 @@ export const TodoApp = () => {
     </div>
   );
 };
+
+// getUser(), getOrders(userId), getProducts(orderIds).
+
+// const executeSequentially = async () => {
+//   try {
+//     const user = await getUser();
+//     const orders = await getOrders(user.id);
+//     const products = await getProducts(orders.map((order) => order.id));
+//     return { user, orders, products };
+//   } catch (error) {
+//     console.error("Error fetching data:", error);
+//   }
+// };
+
+// const executeOrderAndProductInParellel = async () => {
+//   try {
+//     const user = await getUser();
+//     const orders = await getOrders(user.id);
+//     const products = await Promise.all(
+//       orders.map((order) => getProducts(order.id))
+//     );
+//     return { user, orders, products: products.flat() };
+//   } catch (error) {
+//     console.error("Error fetching data:", error);
+//   }
+
+// const groupProductsByCategory = (
+//   products: { name: string; category: String }[]
+// ) => {
+//   const groupedProducts: {
+//     category: string;
+//     products: { name: string }[];
+//   }[] = [];
+
+//   products.forEach((product) => {
+//     const existingCategory = groupedProducts.find(
+//       (group) => group.category === product.category
+//     );
+
+//     if (existingCategory) {
+//       existingCategory.products.push({ name: product.name });
+//     } else {
+//       groupedProducts.push({
+//         category: product.category,
+//         products: [{ name: product.name }],
+//       });
+//     }
+//   });
+//   return groupedProducts;
+// };
+
+// const CounterComponent = () => {
+
+//   const defaultCount = 0;
+
+//   const [count, setCount] = useState(defaultCount);
+
+//   const incrementCount = () => setCount((prevState) => prevState + 1);
+  
+//   const decreaseCountToZero = () =>
+//     setCount((prevState) => (prevState > 1 ? prevState - 1 : prevState));
+
+//   const resetCount = () => setCount(defaultCount);
+
+//   return (
+//     <div>
+//       <h2>Counter: {count}</h2>
+//       <button onClick={incrementCount}>Increment</button>
+//       <button onClick={decreaseCountToZero}>Decrement</button>
+//       <button onClick={resetCount}>Reset</button>
+//     </div>
+//   );
+// };
+
+
+// const findFirstNonRepeatingCharacter = (str: string): string | null => {
+//   const charCount: { [key: string]: number } = {};
+//   for (const char of str) {
+//     charCount[char] = (charCount[char] || 0) + 1;
+//   }
+//   for (const char of str) {
+//     if (charCount[char] === 1) {
+//       return char;
+//     }
+//   }
+//   return null;
+// }
+
+// const debounce = <T extends (...args: any[]) => any[]>(
+//   func: any,
+//   delay: number
+// ): ((...args: Parameters<T>) => void) => {
+//   let timeoutId: ReturnType<typeof setTimeout> | null = null;
+//   return (...args: Parameters<T>) => {
+//     timeoutId = setTimeout(() => {
+//       func(...args);
+//     }, delay);
+//   };
+// }

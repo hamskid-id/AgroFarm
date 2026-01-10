@@ -7,7 +7,7 @@ import { HeroSection } from "@/components/website/section/hero";
 
 export default function Home() {
   return (
-    <div className="pt-28">
+    <div className="sm:pt-28 pt-18">
       <Header />
       <HeroSection />
       <FeaturedProducts/>

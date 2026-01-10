@@ -18,10 +18,10 @@ const FilterSection = ({
   const [isOpen, setIsOpen] = useState(defaultOpen);
 
   return (
-    <div className="bg-white rounded-xl border border-gray-200 overflow-hidden">
+    <div className=" border-y border-gray-200 overflow-hidden">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="w-full flex items-center justify-between p-4 hover:bg-gray-50 transition-colors"
+        className="cursor-pointer w-full flex items-center justify-between p-4 hover:bg-gray-50 transition-colors"
       >
         <h3 className="font-semibold text-gray-900 text-sm">{title}</h3>
         {isOpen ? (

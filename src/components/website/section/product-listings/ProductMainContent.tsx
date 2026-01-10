@@ -26,13 +26,12 @@ const ProductMainContent = ({
   onResetFilters,
 }: ProductMainContentProps) => {
   return (
-    <main className="flex-1">
+    <main className="flex flex-col gap-4">
       {/* Header Section */}
       <motion.div
         initial={{ y: -20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.5 }}
-        className="mb-6"
       >
         <div className="bg-gradient-to-r from-white to-emerald-50 rounded-xl p-4 border border-gray-100">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">

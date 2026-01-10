@@ -5,6 +5,7 @@ import { Package } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ProductCard } from "../featured-products";
 import { Product } from "@/types";
+import { cn } from "@/lib/utils";
 
 interface ProductGridProps {
   products: Product[];
@@ -19,7 +20,6 @@ const ProductGrid = ({
   formatPrice,
   onResetFilters,
 }: ProductGridProps) => {
-
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -32,7 +32,6 @@ const ProductGrid = ({
 
   // Empty State
   if (!products || products.length === 0) {
-    console.log("No products to display - showing empty state");
     return (
       <motion.div
         initial={{ opacity: 0, scale: 0.95 }}
@@ -71,14 +70,13 @@ const ProductGrid = ({
       variants={containerVariants}
       initial="hidden"
       animate="visible"
-      className={
-        viewMode === "grid"
-          ? "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"
-          : "grid grid-cols-1 gap-4"
-      }
+      className={cn(
+        "grid grid-cols-1 gap-4 w-full",
+        viewMode === "grid" &&
+          "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"
+      )}
     >
       {products.map((product, index) => {
-        console.log(`Rendering product ${index}:`, product.name);
         return (
           <motion.div
             key={product.id}

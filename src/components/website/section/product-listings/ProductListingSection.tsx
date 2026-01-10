@@ -92,7 +92,7 @@ export default function ProductListingSection() {
       transition={{ duration: 0.5 }}
       className="py-8 bg-gradient-to-b from-gray-50 to-white min-h-screen"
     >
-      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-0 ">
         {/* Mobile Filter Button */}
         <div className="lg:hidden mb-3">
           <Button
