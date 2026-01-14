@@ -1,11 +1,9 @@
 import { Button } from "../../ui/button";
 import { SheetWrapper } from "../../ui/custom-sheet";
 import FavoritesProducts from "./FavoritesProducts";
-import MobileMenu from "./MobileMenu";
 import NotificationsSheet from "./NotificationsSheet";
-import { products } from "@/components/constants/product";
 import Link from "next/link";
-import { UserPlus, Heart, Bell, Menu } from "lucide-react";
+import {Heart } from "lucide-react";
 import { useFavoritesStore } from "@/stores/favorites-store";
 
 interface HeaderActionsProps {

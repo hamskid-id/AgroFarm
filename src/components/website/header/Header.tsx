@@ -8,8 +8,6 @@ import {
   Menu,
   X,
   Heart,
-  Bell,
-  MapPin,
   Search,
 } from "lucide-react";
 import { Brand } from "@/components/shared/Brand";
@@ -183,7 +181,7 @@ const Header = () => {
         className="fixed inset-0 z-40 lg:hidden bg-white"
         style={{ top: "88px" }}
       >
-        <div className="h-full overflow-y-auto p-6 flex flex-col-justify-between">
+        <div className="h-full overflow-y-auto p-6 flex flex-col justify-between">
           {/* Search */}
           <div className="relative mb-6">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
