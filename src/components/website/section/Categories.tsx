@@ -7,20 +7,18 @@ import { products } from "@/components/constants/product";
 import { Product } from "@/types";
 import { formatPrice } from "@/lib/utils";
 
-// Tilted Product Card Component
-const TiltedProductCard = ({
-  product,
-  index,
-}: {
+interface TiltedProductCardProps {
   product: Product;
   index: number;
-}) => {
-  const [isHovered, setIsHovered] = useState(false);
+}
 
-  // Alternate rotation: even = left, odd = right
+const TiltedProductCard = ({ product, index }: TiltedProductCardProps) => {
+  const [isHovered, setIsHovered] = useState(false);
   const rotation = index % 2 === 0 ? -3 : 3;
   const hoverRotation = index % 2 === 0 ? -5 : 5;
 
+  const imageUrl =
+    typeof product.image === "string" ? product.image : product.image.src;
 
   return (
     <motion.div
@@ -34,33 +32,21 @@ const TiltedProductCard = ({
       }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className="relative cursor-pointer flex-shrink-0 w-[200px]"
-      style={{
-        transformOrigin: "center center",
-      }}
+      className="relative cursor-pointer flex-shrink-0 w-[150px]"
+      style={{ transformOrigin: "center center" }}
     >
-      {/* Card Container */}
-      <div className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300 border-4 border-white">
-        {/* Image Container */}
+      <div className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300">
         <div className="relative aspect-[3/4] overflow-hidden">
           <motion.img
-            src={
-              typeof product.image === "string"
-                ? product.image
-                : product.image.src
-            }
+            src={imageUrl}
             alt={product.name}
             className="w-full h-full object-cover"
-            animate={{
-              scale: isHovered ? 1.1 : 1,
-            }}
+            animate={{ scale: isHovered ? 1.1 : 1 }}
             transition={{ duration: 0.4 }}
           />
 
-          {/* Gradient Overlay */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
 
-          {/* Price Tag - Bottom Left */}
           <motion.div
             initial={{ x: -100, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
@@ -77,7 +63,6 @@ const TiltedProductCard = ({
             </div>
           </motion.div>
 
-          {/* Product Name - Bottom Center */}
           <motion.div
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
@@ -91,7 +76,6 @@ const TiltedProductCard = ({
             </div>
           </motion.div>
 
-          {/* Hover Overlay Effect */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: isHovered ? 1 : 0 }}
@@ -99,25 +83,14 @@ const TiltedProductCard = ({
           />
         </div>
       </div>
-
-      {/* Decorative Corner - Alternating */}
-      <div
-        className={`
-        absolute w-8 h-8 bg-emerald-400 rounded-full -z-10 blur-xl
-        ${index % 2 === 0 ? "-top-2 -left-2" : "-top-2 -right-2"}
-      `}
-      />
     </motion.div>
   );
 };
 
-// Main Tilted Products Section
 const CategoriesSection = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>("All");
-  const categoryScrollRef = useRef<HTMLDivElement>(null);
   const productsScrollRef = useRef<HTMLDivElement>(null);
 
-  // Categories - as string array
   const categories = [
     "All",
     "Vegetables",
@@ -130,22 +103,12 @@ const CategoriesSection = () => {
     "Fertilizers",
   ];
 
-  // Filter products by category
   const filteredProducts =
     selectedCategory === "All"
       ? products
-      : products.filter((p) => p.category?.name === selectedCategory);
-
-  // Scroll functions
-  const scrollCategory = (direction: "left" | "right") => {
-    if (categoryScrollRef.current) {
-      const scrollAmount = 200;
-      categoryScrollRef.current.scrollBy({
-        left: direction === "left" ? -scrollAmount : scrollAmount,
-        behavior: "smooth",
-      });
-    }
-  };
+      : products.filter(
+          (product) => product.category?.name === selectedCategory
+        );
 
   const scrollProducts = (direction: "left" | "right") => {
     if (productsScrollRef.current) {
@@ -158,9 +121,8 @@ const CategoriesSection = () => {
   };
 
   return (
-    <div className="bg-gradient-to-br from-emerald-50 via-white to-amber-50 sm:pt-16 pt-8  pb-0 sm:pb-8 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+    <div className="pt-8 pb-0 sm:pb-8 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
-        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: -30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -179,21 +141,18 @@ const CategoriesSection = () => {
           </div>
         </motion.div>
 
-        {/* Products Swiper */}
         <div className="relative group mb-12">
-          {/* Left Arrow for Products */}
           <button
             onClick={() => scrollProducts("left")}
             className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white shadow-xl rounded-full p-3 opacity-0 group-hover:opacity-100 transition-opacity hover:bg-emerald-50 -ml-6"
+            aria-label="Scroll left"
           >
             <ChevronLeft className="h-6 w-6 text-emerald-600" />
           </button>
 
-          {/* Products Container - Horizontal Scroll */}
           <div
             ref={productsScrollRef}
             className="flex gap-8 overflow-x-auto scrollbar-hide scroll-smooth py-4 px-2"
-            style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
           >
             {filteredProducts.map((product, index) => (
               <TiltedProductCard
@@ -204,24 +163,23 @@ const CategoriesSection = () => {
             ))}
           </div>
 
-          {/* Right Arrow for Products */}
           <button
             onClick={() => scrollProducts("right")}
             className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white shadow-xl rounded-full p-3 opacity-0 group-hover:opacity-100 transition-opacity hover:bg-emerald-50 -mr-6"
+            aria-label="Scroll right"
           >
             <ChevronRight className="h-6 w-6 text-emerald-600" />
           </button>
         </div>
       </div>
 
-      {/* Decorative Elements */}
-      <div className="absolute top-20 left-10 w-32 h-32 bg-emerald-200 rounded-full blur-3xl opacity-20 -z-10" />
-      <div className="absolute bottom-20 right-10 w-40 h-40 bg-amber-200 rounded-full blur-3xl opacity-20 -z-10" />
-
-      {/* Hide scrollbar globally for this component */}
       <style jsx>{`
         .scrollbar-hide::-webkit-scrollbar {
           display: none;
+        }
+        .scrollbar-hide {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
         }
       `}</style>
     </div>
