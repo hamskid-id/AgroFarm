@@ -207,7 +207,7 @@ export const TodoApp = () => {
 //   const [count, setCount] = useState(defaultCount);
 
 //   const incrementCount = () => setCount((prevState) => prevState + 1);
-  
+
 //   const decreaseCountToZero = () =>
 //     setCount((prevState) => (prevState > 1 ? prevState - 1 : prevState));
 
@@ -222,7 +222,6 @@ export const TodoApp = () => {
 //     </div>
 //   );
 // };
-
 
 // const findFirstNonRepeatingCharacter = (str: string): string | null => {
 //   const charCount: { [key: string]: number } = {};
@@ -248,3 +247,128 @@ export const TodoApp = () => {
 //     }, delay);
 //   };
 // }
+
+type userType = {
+  id: number;
+  name: string;
+  age: number;
+};
+
+const users: userType[] = [
+  { id: 1, name: "Alice", age: 25 },
+  { id: 2, name: "Bob", age: 30 },
+  { id: 3, name: "Charlie", age: 25 },
+  { id: 4, name: "David", age: 30 },
+];
+
+// const groupUserByAge = (users: userType[]) => {
+//   const groupedUsers: { [key: number]: userType[] } = {};
+
+//   users.forEach((user) => {
+//     if (!groupedUsers[user.age]) {
+//       groupedUsers[user.age] = [];
+//     }
+//     groupedUsers[user.age].push(user);
+//   });
+
+//   const sortedGroupedUsers = Object.keys(groupedUsers)
+//     .sort((a, b) => Number(a) - Number(b))
+//     .reduce((acc: { [key: number]: userType[] }, key) => {
+//       acc[Number(key)] = groupedUsers[Number(key)];
+//       return acc;
+//     }, {});
+
+//   const usersOver18 = users.filter((user) => user.age > 18);
+
+//   return {
+//     sortedGroupedUsers: sortedGroupedUsers,
+//     groupedUsers: groupedUsers,
+//     usersOver18: usersOver18,
+//   };
+// };
+
+// type accType = { [key: number]: userType[] };
+
+// const groupFunction = (users: userType[]) => {
+//   const groupByAge = users?.reduce((acc: accType, user: userType) => {
+//     acc[user.age] = acc[user.age] ?? [];
+//     acc[user.age].push(user);
+//     return acc;
+//   }, {});
+
+//   const sortedGroupedUsers = [...new Set(users.sort((a, b) => a.age - b.age))]; // Get unique ages
+
+//   const usersOver18 = users.filter((user) => user.age > 18);
+
+//   return { groupByAge, sortedGroupedUsers, countOver18: usersOver18.length };
+// };
+
+// const TabContext = createContext({
+//   activeTab: "",
+//   setActiveTab: (tab: string) => {},
+// });
+
+// const Tabs = ({ children }: { children: React.ReactNode }) => {
+//   const [activeTab, setActiveTab] = useState<string>("");
+//   return (
+//     <TabContext.Provider
+//       value={{ activeTab: "", setActiveTab: (tab: string) => {} }}
+//     >
+//       {children}
+//     </TabContext.Provider>
+//   );
+// };
+
+// const Tab = () => {
+//   const [active, setActiveTab] = useContext(TabContext);
+//   return <div>Tab Component</div>;
+// };
+
+// const useLocalStorage = <T,>(key: string, initialValue: T) => {
+//   const windowIsUndefined = typeof window === "undefined";
+
+//   const [storedValue, setStoredValue] = useState<T>(() => {
+//     if (windowIsUndefined) return initialValue;
+//     try {
+//       const item = window.localStorage.getItem(key);
+//       return item ? (JSON.parse(item) as T) : initialValue;
+//     } catch (error) {
+//       console.error("Error reading localStorage key “" + key + "”:", error);
+//       return initialValue;
+//     }
+//   });
+
+//   const handleSetValue = (value: T | ((val: T) => T)) => {
+//     try {
+//       const valueToStore =
+//         value instanceof Function ? value(storedValue) : value;
+//       setStoredValue(valueToStore);
+//       if (typeof window !== "undefined") {
+//         window.localStorage.setItem(key, JSON.stringify(valueToStore));
+//       }
+//     } catch (error) {
+//       console.error("Error setting localStorage key “" + key + "”:", error);
+//     }
+//   };
+
+//   useEEfect(()=>{
+//     const handleStorageChange = (event: StorageEvent) => {
+//       if (event.key === key) {
+//         try {
+//           const newValue = event.newValue ? JSON.parse(event.newValue) : initialValue;
+//           setStoredValue(newValue);
+//         } catch (error) {
+//           console.error("Error parsing localStorage key “" + key + "” on storage event:", error);
+//         }
+//       };
+//     window.addEventListener("storage", handleStorageChange);
+//     return () => {
+//       window.removeEventListener("storage", handleStorageChange);
+//     };
+//   }
+//   },[key, initialValue]);
+
+//   return [storedValue, handleSetValue] as const;
+// };
+
+// const selectTheLargetFromTheList =()=>

@@ -3,6 +3,7 @@
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 import axios from "axios";
+import { Product } from "@/types";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -107,4 +108,20 @@ export const formatPercentage = (value: number): string => {
 
 export const formatFileSize = (bytes: number) =>
   `${Math.round(bytes / 1024)} KB`;
+
+
+export const formatPrice = (price: number): string => {
+  return new Intl.NumberFormat("en-NG", {
+    style: "currency",
+    currency: "NGN",
+    minimumFractionDigits: 0,
+  }).format(price);
+};
+
+export const getYearsOnPlatform = (product: Product): string => {
+  if (product?.sellerYears) return product.sellerYears;
+  if (product.vendor?.rating >= 4.5) return "5+ YEARS";
+  if (product.vendor?.rating >= 4.0) return "3+ YEARS";
+  return "1+ YEAR";
+};
 

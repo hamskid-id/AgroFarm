@@ -15,7 +15,7 @@ export const Brand: React.FC<BrandProps> = ({ style }) => {
   return (
     <CustomImage
       src={BrandLogo}
-      style={cn("w-[96px] h-[71px]", style)}
+      style={cn("w-[96px] h-[51px]", style)}
       imgStyle="object-contain"
       clickFunc={navigateToHome}
     />

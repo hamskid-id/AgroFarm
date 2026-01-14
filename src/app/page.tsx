@@ -1,19 +1,20 @@
 import Footer from "@/components/website/footer/Footer";
 import Header from "@/components/website/header/Header";
-import { BecomeSeller } from "@/components/website/section/become-seller";
-import { FeaturedFarmers } from "@/components/website/section/featured-farmers";
+import PageBackgroundWrapper from "@/components/website/section";
+import CategoriesSection from "@/components/website/section/Categories";
 import { FeaturedProducts } from "@/components/website/section/featured-products";
 import { HeroSection } from "@/components/website/section/hero";
 
 export default function Home() {
   return (
-    <div className="sm:pt-28 pt-18">
-      <Header />
-      <HeroSection />
-      <FeaturedProducts/>
-      {/* <FeaturedFarmers/> */}
-      <BecomeSeller/>
-      <Footer/>
-    </div>
+    <PageBackgroundWrapper>
+      <div className="sm:pt-28 pt-14">
+        <Header />
+        <HeroSection />
+        <CategoriesSection />
+        <FeaturedProducts />
+        <Footer />
+      </div>
+    </PageBackgroundWrapper>
   );
 }

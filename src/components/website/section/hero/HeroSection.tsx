@@ -16,7 +16,7 @@ const HeroSection = () => {
     console.log("Navigating to start selling...");
   };
   return (
-    <section className="relative bg-white py-14  overflow-hidden">
+    <section className="relative  py-14  overflow-hidden">
      
    
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">

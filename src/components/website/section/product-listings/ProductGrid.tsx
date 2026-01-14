@@ -3,9 +3,9 @@
 import { motion } from "framer-motion";
 import { Package } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { ProductCard } from "../featured-products";
 import { Product } from "@/types";
 import { cn } from "@/lib/utils";
+import ProductCard from "@/components/shared/ProductCard";
 
 interface ProductGridProps {
   products: Product[];

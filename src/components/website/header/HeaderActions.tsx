@@ -72,24 +72,6 @@ const HeaderActions = ({
           <Link href="/auth/sign-in">Sign in</Link>
         </Button>
       </div>
-
-      {/* Mobile Menu */}
-      {/* <SheetWrapper
-        open={isMobileMenuOpen}
-        title="Menu"
-        setOpen={setIsMobileMenuOpen}
-        trigger={
-          <Button
-            variant="ghost"
-            size="icon"
-            className="lg:hidden h-10 w-10 hover:bg-gray-100"
-          >
-            <Menu className="h-5 w-5" />
-          </Button>
-        }
-      >
-        <MobileMenu />
-      </SheetWrapper> */}
     </div>
   );
 };

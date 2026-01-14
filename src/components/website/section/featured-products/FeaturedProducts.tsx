@@ -1,12 +1,14 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Star, ArrowRight } from "lucide-react";
-import ProductCard from "./ProductCard";
+import { Star, ArrowRight, Grid3X3, List } from "lucide-react";
+import ProductCard from "../../../shared/ProductCard";
 import { Product } from "@/types";
 import { Button } from "@/components/ui/button";
 import { products } from "@/components/constants/product";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { cn } from "@/lib/utils";
 
 interface FeaturedProductsProps {
   featuredProducts?: Product[];
@@ -15,6 +17,8 @@ interface FeaturedProductsProps {
 const FeaturedProducts = ({
   featuredProducts = products,
 }: FeaturedProductsProps) => {
+  const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
+
   const router = useRouter();
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -42,7 +46,7 @@ const FeaturedProducts = ({
   };
 
   return (
-    <section className="py-16 bg-gradient-to-b from-white to-gray-50/50">
+    <section className="py-16 ">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div
@@ -50,20 +54,41 @@ const FeaturedProducts = ({
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-8"
         >
-          <div className="inline-flex items-center gap-2 bg-gradient-to-r from-amber-100 to-orange-100 text-amber-800 px-4 py-2 rounded-full text-xs font-semibold mb-4 border border-amber-200">
-            <Star className="h-4 w-4 fill-current" />
-            Fresh From Farms
+          <div className="flex item-center justify-between">
+            <h2 className="text-md sm:text-xl  text-start text-gray-900">
+              Treding Ads
+            </h2>
+            <div className="flex items-center gap-2 bg-white border border-gray-200 rounded-lg p-1">
+              <Button
+                size="sm"
+                variant={viewMode === "grid" ? "default" : "ghost"}
+                className={`px-3 ${
+                  viewMode === "grid"
+                    ? "bg-emerald-600 hover:bg-emerald-700"
+                    : "text-gray-600"
+                }`}
+                onClick={() => setViewMode("grid")}
+              >
+                <Grid3X3 className="h-4 w-4 mr-2" />
+                Grid
+              </Button>
+              <Button
+                size="sm"
+                variant={viewMode === "list" ? "default" : "ghost"}
+                className={`px-3 ${
+                  viewMode === "list"
+                    ? "bg-emerald-600 hover:bg-emerald-700"
+                    : "text-gray-600"
+                }`}
+                onClick={() => setViewMode("list")}
+              >
+                <List className="h-4 w-4 mr-2" />
+                List
+              </Button>
+            </div>
           </div>
-          <h2 className="text-2xl sm:text-5xl font-bold text-gray-900 mb-4">
-            Fresh Agricultural Products
-          </h2>
-          <p className="sm:text-lg text-[14px] text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            Discover fresh, quality agricultural products directly from verified
-            farmers with inspection options. Every product comes with quality
-            assurance from our trusted farm partners.
-          </p>
         </motion.div>
 
         {/* Products Grid */}
@@ -72,7 +97,11 @@ const FeaturedProducts = ({
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 lg:gap-8 mb-12"
+          className={cn(
+            "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 lg:gap-8 mb-12",
+            viewMode === "list" &&
+              "md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2"
+          )}
         >
           {featuredProducts.slice(0, 8).map((product, index) => (
             <motion.div
@@ -81,7 +110,7 @@ const FeaturedProducts = ({
               whileHover={{ y: -5 }}
               transition={{ duration: 0.3 }}
             >
-              <ProductCard product={product} />
+              <ProductCard product={product} viewMode={viewMode} />
             </motion.div>
           ))}
         </motion.div>
