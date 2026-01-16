@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Star, ArrowRight, Grid3X3, List } from "lucide-react";
+import { Grid3X3, List } from "lucide-react";
 import ProductCard from "../../../shared/ProductCard";
 import { Product } from "@/types";
 import { Button } from "@/components/ui/button";
@@ -113,24 +113,6 @@ const FeaturedProducts = ({
               <ProductCard product={product} viewMode={viewMode} />
             </motion.div>
           ))}
-        </motion.div>
-
-        {/* CTA Button */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          viewport={{ once: true }}
-          className="text-center"
-        >
-          <Button
-            size="lg"
-            onClick={onViewAllProducts}
-            className="bg-gradient-to-r from-emerald-600 to-emerald-700 hover:from-emerald-700 hover:to-emerald-800 text-white px-8 py-4 text-sm rounded-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 group"
-          >
-            Explore All Products
-            <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-          </Button>
         </motion.div>
       </div>
     </section>
